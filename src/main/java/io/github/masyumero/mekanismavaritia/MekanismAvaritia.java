@@ -1,0 +1,45 @@
+package io.github.masyumero.mekanismavaritia;
+
+import com.mojang.logging.LogUtils;
+import io.github.masyumero.mekanismavaritia.common.registry.*;
+import mekanism.api.MekanismIMC;
+import mekanism.common.content.gear.ModuleHelper;
+import mekanism.common.integration.MekanismHooks;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.slf4j.Logger;
+
+// The value here should match an entry in the META-INF/mods.toml file
+@Mod(MekanismAvaritia.MODID)
+public class MekanismAvaritia {
+
+    public static final String MODID = "mekanismavaritia";
+
+    public static final Logger LOGGER = LogUtils.getLogger();
+
+    @SuppressWarnings("removal")
+    public MekanismAvaritia() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.addListener(this::imcQueue);
+        MAItem.register(modEventBus);
+        MABlock.register(modEventBus);
+        MATileEntityTypes.register(modEventBus);
+        MAContainerTypes.register(modEventBus);
+        MATab.register(modEventBus);
+        MAModules.MODULES.createAndRegister(modEventBus);
+    }
+
+    @SuppressWarnings("removal")
+    public static ResourceLocation rl(String path){
+        return new ResourceLocation(MekanismAvaritia.MODID, path);
+    }
+
+    private void imcQueue(InterModEnqueueEvent event) {
+        MekanismIMC.addMekaSuitModules(MAModules.INFINITY_ENERGY_UNIT);
+        MekanismIMC.addMekaToolModules(MAModules.COSMIC_UNIT);
+    }
+}
