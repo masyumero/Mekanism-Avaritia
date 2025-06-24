@@ -12,7 +12,7 @@ public class MAGearConfig extends BaseMekanismConfig {
 
     public MAGearConfig() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-        builder.comment("Unit Energy Use");
+        builder.comment("Gear Config").push("Unit Energy Use");
         CosmicUnitUseageEnergy = CachedLongValue.wrap(this, builder.defineInRange("CosmicUnitsUseageEnergy", Integer.MAX_VALUE, 1, Long.MAX_VALUE));
         configSpec = builder.build();
     }
