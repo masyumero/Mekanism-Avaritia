@@ -1,15 +1,14 @@
 package io.github.masyumero.mekanismavaritia;
 
 import com.mojang.logging.LogUtils;
+import io.github.masyumero.mekanismavaritia.common.config.LoadConfig;
 import io.github.masyumero.mekanismavaritia.common.registry.*;
 import mekanism.api.MekanismIMC;
-import mekanism.common.content.gear.ModuleHelper;
-import mekanism.common.integration.MekanismHooks;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
-import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
@@ -18,6 +17,7 @@ import org.slf4j.Logger;
 public class MekanismAvaritia {
 
     public static final String MODID = "mekanismavaritia";
+    public static final String MODNAME = "MekanismAvaritia";
 
     public static final Logger LOGGER = LogUtils.getLogger();
 
@@ -25,11 +25,14 @@ public class MekanismAvaritia {
     public MekanismAvaritia() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::imcQueue);
-        MAItem.register(modEventBus);
-        MABlock.register(modEventBus);
-        MATileEntityTypes.register(modEventBus);
-        MAContainerTypes.register(modEventBus);
-        MATab.register(modEventBus);
+        LoadConfig.registerConfigs(ModLoadingContext.get());
+        MAItem.ITEM.register(modEventBus);
+        MABlock.BLOCK.register(modEventBus);
+        MAInfuseTypes.INFUSE_TYPES.register(modEventBus);
+        MAGases.GASES.register(modEventBus);
+        MATileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
+        MAContainerTypes.CONTAINER_TYPES.register(modEventBus);
+        MATab.TAB.register(modEventBus);
         MAModules.MODULES.createAndRegister(modEventBus);
     }
 
@@ -39,7 +42,7 @@ public class MekanismAvaritia {
     }
 
     private void imcQueue(InterModEnqueueEvent event) {
-        MekanismIMC.addMekaSuitModules(MAModules.INFINITY_ENERGY_UNIT);
+        MekanismIMC.addModulesToAll(MAModules.INFINITY_ENERGY_UNIT);
         MekanismIMC.addMekaToolModules(MAModules.COSMIC_UNIT);
     }
 }
