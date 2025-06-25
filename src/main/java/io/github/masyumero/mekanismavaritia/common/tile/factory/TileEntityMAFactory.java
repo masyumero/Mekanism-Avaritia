@@ -4,7 +4,7 @@ import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttributeFactoryType;
 import io.github.masyumero.mekanismavaritia.common.content.blocktype.MAFactoryType;
 import io.github.masyumero.mekanismavaritia.common.inventory.slot.MAFactoryInputInventorySlot;
-import io.github.masyumero.mekanismavaritia.common.registry.MABlockType;
+import io.github.masyumero.mekanismavaritia.common.registry.MABlockTypes;
 import io.github.masyumero.mekanismavaritia.common.registry.MATileEntityTypes;
 import io.github.masyumero.mekanismavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekanismavaritia.common.util.MAEnumUtils;
@@ -463,16 +463,16 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
 
         //And finally check if it is the non factory version (it will be missing sorting data, but we can gracefully ignore that)
         return switch (type) {
-            case ALLOYING -> MABlockType.ALLOYER.getTileType().get();
-            case SMELTING -> MABlockType.ENERGIZED_SMELTER.getTileType().get();
-            case ENRICHING -> MABlockType.ENRICHMENT_CHAMBER.getTileType().get();
-            case CRUSHING -> MABlockType.CRUSHER.getTileType().get();
-            case COMPRESSING -> MABlockType.OSMIUM_COMPRESSOR.getTileType().get();
-            case PURIFYING -> MABlockType.PURIFICATION_CHAMBER.getTileType().get();
-            case INJECTING -> MABlockType.CHEMICAL_INJECTION_CHAMBER.getTileType().get();
-            case COMBINING -> MABlockType.COMBINER.getTileType().get();
-            case INFUSING -> MABlockType.METALLURGIC_INFUSER.getTileType().get();
-            case SAWING -> MABlockType.PRECISION_SAWMILL.getTileType().get();
+            case ALLOYING -> MABlockTypes.ALLOYER.getTileType().get();
+            case SMELTING -> MABlockTypes.ENERGIZED_SMELTER.getTileType().get();
+            case ENRICHING -> MABlockTypes.ENRICHMENT_CHAMBER.getTileType().get();
+            case CRUSHING -> MABlockTypes.CRUSHER.getTileType().get();
+            case COMPRESSING -> MABlockTypes.OSMIUM_COMPRESSOR.getTileType().get();
+            case PURIFYING -> MABlockTypes.PURIFICATION_CHAMBER.getTileType().get();
+            case INJECTING -> MABlockTypes.CHEMICAL_INJECTION_CHAMBER.getTileType().get();
+            case COMBINING -> MABlockTypes.COMBINER.getTileType().get();
+            case INFUSING -> MABlockTypes.METALLURGIC_INFUSER.getTileType().get();
+            case SAWING -> MABlockTypes.PRECISION_SAWMILL.getTileType().get();
         } == tileType;
     }
 

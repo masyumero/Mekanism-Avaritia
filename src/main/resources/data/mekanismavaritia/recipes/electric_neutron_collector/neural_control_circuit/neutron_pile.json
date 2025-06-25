@@ -1,0 +1,16 @@
+{
+  "type":"mekanismavaritia:electric_neutron_collector",
+  "energyRequired":500,
+  "input":
+  {
+    "ingredient":
+    {
+      "item":"mekanismavaritia:neural_control_circuit"
+    }
+  },
+  "output":
+  {
+    "item":"avaritia:neutron_pile"
+  },
+  "duration": 10
+}

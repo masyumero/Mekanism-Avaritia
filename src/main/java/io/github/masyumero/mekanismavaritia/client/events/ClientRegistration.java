@@ -1,6 +1,7 @@
 package io.github.masyumero.mekanismavaritia.client.events;
 
 import io.github.masyumero.mekanismavaritia.MekanismAvaritia;
+import io.github.masyumero.mekanismavaritia.client.gui.machine.GuiElectricNeutronCollectorMachine;
 import io.github.masyumero.mekanismavaritia.client.gui.machine.GuiMAFactory;
 import io.github.masyumero.mekanismavaritia.common.registry.MAContainerTypes;
 import mekanism.client.ClientRegistrationUtil;
@@ -19,6 +20,7 @@ public class ClientRegistration {
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerContainers(RegisterEvent event) {
         event.register(Registries.MENU, helper -> {
+            ClientRegistrationUtil.registerScreen(MAContainerTypes.ELECTRIC_NEUTRON_COLLECTOR, GuiElectricNeutronCollectorMachine::new);
             ClientRegistrationUtil.registerScreen(MAContainerTypes.FACTORY, GuiMAFactory::new);
         });
     }

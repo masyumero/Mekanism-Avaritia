@@ -3,18 +3,20 @@ package io.github.masyumero.mekanismavaritia.common.registry;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import com.mojang.logging.LogUtils;
-import fr.iglee42.evolvedmekanism.EvolvedMekanismLang;
 import fr.iglee42.evolvedmekanism.registries.EMContainerTypes;
 import fr.iglee42.evolvedmekanism.registries.EMTileEntityTypes;
 import fr.iglee42.evolvedmekanism.tiles.machine.TileEntityAlloyer;
 import io.github.masyumero.mekanismavaritia.MekanismAvaritiaLang;
+import io.github.masyumero.mekanismavaritia.common.content.blocktype.MABlockShapes;
 import io.github.masyumero.mekanismavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekanismavaritia.common.content.blocktype.MAFactoryType;
 import io.github.masyumero.mekanismavaritia.common.content.blocktype.MAMachine;
 import io.github.masyumero.mekanismavaritia.common.tier.MAFactoryTier;
+import io.github.masyumero.mekanismavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
 import io.github.masyumero.mekanismavaritia.common.util.MAEnumUtils;
 import mekanism.api.Upgrade;
 import mekanism.common.MekanismLang;
+import mekanism.common.block.attribute.Attributes;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.content.blocktype.BlockShapes;
 import mekanism.common.registries.MekanismContainerTypes;
@@ -26,7 +28,7 @@ import org.slf4j.Logger;
 
 import java.util.EnumSet;
 
-public class MABlockType {
+public class MABlockTypes {
 
     private static final Logger LOGGER = LogUtils.getLogger();
     private static final Table<MAFactoryTier, MAFactoryType, MAFactory<?>> FACTORIES = HashBasedTable.create();
@@ -114,6 +116,19 @@ public class MABlockType {
             .withEnergyConfig(MekanismConfig.usage.precisionSawmill, MekanismConfig.storage.precisionSawmill)
             .withComputerSupport("precisionSawmill")
             .build();
+
+    public static final MAMachine<TileEntityElectricNeutronCollector> ELECTRIC_NEUTRON_COLLECTOR = MAMachine.MAMachineBuilder
+            .createMAMachine(() -> MATileEntityTypes.ELECTRIC_NEUTRON_COLLECTOR, MekanismAvaritiaLang.DESCRIPTION_ELECTRIC_NEUTRON_COLLECTOR)
+            .withCustomShape(MABlockShapes.ELECTRIC_NEUTRON_COLLECTOR)
+            .withSound(MekanismSounds.RESISTIVE_HEATER)
+            .withGui(() -> MAContainerTypes.ELECTRIC_NEUTRON_COLLECTOR)
+            //.withEnergyConfig(LoadConfig.usageConfig.energyCatalystMachine, LoadConfig.storageConfig.energyCatalystMachine)
+            .withEnergyConfig(MekanismConfig.usage.precisionSawmill, MekanismConfig.storage.precisionSawmill)
+            .withSupportedUpgrades(EnumSet.of(Upgrade.ENERGY,Upgrade.MUFFLING))
+            .withComputerSupport("ElectricNeutronCollector")
+            .replace(Attributes.ACTIVE_LIGHT)
+            .build();
+
 
     static {
         for (MAFactoryTier tier : MAEnumUtils.MA_FACTORY_TIERS) {

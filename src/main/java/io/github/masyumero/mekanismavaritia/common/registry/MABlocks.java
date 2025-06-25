@@ -9,11 +9,14 @@ import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttributeTi
 import io.github.masyumero.mekanismavaritia.common.block.prefab.BlockMAFactoryMachine;
 import io.github.masyumero.mekanismavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekanismavaritia.common.content.blocktype.MAFactoryType;
+import io.github.masyumero.mekanismavaritia.common.content.blocktype.MAMachine;
 import io.github.masyumero.mekanismavaritia.common.item.block.machine.ItemBlockMAFactory;
 import io.github.masyumero.mekanismavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekanismavaritia.common.tile.factory.TileEntityMAFactory;
+import io.github.masyumero.mekanismavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
 import io.github.masyumero.mekanismavaritia.common.util.MAEnumUtils;
-import mekanism.common.content.blocktype.BlockType;
+import mekanism.common.block.prefab.BlockTile;
+import mekanism.common.item.block.machine.ItemBlockMachine;
 import mekanism.common.registration.impl.BlockDeferredRegister;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import net.minecraft.world.item.BlockItem;
@@ -28,7 +31,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public class MABlock {
+public class MABlocks {
 
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final BlockDeferredRegister BLOCK = new BlockDeferredRegister(MekanismAvaritia.MODID);
@@ -45,14 +48,16 @@ public class MABlock {
             for (MAFactoryType type : MAEnumUtils.MA_FACTORY_TYPES) {
                 if (type == MAFactoryType.ALLOYING) {
                     if(ModList.get().isLoaded("evolvedmekanism")) {
-                        FACTORIES.put(tier, type, registerFactory(MABlockType.getMAFactory(tier, type)));
+                        FACTORIES.put(tier, type, registerFactory(MABlockTypes.getMAFactory(tier, type)));
                     }
                 } else {
-                    FACTORIES.put(tier, type, registerFactory(MABlockType.getMAFactory(tier, type)));
+                    FACTORIES.put(tier, type, registerFactory(MABlockTypes.getMAFactory(tier, type)));
                 }
             }
         }
     }
+
+    public static final BlockRegistryObject<BlockTile.BlockTileModel<TileEntityElectricNeutronCollector, MAMachine<TileEntityElectricNeutronCollector>>, ItemBlockMachine> ELECTRIC_NEUTRON_COLLECTOR = BLOCK.register("electric_neutron_collector", () -> new BlockTile.BlockTileModel<>(MABlockTypes.ELECTRIC_NEUTRON_COLLECTOR, properties -> properties.mapColor(MapColor.METAL)), ItemBlockMachine::new);
 
     private static <TILE extends TileEntityMAFactory<?>> BlockRegistryObject<BlockMAFactoryMachine.BlockMAFactory<?>, ItemBlockMAFactory> registerFactory(MAFactory<TILE> type) {
         IMATier tier = Objects.requireNonNull(type.get(MAAttributeTier.class)).tier();

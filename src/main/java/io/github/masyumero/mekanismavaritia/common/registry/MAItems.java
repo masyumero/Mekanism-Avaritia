@@ -11,7 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;
 
-public class MAItem {
+public class MAItems {
     public static final ItemDeferredRegister ITEM = new ItemDeferredRegister(MekanismAvaritia.MODID);
 
     //circuit

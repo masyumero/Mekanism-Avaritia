@@ -11,7 +11,8 @@ public enum MekanismAvaritiaLang implements ILangEntry{
     TAB("constants", "mod_name"),
     NULL("null", "null"),
     CRYSTALLINE_ALLOY_SINGULARITY("singularity", "crystalline_alloy"),
-    ANTIMATTER_PELLET_SINGULARITY("singularity", "antimatter_pellet");
+    ANTIMATTER_PELLET_SINGULARITY("singularity", "antimatter_pellet"),
+    DESCRIPTION_ELECTRIC_NEUTRON_COLLECTOR("description", "electric_neutron_collector");
 
     private final String key;
     MekanismAvaritiaLang(String type, String path) {

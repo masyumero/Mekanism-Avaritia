@@ -2,6 +2,7 @@ package io.github.masyumero.mekanismavaritia;
 
 import com.mojang.logging.LogUtils;
 import io.github.masyumero.mekanismavaritia.common.config.LoadConfig;
+import io.github.masyumero.mekanismavaritia.common.recipe.MARecipeType;
 import io.github.masyumero.mekanismavaritia.common.registry.*;
 import mekanism.api.MekanismIMC;
 import net.minecraft.resources.ResourceLocation;
@@ -26,10 +27,12 @@ public class MekanismAvaritia {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::imcQueue);
         LoadConfig.registerConfigs(ModLoadingContext.get());
-        MAItem.ITEM.register(modEventBus);
-        MABlock.BLOCK.register(modEventBus);
+        MAItems.ITEM.register(modEventBus);
+        MABlocks.BLOCK.register(modEventBus);
         MAInfuseTypes.INFUSE_TYPES.register(modEventBus);
         MAGases.GASES.register(modEventBus);
+        MARecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+        MARecipeType.RECIPE_TYPES.register(modEventBus);
         MATileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
         MAContainerTypes.CONTAINER_TYPES.register(modEventBus);
         MATab.TAB.register(modEventBus);

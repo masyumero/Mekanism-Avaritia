@@ -2,7 +2,7 @@ package io.github.masyumero.mekanismavaritia.common.content.blocktype;
 
 import fr.iglee42.evolvedmekanism.jei.EMJEI;
 import fr.iglee42.evolvedmekanism.registries.EMBlocks;
-import io.github.masyumero.mekanismavaritia.common.registry.MABlockType;
+import io.github.masyumero.mekanismavaritia.common.registry.MABlockTypes;
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.api.text.IHasTranslationKey;
 import mekanism.client.jei.MekanismJEIRecipeType;
@@ -15,16 +15,16 @@ import java.util.function.Supplier;
 
 @NothingNullByDefault
 public enum MAFactoryType implements IHasTranslationKey {
-    ALLOYING("alloying", "factory.mekanism.alloying", () -> MABlockType.ALLOYER, () -> EMBlocks.ALLOYER),
-    SMELTING("smelting", MekanismLang.SMELTING.getTranslationKey(), () -> MABlockType.ENERGIZED_SMELTER, () -> MekanismBlocks.ENERGIZED_SMELTER),
-    ENRICHING("enriching", MekanismLang.ENRICHING.getTranslationKey(), () -> MABlockType.ENRICHMENT_CHAMBER, () -> MekanismBlocks.ENRICHMENT_CHAMBER),
-    CRUSHING("crushing", MekanismLang.CRUSHING.getTranslationKey(), () -> MABlockType.CRUSHER, () -> MekanismBlocks.CRUSHER),
-    COMPRESSING("compressing", MekanismLang.COMPRESSING.getTranslationKey(), () -> MABlockType.OSMIUM_COMPRESSOR, () -> MekanismBlocks.OSMIUM_COMPRESSOR),
-    COMBINING("combining", MekanismLang.COMBINING.getTranslationKey(), () -> MABlockType.COMBINER, () -> MekanismBlocks.COMBINER),
-    PURIFYING("purifying", MekanismLang.PURIFYING.getTranslationKey(), () -> MABlockType.PURIFICATION_CHAMBER, () -> MekanismBlocks.PURIFICATION_CHAMBER),
-    INJECTING("injecting", MekanismLang.INJECTING.getTranslationKey(), () -> MABlockType.CHEMICAL_INJECTION_CHAMBER, () -> MekanismBlocks.CHEMICAL_INJECTION_CHAMBER),
-    INFUSING("infusing", MekanismLang.INFUSING.getTranslationKey(), () -> MABlockType.METALLURGIC_INFUSER, () -> MekanismBlocks.METALLURGIC_INFUSER),
-    SAWING("sawing", MekanismLang.SAWING.getTranslationKey(), () -> MABlockType.PRECISION_SAWMILL, () -> MekanismBlocks.PRECISION_SAWMILL);
+    ALLOYING("alloying", "factory.mekanism.alloying", () -> MABlockTypes.ALLOYER, () -> EMBlocks.ALLOYER),
+    SMELTING("smelting", MekanismLang.SMELTING.getTranslationKey(), () -> MABlockTypes.ENERGIZED_SMELTER, () -> MekanismBlocks.ENERGIZED_SMELTER),
+    ENRICHING("enriching", MekanismLang.ENRICHING.getTranslationKey(), () -> MABlockTypes.ENRICHMENT_CHAMBER, () -> MekanismBlocks.ENRICHMENT_CHAMBER),
+    CRUSHING("crushing", MekanismLang.CRUSHING.getTranslationKey(), () -> MABlockTypes.CRUSHER, () -> MekanismBlocks.CRUSHER),
+    COMPRESSING("compressing", MekanismLang.COMPRESSING.getTranslationKey(), () -> MABlockTypes.OSMIUM_COMPRESSOR, () -> MekanismBlocks.OSMIUM_COMPRESSOR),
+    COMBINING("combining", MekanismLang.COMBINING.getTranslationKey(), () -> MABlockTypes.COMBINER, () -> MekanismBlocks.COMBINER),
+    PURIFYING("purifying", MekanismLang.PURIFYING.getTranslationKey(), () -> MABlockTypes.PURIFICATION_CHAMBER, () -> MekanismBlocks.PURIFICATION_CHAMBER),
+    INJECTING("injecting", MekanismLang.INJECTING.getTranslationKey(), () -> MABlockTypes.CHEMICAL_INJECTION_CHAMBER, () -> MekanismBlocks.CHEMICAL_INJECTION_CHAMBER),
+    INFUSING("infusing", MekanismLang.INFUSING.getTranslationKey(), () -> MABlockTypes.METALLURGIC_INFUSER, () -> MekanismBlocks.METALLURGIC_INFUSER),
+    SAWING("sawing", MekanismLang.SAWING.getTranslationKey(), () -> MABlockTypes.PRECISION_SAWMILL, () -> MekanismBlocks.PRECISION_SAWMILL);
 
 
     private final String registryNameComponent;

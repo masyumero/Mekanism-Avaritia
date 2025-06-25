@@ -3,8 +3,8 @@ package io.github.masyumero.mekanismavaritia.common.content.blocktype;
 import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttributeFactoryType;
 import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttributeTier;
 import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttributeUpgradeable;
-import io.github.masyumero.mekanismavaritia.common.registry.MABlock;
-import io.github.masyumero.mekanismavaritia.common.registry.MABlockType;
+import io.github.masyumero.mekanismavaritia.common.registry.MABlockTypes;
+import io.github.masyumero.mekanismavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekanismavaritia.common.registry.MAContainerTypes;
 import io.github.masyumero.mekanismavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekanismavaritia.common.tile.factory.TileEntityMAFactory;
@@ -32,7 +32,7 @@ public class MAFactory<TILE extends TileEntityMAFactory<?>> extends MAMachine.MA
         add(new AttributeGui(containerRegistrar, null), new MAAttributeTier<>(tier));
 
         if (tier.ordinal() < MAEnumUtils.MA_FACTORY_TIERS.length - 1) {
-            add(new MAAttributeUpgradeable(() -> MABlock.getMAFactory(MAEnumUtils.MA_FACTORY_TIERS[tier.ordinal() + 1], origMachine.getFactoryType())));
+            add(new MAAttributeUpgradeable(() -> MABlocks.getMAFactory(MAEnumUtils.MA_FACTORY_TIERS[tier.ordinal() + 1], origMachine.getFactoryType())));
         }
     }
 
@@ -73,16 +73,16 @@ public class MAFactory<TILE extends TileEntityMAFactory<?>> extends MAMachine.MA
         MAFactoryBuilder<MAFactory<TILE>, TILE, ?> builder = new MAFactoryBuilder<>(new MAFactory<>(tileEntityRegistrar,
                 () -> MAContainerTypes.FACTORY,
                 switch (type) {
-                    case ALLOYING -> MABlockType.ALLOYER;
-                    case SMELTING -> MABlockType.ENERGIZED_SMELTER;
-                    case ENRICHING -> MABlockType.ENRICHMENT_CHAMBER;
-                    case CRUSHING -> MABlockType.CRUSHER;
-                    case SAWING -> MABlockType.PRECISION_SAWMILL;
-                    case INFUSING -> MABlockType.METALLURGIC_INFUSER;
-                    case COMBINING -> MABlockType.COMBINER;
-                    case INJECTING -> MABlockType.CHEMICAL_INJECTION_CHAMBER;
-                    case PURIFYING -> MABlockType.PURIFICATION_CHAMBER;
-                    case COMPRESSING -> MABlockType.OSMIUM_COMPRESSOR;
+                    case ALLOYING -> MABlockTypes.ALLOYER;
+                    case SMELTING -> MABlockTypes.ENERGIZED_SMELTER;
+                    case ENRICHING -> MABlockTypes.ENRICHMENT_CHAMBER;
+                    case CRUSHING -> MABlockTypes.CRUSHER;
+                    case SAWING -> MABlockTypes.PRECISION_SAWMILL;
+                    case INFUSING -> MABlockTypes.METALLURGIC_INFUSER;
+                    case COMBINING -> MABlockTypes.COMBINER;
+                    case INJECTING -> MABlockTypes.CHEMICAL_INJECTION_CHAMBER;
+                    case PURIFYING -> MABlockTypes.PURIFICATION_CHAMBER;
+                    case COMPRESSING -> MABlockTypes.OSMIUM_COMPRESSOR;
                 },
                 tier)
         );
