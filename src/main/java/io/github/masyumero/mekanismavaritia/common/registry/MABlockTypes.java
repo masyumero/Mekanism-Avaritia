@@ -124,7 +124,7 @@ public class MABlockTypes {
             .withGui(() -> MAContainerTypes.ELECTRIC_NEUTRON_COLLECTOR)
             //.withEnergyConfig(LoadConfig.usageConfig.energyCatalystMachine, LoadConfig.storageConfig.energyCatalystMachine)
             .withEnergyConfig(MekanismConfig.usage.precisionSawmill, MekanismConfig.storage.precisionSawmill)
-            .withSupportedUpgrades(EnumSet.of(Upgrade.ENERGY,Upgrade.MUFFLING))
+            .withSupportedUpgrades(EnumSet.of(Upgrade.SPEED,Upgrade.ENERGY,Upgrade.MUFFLING))
             .withComputerSupport("ElectricNeutronCollector")
             .replace(Attributes.ACTIVE_LIGHT)
             .build();

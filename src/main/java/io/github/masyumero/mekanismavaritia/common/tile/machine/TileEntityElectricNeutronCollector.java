@@ -10,6 +10,7 @@ import io.github.masyumero.mekanismavaritia.common.recipe.lookup.cache.MAInputRe
 import io.github.masyumero.mekanismavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekanismavaritia.common.tile.prefab.MATileEntityProgressMachine;
 import mekanism.api.IContentsListener;
+import mekanism.api.Upgrade;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.api.recipes.inputs.IInputHandler;
@@ -106,14 +107,21 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
     @Override
     public void onCachedRecipeChanged(@Nullable CachedRecipe<ElectricNeutronCollectorRecipe> cachedRecipe, int cacheIndex) {
         super.onCachedRecipeChanged(cachedRecipe, cacheIndex);
+        int recipeDuration;
         if (cachedRecipe == null) {
+            recipeDuration = BASE_DURATION;
             recipeEnergyRequired = FloatingLong.ZERO;
         } else {
             ElectricNeutronCollectorRecipe recipe = cachedRecipe.getRecipe();
+            recipeDuration = recipe.getDuration();
             recipeEnergyRequired = recipe.getEnergyRequired();
         }
+        boolean update = baseTicksRequired != recipeDuration;
+        baseTicksRequired = recipeDuration;
+        if (update) {
+            recalculateUpgrades(Upgrade.SPEED);
+        }
         energyContainer.updateEnergyPerTick();
-        ticksRequired = cachedRecipe == null ? BASE_DURATION : cachedRecipe.getRecipe().getDuration();
     }
 
     public FloatingLong getRecipeEnergyRequired() {
