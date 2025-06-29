@@ -30,7 +30,7 @@ public class MekanismAvaritia {
         MAItems.ITEM.register(modEventBus);
         MABlocks.BLOCK.register(modEventBus);
         MAInfuseTypes.INFUSE_TYPES.register(modEventBus);
-        MAGases.GASES.register(modEventBus);
+//        MAGases.GASES.register(modEventBus);
         MARecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         MARecipeType.RECIPE_TYPES.register(modEventBus);
         MATileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);

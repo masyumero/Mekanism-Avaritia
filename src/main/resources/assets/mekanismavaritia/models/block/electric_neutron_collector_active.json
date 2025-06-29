@@ -2,14 +2,14 @@
 	"parent": "block/block",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"2": "mekanismavaritia:block/electric_neutron_collector/electric_neutron_collector_front",
+		"2": "mekanismavaritia:block/electric_neutron_collector/electric_neutron_collector_front_active",
 		"3": "mekanismavaritia:block/electric_neutron_collector/electric_neutron_collector_top",
 		"5": "mekanismavaritia:block/electric_neutron_collector/electric_neutron_collector_side",
 		"6": "mekanism:block/base/base_bottom",
 		"7": "mekanismavaritia:block/electric_neutron_collector/electric_neutron_collector_back",
+		"particle": "mekanismavaritia:block/electric_neutron_collector/electric_neutron_collector_front_active",
 		"ports": "mekanism:block/models/ports",
-		"ports_led": "mekanism:block/models/ports_led",
-		"particle": "mekanismavaritia:block/electric_neutron_collector/electric_neutron_collector_front"
+		"ports_led": "mekanism:block/models/ports_led"
 	},
 	"elements": [
 		{
@@ -135,10 +135,6 @@
 			"to": [12, 12, 16],
 			"faces": {
 				"south": {"uv": [8, 8, 16, 16], "texture": "#ports_led", "cullface": "south"}
-			},
-			"forge_data": {
-				"block_light": 15,
-				"sky_light": 15
 			}
 		},
 		{

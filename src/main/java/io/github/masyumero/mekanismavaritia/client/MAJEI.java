@@ -7,7 +7,6 @@ import io.github.masyumero.mekanismavaritia.common.recipe.MARecipeType;
 import io.github.masyumero.mekanismavaritia.common.registry.MABlocks;
 import mekanism.client.jei.CatalystRegistryHelper;
 import mekanism.client.jei.MekanismJEI;
-import mekanism.client.jei.MekanismJEIRecipeType;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -40,7 +39,7 @@ public class MAJEI implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(@Nonnull IRecipeCatalystRegistration registry) {
-        CatalystRegistryHelper.register(registry, MABlocks.ELECTRIC_NEUTRON_COLLECTOR, MekanismJEIRecipeType.GAS_CONVERSION);
+        CatalystRegistryHelper.register(registry, MABlocks.ELECTRIC_NEUTRON_COLLECTOR, MAJEIRecipeType.ELECTRIC_NEUTRON_COLLECTOR);
     }
 
     @Override
