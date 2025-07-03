@@ -154,6 +154,7 @@ dependencies {
     compileOnly "mekanism:Mekanism:${mekanism_version}"
     implementation fg.deobf("curse.maven:re-avaritia-623969:6418092")
     implementation fg.deobf("curse.maven:evolved-mekanism-1230085:6456494")
+    implementation fg.deobf("curse.maven:mekanism-weapons-929829:6065486")
     runtimeOnly fg.deobf("curse.maven:iglee-library-541199:5329230")
     implementation fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     // If you want to test/use Mekanism & its modules during `runClient` invocation, use the following

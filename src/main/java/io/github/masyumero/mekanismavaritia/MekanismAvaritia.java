@@ -5,8 +5,10 @@ import io.github.masyumero.mekanismavaritia.common.config.LoadConfig;
 import io.github.masyumero.mekanismavaritia.common.recipe.MARecipeType;
 import io.github.masyumero.mekanismavaritia.common.registry.*;
 import mekanism.api.MekanismIMC;
+import meranha.mekaweapons.MekaWeapons;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -27,15 +29,15 @@ public class MekanismAvaritia {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::imcQueue);
         LoadConfig.registerConfigs(ModLoadingContext.get());
-        MAItems.ITEM.register(modEventBus);
-        MABlocks.BLOCK.register(modEventBus);
-        MAInfuseTypes.INFUSE_TYPES.register(modEventBus);
+        MAItems.register(modEventBus);
+        MABlocks.register(modEventBus);
+        MAInfuseTypes.register(modEventBus);
 //        MAGases.GASES.register(modEventBus);
         MARecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         MARecipeType.RECIPE_TYPES.register(modEventBus);
-        MATileEntityTypes.TILE_ENTITY_TYPES.register(modEventBus);
-        MAContainerTypes.CONTAINER_TYPES.register(modEventBus);
-        MATab.TAB.register(modEventBus);
+        MATileEntityTypes.register(modEventBus);
+        MAContainerTypes.register(modEventBus);
+        MATab.register(modEventBus);
         MAModules.MODULES.createAndRegister(modEventBus);
     }
 
@@ -47,5 +49,9 @@ public class MekanismAvaritia {
     private void imcQueue(InterModEnqueueEvent event) {
         MekanismIMC.addModulesToAll(MAModules.INFINITY_ENERGY_UNIT);
         MekanismIMC.addMekaToolModules(MAModules.COSMIC_UNIT);
+        if (ModList.get().isLoaded("mekaweapons")) {
+            MekaWeapons.addModules(MekaWeapons.ADD_MEKATANA_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.COSMIC_UNIT);
+            MekaWeapons.addModules(MekaWeapons.ADD_MEKA_BOW_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.COSMIC_UNIT);
+        }
     }
 }
