@@ -25,7 +25,6 @@ import mekanism.common.upgrade.IUpgradeData;
 import mekanism.common.util.InventoryUtils;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -140,10 +139,5 @@ public class TileEntityCombiningMAFactory extends TileEntityItemToItemMAFactory<
     @Override
     public CombinerUpgradeData getUpgradeData() {
         return new CombinerUpgradeData(redstone, getControlType(), getEnergyContainer(), progress, energySlot, extraSlot, inputSlots, outputSlots, isSorting(), getComponents());
-    }
-
-    @Override
-    public Component getName() {
-        return null;
     }
 }

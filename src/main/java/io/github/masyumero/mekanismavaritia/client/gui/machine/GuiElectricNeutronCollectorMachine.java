@@ -11,12 +11,9 @@ import mekanism.client.gui.element.tab.GuiEnergyTab;
 import mekanism.client.render.MekanismRenderer;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
 import mekanism.common.inventory.warning.WarningTracker;
-import mekanism.common.util.MekanismUtils;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import org.jetbrains.annotations.NotNull;
 
 public class GuiElectricNeutronCollectorMachine extends GuiConfigurableTile<TileEntityElectricNeutronCollector, MekanismTileContainer<TileEntityElectricNeutronCollector>> {
 
@@ -24,8 +21,6 @@ public class GuiElectricNeutronCollectorMachine extends GuiConfigurableTile<Tile
         super(container, inv, title);
         dynamicSlots = true;
     }
-
-    public static final ResourceLocation BASE_BACKGROUND = MekanismUtils.getResource(MekanismUtils.ResourceType.GUI, "base.png");
 
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {
@@ -41,12 +36,5 @@ public class GuiElectricNeutronCollectorMachine extends GuiConfigurableTile<Tile
         addRenderableWidget(new GuiEnergyTab(this, tile.getEnergyContainer(), tile::getActive));
         addRenderableWidget(new GuiProgress(tile::getScaledProgress, ProgressType.LARGE_RIGHT, this, 71, 38).jeiCategory(tile))
                 .warning(WarningTracker.WarningType.INPUT_DOESNT_PRODUCE_OUTPUT, tile.getWarningCheck(CachedRecipe.OperationTracker.RecipeError.INPUT_DOESNT_PRODUCE_OUTPUT));
-    }
-
-    @Override
-    protected void drawForegroundText(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        renderTitleText(guiGraphics);
-        drawString(guiGraphics, playerInventoryTitle, inventoryLabelX, inventoryLabelY, titleTextColor());
-        super.drawForegroundText(guiGraphics, mouseX, mouseY);
     }
 }

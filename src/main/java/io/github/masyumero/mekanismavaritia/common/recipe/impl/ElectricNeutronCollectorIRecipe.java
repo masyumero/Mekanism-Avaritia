@@ -29,11 +29,6 @@ public class ElectricNeutronCollectorIRecipe extends ElectricNeutronCollectorRec
     }
 
     @Override
-    public boolean canCraftInDimensions(int i, int i1) {
-        return false;
-    }
-
-    @Override
     public String getGroup() {
         return MABlocks.ELECTRIC_NEUTRON_COLLECTOR.getName();
     }
@@ -41,10 +36,5 @@ public class ElectricNeutronCollectorIRecipe extends ElectricNeutronCollectorRec
     @Override
     public ItemStack getToastSymbol() {
         return MABlocks.ELECTRIC_NEUTRON_COLLECTOR.getItemStack();
-    }
-
-    @Override
-    public boolean m_142505_() {
-        return false;
     }
 }

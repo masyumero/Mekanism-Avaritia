@@ -36,7 +36,6 @@ import mekanism.common.tile.component.TileComponentEjector;
 import mekanism.common.upgrade.MachineUpgradeData;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -178,10 +177,5 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
     @Override
     public IMARecipeTypeProvider<ElectricNeutronCollectorRecipe, MAInputRecipeCache.SingleItem<ElectricNeutronCollectorRecipe>> getMARecipeType() {
         return MARecipeType.ELECTRIC_NEUTRON_COLLECTOR;
-    }
-
-    @Override
-    public Component getName() {
-        return null;
     }
 }

@@ -1,7 +1,6 @@
 package io.github.masyumero.mekanismavaritia.client.gui.machine;
 
 import fr.iglee42.evolvedmekanism.jei.EMJEI;
-import io.github.masyumero.mekanismavaritia.api.tier.MATier;
 import io.github.masyumero.mekanismavaritia.client.gui.element.tab.GuiMASortingTab;
 import io.github.masyumero.mekanismavaritia.common.tile.factory.TileEntityItemStackGasToItemStackMAFactory;
 import io.github.masyumero.mekanismavaritia.common.tile.factory.TileEntityMAFactory;
@@ -9,7 +8,6 @@ import io.github.masyumero.mekanismavaritia.common.tile.factory.TileEntityMetall
 import io.github.masyumero.mekanismavaritia.common.tile.factory.TileEntitySawingMAFactory;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.client.gui.GuiConfigurableTile;
-import mekanism.client.gui.GuiUtils;
 import mekanism.client.gui.element.GuiDumpButton;
 import mekanism.client.gui.element.bar.GuiChemicalBar;
 import mekanism.client.gui.element.bar.GuiVerticalPowerBar;
@@ -17,20 +15,15 @@ import mekanism.client.gui.element.progress.GuiProgress;
 import mekanism.client.gui.element.progress.ProgressType;
 import mekanism.client.gui.element.tab.GuiEnergyTab;
 import mekanism.client.jei.MekanismJEIRecipeType;
-import mekanism.client.render.MekanismRenderer;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
 import mekanism.common.inventory.warning.ISupportsWarning;
 import mekanism.common.inventory.warning.WarningTracker;
-import mekanism.common.util.MekanismUtils;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 public class GuiMAFactory extends GuiConfigurableTile<TileEntityMAFactory<?>, MekanismTileContainer<TileEntityMAFactory<?>>> {
-
-    public static final ResourceLocation BASE_BACKGROUND = MekanismUtils.getResource(MekanismUtils.ResourceType.GUI, "base.png");
 
     public GuiMAFactory(MekanismTileContainer<TileEntityMAFactory<?>> container, Inventory inv, Component title) {
         super(container, inv, title);
@@ -48,13 +41,6 @@ public class GuiMAFactory extends GuiConfigurableTile<TileEntityMAFactory<?>, Me
         titleLabelY = 4;
         dynamicSlots = true;
     }
-
-    @Override
-    protected void renderBg(@NotNull GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
-        MekanismRenderer.resetColor(guiGraphics);
-        GuiUtils.renderBackgroundTexture(guiGraphics, BASE_BACKGROUND, 4, 4, leftPos, topPos, imageWidth, imageHeight, 256, 256);
-    }
-
 
     @Override
     protected void addGuiElements() {

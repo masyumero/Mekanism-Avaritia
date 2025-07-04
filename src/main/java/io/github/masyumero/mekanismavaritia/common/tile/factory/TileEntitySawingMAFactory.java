@@ -29,7 +29,6 @@ import mekanism.common.upgrade.SawmillUpgradeData;
 import mekanism.common.util.InventoryUtils;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemHandlerHelper;
@@ -167,9 +166,4 @@ public class TileEntitySawingMAFactory extends TileEntityMAFactory<SawmillRecipe
         return secondaryOutputSlot == null ? ItemStack.EMPTY : secondaryOutputSlot.getStack();
     }
     //End methods IComputerTile
-
-    @Override
-    public Component getName() {
-        return null;
-    }
 }

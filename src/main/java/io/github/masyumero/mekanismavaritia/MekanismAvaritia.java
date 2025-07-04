@@ -32,13 +32,13 @@ public class MekanismAvaritia {
         MAItems.register(modEventBus);
         MABlocks.register(modEventBus);
         MAInfuseTypes.register(modEventBus);
-//        MAGases.GASES.register(modEventBus);
+        MAGases.GASES.register(modEventBus);
         MARecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         MARecipeType.RECIPE_TYPES.register(modEventBus);
         MATileEntityTypes.register(modEventBus);
         MAContainerTypes.register(modEventBus);
         MATab.register(modEventBus);
-        MAModules.MODULES.createAndRegister(modEventBus);
+        MAModules.MODULES.register(modEventBus);
     }
 
     @SuppressWarnings("removal")

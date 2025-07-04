@@ -46,7 +46,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.LongArrayTag;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -304,9 +303,4 @@ public class TileEntityItemStackGasToItemStackMAFactory extends TileEntityItemTo
         dump();
     }
     //End methods IComputerTile
-
-    @Override
-    public Component getName() {
-        return null;
-    }
 }

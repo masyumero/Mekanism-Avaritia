@@ -36,7 +36,6 @@ import mekanism.common.upgrade.MetallurgicInfuserUpgradeData;
 import mekanism.common.util.InventoryUtils;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -212,9 +211,4 @@ public class TileEntityMetallurgicInfuserMAFactory extends TileEntityItemToItemM
         dump();
     }
     //End methods IComputerTile
-
-    @Override
-    public Component getName() {
-        return null;
-    }
 }

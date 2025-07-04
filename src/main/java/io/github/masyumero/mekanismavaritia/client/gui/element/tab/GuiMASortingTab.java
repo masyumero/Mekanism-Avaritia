@@ -11,7 +11,6 @@ import mekanism.common.MekanismLang;
 import mekanism.common.util.MekanismUtils;
 import mekanism.common.util.text.BooleanStateDisplay;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.narration.NarrationElementOutput;
 import org.jetbrains.annotations.NotNull;
 
 public class GuiMASortingTab extends GuiInsetElement<TileEntityMAFactory<?>> {
@@ -40,15 +39,5 @@ public class GuiMASortingTab extends GuiInsetElement<TileEntityMAFactory<?>> {
     @Override
     public void onClick(double mouseX, double mouseY, int button) {
         Mekanism.packetHandler().sendToServer(new MAPacketGuiInteract(MAPacketGuiInteract.MAGuiInteraction.AUTO_SORT_BUTTON, dataSource));
-    }
-
-    @Override
-    protected void renderWidget(@NotNull GuiGraphics guiGraphics, int i, int i1, float v) {
-
-    }
-
-    @Override
-    protected void updateWidgetNarration(@NotNull NarrationElementOutput narrationElementOutput) {
-
     }
 }

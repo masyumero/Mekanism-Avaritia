@@ -34,7 +34,6 @@ import mekanism.common.upgrade.IUpgradeData;
 import mekanism.common.util.InventoryUtils;
 import mekanism.common.util.MekanismUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -171,10 +170,5 @@ public class TileEntityMAAlloyingFactory extends TileEntityItemToItemMAFactory<A
     @Override
     public AlloyerUpgradeData getUpgradeData() {
         return new AlloyerUpgradeData(redstone, getControlType(), getEnergyContainer(), progress, ((IGetEnergySlot)this).getEnergySlot(), extraSlot,secondExtraSlot, inputSlots, outputSlots, isSorting(), getComponents());
-    }
-
-    @Override
-    public Component getName() {
-        return null;
     }
 }
