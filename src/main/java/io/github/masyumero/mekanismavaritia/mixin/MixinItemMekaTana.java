@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = ItemMekaTana.class,remap = false)
+@Mixin(value = ItemMekaTana.class)
 public abstract class MixinItemMekaTana extends ItemEnergized implements IModuleContainerItem, IGenericRadialModeItem {
 
     public MixinItemMekaTana(FloatingLongSupplier chargeRateSupplier, FloatingLongSupplier maxEnergySupplier, Properties properties) {
@@ -43,7 +43,6 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
         IModule<ModuleInfintyEnergyUnit> infintyEnergyUnit = getModule(stack, MAModules.INFINITY_ENERGY_UNIT);
         IEnergyContainer energyContainer = StorageUtils.getEnergyContainer(stack, 0);
         FloatingLong energyRequired = FloatingLong.create(LoadConfig.GEAR_CONFIG.CosmicUnitUseageEnergy.get());
-        boolean endlessDamage = ModConfig.isSwordAttackEndless.get();
         if (cosmicUnit != null && cosmicUnit.isEnabled()) {
             if (infintyEnergyUnit != null && infintyEnergyUnit.isEnabled()) {
                 target.hurt(target.damageSources().mobAttack(attacker), target.getMaxHealth() * (float) cosmicUnit.getInstalledCount());

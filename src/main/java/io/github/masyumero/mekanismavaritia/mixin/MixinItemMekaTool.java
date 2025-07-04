@@ -31,7 +31,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = ItemMekaTool.class, remap = false)
+@Mixin(value = ItemMekaTool.class)
 public abstract class MixinItemMekaTool extends ItemEnergized implements IModuleContainerItem, IBlastingItem, IGenericRadialModeItem {
 
     public MixinItemMekaTool(FloatingLongSupplier chargeRateSupplier, FloatingLongSupplier maxEnergySupplier, Properties properties) {
@@ -39,7 +39,6 @@ public abstract class MixinItemMekaTool extends ItemEnergized implements IModule
     }
 
     @Inject(method = "hurtEnemy",at = @At(value = "INVOKE", target = "Lmekanism/common/item/gear/ItemMekaTool;getModule(Lnet/minecraft/world/item/ItemStack;Lmekanism/api/providers/IModuleDataProvider;)Lmekanism/api/gear/IModule;",shift = At.Shift.AFTER))
-//    @Inject(method = "m_7579_",at = @At(value = "INVOKE", target = "Lmekanism/common/item/gear/ItemMekaTool;getModule(Lnet/minecraft/world/item/ItemStack;Lmekanism/api/providers/IModuleDataProvider;)Lmekanism/api/gear/IModule;",shift = At.Shift.AFTER))
     private void InjecthurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
         if(!target.level().isClientSide()) {
             IModule<ModuleCosmicUnit> cosmicUnit = getModule(stack, MAModules.COSMIC_UNIT);
@@ -57,8 +56,7 @@ public abstract class MixinItemMekaTool extends ItemEnergized implements IModule
         }
     }
 
-    @Inject(method = "use",at = @At(value = "INVOKE", target = "Lmekanism/common/item/gear/ItemMekaTool;getModule(Lnet/minecraft/world/item/ItemStack;Lmekanism/api/providers/IModuleDataProvider;)Lmekanism/api/gear/IModule;",shift = At.Shift.AFTER))
-//    @Inject(method = "m_7203_",at = @At(value = "INVOKE", target = "Lmekanism/common/item/gear/ItemMekaTool;getModule(Lnet/minecraft/world/item/ItemStack;Lmekanism/api/providers/IModuleDataProvider;)Lmekanism/api/gear/IModule;",shift = At.Shift.AFTER))
+    @Inject(method = "use",at = @At(value = "INVOKE", target = "Lmekanism/common/item/gear/ItemMekaTool;getModule(Lnet/minecraft/world/item/ItemStack;Lmekanism/api/providers/IModuleDataProvider;)Lmekanism/api/gear/IModule;",shift = At.Shift.AFTER),remap = true)
     private void InjectUse(Level world, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         var heldItem = player.getItemInHand(hand);
         IModule<ModuleCosmicUnit> cosmicUnit = getModule(heldItem, MAModules.COSMIC_UNIT);
