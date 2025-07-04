@@ -3,15 +3,12 @@ package io.github.masyumero.mekanismavaritia.client.gui.machine;
 import io.github.masyumero.mekanismavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.client.gui.GuiConfigurableTile;
-import mekanism.client.gui.GuiUtils;
 import mekanism.client.gui.element.bar.GuiVerticalPowerBar;
 import mekanism.client.gui.element.progress.GuiProgress;
 import mekanism.client.gui.element.progress.ProgressType;
 import mekanism.client.gui.element.tab.GuiEnergyTab;
-import mekanism.client.render.MekanismRenderer;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
 import mekanism.common.inventory.warning.WarningTracker;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -19,13 +16,8 @@ public class GuiElectricNeutronCollectorMachine extends GuiConfigurableTile<Tile
 
     public GuiElectricNeutronCollectorMachine(MekanismTileContainer<TileEntityElectricNeutronCollector> container, Inventory inv, Component title) {
         super(container, inv, title);
+        titleLabelY = 4;
         dynamicSlots = true;
-    }
-
-    @Override
-    protected void renderBg(GuiGraphics guiGraphics, float v, int i, int i1) {
-        MekanismRenderer.resetColor(guiGraphics);
-        GuiUtils.renderBackgroundTexture(guiGraphics, BASE_BACKGROUND, 4, 4, leftPos, topPos, imageWidth, imageHeight, 256, 256);
     }
 
     @Override
