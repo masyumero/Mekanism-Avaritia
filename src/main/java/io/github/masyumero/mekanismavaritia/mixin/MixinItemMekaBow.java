@@ -7,15 +7,16 @@ import mekanism.api.gear.IModule;
 import mekanism.common.content.gear.IModuleContainerItem;
 import mekanism.common.lib.radial.IGenericRadialModeItem;
 import meranha.mekaweapons.items.ItemMekaBow;
+import meranha.mekaweapons.items.MekaArrowEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ItemMekaBow.class,remap = false)
 public abstract class MixinItemMekaBow extends BowItem implements IModuleContainerItem, IGenericRadialModeItem {
@@ -24,19 +25,15 @@ public abstract class MixinItemMekaBow extends BowItem implements IModuleContain
         super(p_40660_);
     }
 
-    @Redirect(method = "releaseUsing",at = @At(value = "INVOKE", target = "Lmeranha/mekaweapons/items/ItemMekaBow;customArrow(Lnet/minecraft/world/entity/projectile/AbstractArrow;)Lnet/minecraft/world/entity/projectile/AbstractArrow;"))
-    private AbstractArrow releaseUsingRedirect(ItemMekaBow instance, AbstractArrow abstractArrow){
-        AbstractArrow arrow = abstractArrow;
-        if (abstractArrow.getOwner() instanceof Player player) {
+    @Inject(method = "customArrow",at = @At("RETURN"),cancellable = true)
+    private void customArrowInject(AbstractArrow arrow, CallbackInfoReturnable<AbstractArrow> cir) {
+        if (arrow.getOwner() instanceof Player player) {
             IModule<ModuleCosmicUnit> cosmicUnit = getModule(player.getMainHandItem(), MAModules.COSMIC_UNIT);
             if (cosmicUnit != null && cosmicUnit.isEnabled()) {
-                arrow = new HeavenArrowEntity(abstractArrow.getOwner());
+                cir.setReturnValue(new HeavenArrowEntity(arrow.getOwner()));
             } else {
-                ItemStack potentialAmmo = player.getProjectile(player.getMainHandItem());
-                ArrowItem arrowitem = (ArrowItem) (potentialAmmo.getItem() instanceof ArrowItem ? potentialAmmo.getItem() : Items.ARROW);
-                arrow = customArrow(arrowitem.createArrow(abstractArrow.level(), potentialAmmo, player));
+                cir.setReturnValue(new MekaArrowEntity(arrow.level(), arrow.getX(), arrow.getY(), arrow.getZ(), new ItemStack(Items.ARROW), player.getMainHandItem()));
             }
         }
-        return arrow;
     }
 }
