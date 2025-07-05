@@ -1,8 +1,9 @@
 package io.github.masyumero.mekanismavaritia.common.registry;
 
 import io.github.masyumero.mekanismavaritia.MekanismAvaritia;
-import io.github.masyumero.mekanismavaritia.common.content.gear.mekatool.ModuleCosmicUnit;
-import io.github.masyumero.mekanismavaritia.common.content.gear.mekasuit.ModuleInfintyEnergyUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleCosmicUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleInfintyEnergyUnit;
+import mekanism.api.gear.ModuleData.ExclusiveFlag;
 import mekanism.common.registration.impl.ModuleDeferredRegister;
 import mekanism.common.registration.impl.ModuleRegistryObject;
 import net.minecraft.world.item.Rarity;
@@ -16,7 +17,7 @@ public class MAModules {
     public static final ModuleDeferredRegister MODULES = new ModuleDeferredRegister(MekanismAvaritia.MODID);
 
     public static final ModuleRegistryObject<ModuleInfintyEnergyUnit> INFINITY_ENERGY_UNIT = MODULES.register("infinity_energy_unit", ModuleInfintyEnergyUnit::new,
-            () -> MAItems.MODULE_INFINITY_ENERGY.get(), builder -> builder.maxStackSize(1).rarity(Rarity.RARE).noDisable());
+            () -> MAItems.MODULE_INFINITY_ENERGY.get(), builder -> builder.maxStackSize(1).rarity(Rarity.RARE));
     public static final ModuleRegistryObject<ModuleCosmicUnit> COSMIC_UNIT = MODULES.register("cosmic_unit", ModuleCosmicUnit::new,
-            () -> MAItems.MODULE_COSMIC.get(), builder -> builder.maxStackSize(8).rarity(Rarity.RARE));
+            () -> MAItems.MODULE_COSMIC.get(), builder -> builder.maxStackSize(8).rarity(Rarity.RARE).exclusive(ExclusiveFlag.INTERACT_ANY));
 }

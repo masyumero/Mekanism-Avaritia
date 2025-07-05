@@ -5,11 +5,13 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "mekanismavaritia.refmap.json",
   "mixins": [
-    "MixinItemMekaBow",
-    "MixinItemMekaTana",
-    "MixinItemMekaTool",
-    "MixinModSingularities",
-    "MixinPacketHandler"
+    "avaritia.MixinAbilityHandler",
+    "mekanism.MixinItemMekaBow",
+    "mekanism.MixinItemMekaTana",
+    "mekanism.MixinItemMekaTool",
+    "avaritia.MixinModSingularities",
+    "mekanism.MixinPacketHandler",
+    "avaritia.MixinToolUtils"
   ],
   "client": [
   ],
