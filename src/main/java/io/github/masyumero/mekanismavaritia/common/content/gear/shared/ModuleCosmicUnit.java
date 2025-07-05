@@ -1,4 +1,4 @@
-package io.github.masyumero.mekanismavaritia.common.content.gear.mekatool;
+package io.github.masyumero.mekanismavaritia.common.content.gear.shared;
 
 import mekanism.api.annotations.ParametersAreNotNullByDefault;
 import mekanism.api.gear.ICustomModule;
