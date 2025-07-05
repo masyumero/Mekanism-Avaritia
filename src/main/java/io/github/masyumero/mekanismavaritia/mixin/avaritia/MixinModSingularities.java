@@ -1,4 +1,4 @@
-package io.github.masyumero.mekanismavaritia.mixin;
+package io.github.masyumero.mekanismavaritia.mixin.avaritia;
 
 import com.google.common.collect.ImmutableList;
 import committee.nova.mods.avaritia.common.item.singularity.Singularity;

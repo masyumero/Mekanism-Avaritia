@@ -1,4 +1,4 @@
-package io.github.masyumero.mekanismavaritia.mixin;
+package io.github.masyumero.mekanismavaritia.mixin.mekanism;
 
 import io.github.masyumero.mekanismavaritia.common.network.to_server.MAPacketGuiInteract;
 import mekanism.common.network.BasePacketHandler;

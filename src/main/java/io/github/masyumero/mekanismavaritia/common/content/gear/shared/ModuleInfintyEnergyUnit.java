@@ -1,4 +1,4 @@
-package io.github.masyumero.mekanismavaritia.common.content.gear.mekasuit;
+package io.github.masyumero.mekanismavaritia.common.content.gear.shared;
 
 import mekanism.api.annotations.ParametersAreNotNullByDefault;
 import mekanism.api.energy.IEnergyContainer;

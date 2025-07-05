@@ -1,10 +1,10 @@
-package io.github.masyumero.mekanismavaritia.mixin;
+package io.github.masyumero.mekanismavaritia.mixin.mekanism;
 
 import committee.nova.mods.avaritia.init.config.ModConfig;
 import committee.nova.mods.avaritia.util.ToolUtils;
 import io.github.masyumero.mekanismavaritia.common.config.LoadConfig;
-import io.github.masyumero.mekanismavaritia.common.content.gear.mekasuit.ModuleInfintyEnergyUnit;
-import io.github.masyumero.mekanismavaritia.common.content.gear.mekatool.ModuleCosmicUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleInfintyEnergyUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleCosmicUnit;
 import io.github.masyumero.mekanismavaritia.common.registry.MAModules;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
@@ -38,7 +38,7 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
     }
 
     @Inject(method = "hurtEnemy",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isCreative()Z",shift = At.Shift.AFTER))
-    private void InjecthurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
+    private void hurtEnemyInject(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
         IModule<ModuleCosmicUnit> cosmicUnit = getModule(stack, MAModules.COSMIC_UNIT);
         IModule<ModuleInfintyEnergyUnit> infintyEnergyUnit = getModule(stack, MAModules.INFINITY_ENERGY_UNIT);
         IEnergyContainer energyContainer = StorageUtils.getEnergyContainer(stack, 0);
@@ -54,7 +54,7 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
     }
 
     @Inject(method = "use",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;isClientSide()Z",shift = At.Shift.AFTER))
-    private void InjectUse(Level world, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
+    private void useInject(Level world, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         var heldItem = player.getItemInHand(hand);
         IModule<ModuleCosmicUnit> cosmicUnit = getModule(heldItem, MAModules.COSMIC_UNIT);
         if (cosmicUnit != null && cosmicUnit.isEnabled()) {

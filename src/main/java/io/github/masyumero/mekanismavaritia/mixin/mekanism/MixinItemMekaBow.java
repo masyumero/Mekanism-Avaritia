@@ -1,7 +1,7 @@
-package io.github.masyumero.mekanismavaritia.mixin;
+package io.github.masyumero.mekanismavaritia.mixin.mekanism;
 
 import committee.nova.mods.avaritia.common.entity.arrow.HeavenArrowEntity;
-import io.github.masyumero.mekanismavaritia.common.content.gear.mekatool.ModuleCosmicUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleCosmicUnit;
 import io.github.masyumero.mekanismavaritia.common.registry.MAModules;
 import mekanism.api.gear.IModule;
 import mekanism.common.content.gear.IModuleContainerItem;

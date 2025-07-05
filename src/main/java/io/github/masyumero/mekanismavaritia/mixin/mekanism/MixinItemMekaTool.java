@@ -1,10 +1,10 @@
-package io.github.masyumero.mekanismavaritia.mixin;
+package io.github.masyumero.mekanismavaritia.mixin.mekanism;
 
 import committee.nova.mods.avaritia.init.config.ModConfig;
 import committee.nova.mods.avaritia.util.ToolUtils;
 import io.github.masyumero.mekanismavaritia.common.config.LoadConfig;
-import io.github.masyumero.mekanismavaritia.common.content.gear.mekasuit.ModuleInfintyEnergyUnit;
-import io.github.masyumero.mekanismavaritia.common.content.gear.mekatool.ModuleCosmicUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleInfintyEnergyUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleCosmicUnit;
 import io.github.masyumero.mekanismavaritia.common.registry.MAModules;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
@@ -12,11 +12,14 @@ import mekanism.api.energy.IEnergyContainer;
 import mekanism.api.gear.IModule;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.math.FloatingLongSupplier;
+import mekanism.common.config.MekanismConfig;
 import mekanism.common.content.gear.IBlastingItem;
 import mekanism.common.content.gear.IModuleContainerItem;
+import mekanism.common.content.gear.mekatool.ModuleExcavationEscalationUnit;
 import mekanism.common.item.ItemEnergized;
 import mekanism.common.item.gear.ItemMekaTool;
 import mekanism.common.lib.radial.IGenericRadialModeItem;
+import mekanism.common.registries.MekanismModules;
 import mekanism.common.util.StorageUtils;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -26,6 +29,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,8 +42,21 @@ public abstract class MixinItemMekaTool extends ItemEnergized implements IModule
         super(chargeRateSupplier, maxEnergySupplier, properties);
     }
 
+    @Inject(method = "getDestroySpeed",at = @At("RETURN"),cancellable = true)
+    private void getDestroySpeedInject(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir) {
+        IModule<ModuleExcavationEscalationUnit> excavationEscalationUnit = getModule(stack, MekanismModules.EXCAVATION_ESCALATION_UNIT);
+        IModule<ModuleCosmicUnit> cosmicUnit = getModule(stack, MAModules.COSMIC_UNIT);
+        if (excavationEscalationUnit != null && excavationEscalationUnit.isEnabled()) {
+            cir.setReturnValue(excavationEscalationUnit.getCustomInstance().getEfficiency());
+        } else if (cosmicUnit != null && cosmicUnit.isEnabled()) {
+            cir.setReturnValue(Float.MAX_VALUE);
+        } else {
+            MekanismConfig.gear.mekaToolBaseEfficiency.get();
+        }
+    }
+
     @Inject(method = "hurtEnemy",at = @At(value = "INVOKE", target = "Lmekanism/common/item/gear/ItemMekaTool;getModule(Lnet/minecraft/world/item/ItemStack;Lmekanism/api/providers/IModuleDataProvider;)Lmekanism/api/gear/IModule;",shift = At.Shift.AFTER))
-    private void InjecthurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
+    private void hurtEnemyInject(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
         if(!target.level().isClientSide()) {
             IModule<ModuleCosmicUnit> cosmicUnit = getModule(stack, MAModules.COSMIC_UNIT);
             IModule<ModuleInfintyEnergyUnit> infintyEnergyUnit = getModule(stack, MAModules.INFINITY_ENERGY_UNIT);
