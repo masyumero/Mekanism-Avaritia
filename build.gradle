@@ -144,11 +144,6 @@ repositories {
 }
 
 dependencies {
-    // Specify the version of Minecraft to use.
-    // Any artifact can be supplied so long as it has a "userdev" classifier artifact and is a compatible patcher artifact.
-    // The "userdev" classifier will be requested and setup by ForgeGradle.
-    // If the group id is "net.minecraft" and the artifact id is one of ["client", "server", "joined"],
-    // then special handling is done to allow a setup of a vanilla dependency without the use of an external repository.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
 //    compileOnly "mekanism:Mekanism:${mekanism_version}"
@@ -157,15 +152,14 @@ dependencies {
     implementation fg.deobf("curse.maven:mekanism-weapons-929829:6065486")
     runtimeOnly fg.deobf("curse.maven:iglee-library-541199:5329230")
     implementation fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-    // If you want to test/use Mekanism & its modules during `runClient` invocation, use the following
-    implementation fg.deobf("curse.maven:mekanism-268560:6552911")
+
+//    compileOnly "mekanism:Mekanism:${mekanism_version}"
 //    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")// core
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:additions")// Mekanism: Additions
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")// Mekanism: Generators
-    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")// Mekanism: Tools
-    //runtimeOnly fg.deobf("curse.maven:pipez-443900:4916633")
-    //runtimeOnly fg.deobf("curse.maven:applied-energistics-2-223794:6492994")
-    //runtimeOnly fg.deobf("curse.maven:guideme-1173950:6489464")
+    implementation fg.deobf("curse.maven:mekanism-268560:6552911")
+    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:additions")
+    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:generators")
+    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}:tools")
+
     runtimeOnly fg.deobf("curse.maven:emi-580555:5872526")
     runtimeOnly fg.deobf("curse.maven:jade-324717:5672013")
 
