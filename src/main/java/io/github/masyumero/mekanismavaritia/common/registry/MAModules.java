@@ -18,5 +18,5 @@ public class MAModules {
     public static final ModuleRegistryObject<ModuleInfintyEnergyUnit> INFINITY_ENERGY_UNIT = MODULES.register("infinity_energy_unit", ModuleInfintyEnergyUnit::new,
             () -> MAItems.MODULE_INFINITY_ENERGY.get(), builder -> builder.maxStackSize(1).rarity(Rarity.RARE).noDisable());
     public static final ModuleRegistryObject<ModuleCosmicUnit> COSMIC_UNIT = MODULES.register("cosmic_unit", ModuleCosmicUnit::new,
-            () -> MAItems.MODULE_COSMIC.get(), builder -> builder.maxStackSize(64).rarity(Rarity.RARE));
+            () -> MAItems.MODULE_COSMIC.get(), builder -> builder.maxStackSize(8).rarity(Rarity.RARE));
 }

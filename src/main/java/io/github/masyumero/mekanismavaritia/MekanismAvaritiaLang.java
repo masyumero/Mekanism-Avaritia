@@ -15,6 +15,7 @@ public enum MekanismAvaritiaLang implements ILangEntry{
     DESCRIPTION_ELECTRIC_NEUTRON_COLLECTOR("description", "electric_neutron_collector");
 
     private final String key;
+
     MekanismAvaritiaLang(String type, String path) {
         this(Util.makeDescriptionId(type, MekanismAvaritia.rl(path)));
     }
