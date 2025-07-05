@@ -1,6 +1,6 @@
 {
   "textures": {
-    "led": "mekanismavaritia:block/factory/led"
+    "led": "mekanismavaritia:block/factory/eternal_led"
   },
   "elements": [
     {
@@ -12,9 +12,5 @@
         "up": {"uv": [0, 3, 6, 4], "rotation": 180, "texture": "#led", "cullface": "up"}
       }
     }
-  ],
-  "loader": "avaritia:cosmic",
-  "cosmic": {
-    "mask": "mekanismavaritia:block/factory/led"
-  }
+  ]
 }

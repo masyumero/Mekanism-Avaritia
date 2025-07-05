@@ -1,6 +1,6 @@
 {
   "textures": {
-    "led": "mekanismavaritia:block/factory/led"
+    "led": "mekanismavaritia:block/factory/eternal_led"
   },
   "elements": [
     {
