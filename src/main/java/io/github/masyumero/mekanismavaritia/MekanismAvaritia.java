@@ -2,6 +2,7 @@ package io.github.masyumero.mekanismavaritia;
 
 import com.mojang.logging.LogUtils;
 import io.github.masyumero.mekanismavaritia.common.config.LoadConfig;
+import io.github.masyumero.mekanismavaritia.common.integration.MekEmp;
 import io.github.masyumero.mekanismavaritia.common.recipe.MARecipeType;
 import io.github.masyumero.mekanismavaritia.common.registry.*;
 import mekanism.api.MekanismIMC;
@@ -39,6 +40,9 @@ public class MekanismAvaritia {
         MAContainerTypes.register(modEventBus);
         MATab.register(modEventBus);
         MAModules.MODULES.register(modEventBus);
+        if (ModList.get().isLoaded("mekanism_empowered")) {
+            MekEmp.registerSupportedUpgrades();
+        }
     }
 
     @SuppressWarnings("removal")
@@ -50,8 +54,8 @@ public class MekanismAvaritia {
         MekanismIMC.addModulesToAll(MAModules.INFINITY_ENERGY_UNIT);
         MekanismIMC.addModulesToAll(MAModules.COSMIC_UNIT);
         if (ModList.get().isLoaded("mekaweapons")) {
-            MekaWeapons.addModules(MekaWeapons.ADD_MEKATANA_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.COSMIC_UNIT);
-            MekaWeapons.addModules(MekaWeapons.ADD_MEKA_BOW_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.COSMIC_UNIT);
+            MekaWeapons.addModules(MekaWeapons.ADD_MEKATANA_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.COSMIC_STRIKE_UNIT);
+            MekaWeapons.addModules(MekaWeapons.ADD_MEKA_BOW_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.CELESTIAL_SHOT_UNIT, MAModules.INFINITY_DAMAGE_UNIT);
         }
     }
 }

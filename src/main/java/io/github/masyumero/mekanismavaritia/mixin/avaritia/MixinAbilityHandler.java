@@ -33,7 +33,6 @@ public abstract class MixinAbilityHandler{
                 }
             } else if (slotItemStack.getItem() instanceof InfinityArmorItem) {
                 modifyBoolean = true;
-            } else {
             }
         }
         return modifyBoolean;
@@ -51,7 +50,6 @@ public abstract class MixinAbilityHandler{
                 }
             } else if (slotItemStack.getItem() instanceof InfinityArmorItem) {
                 modifyBoolean = true;
-            } else {
             }
         }
         return modifyBoolean;
@@ -69,7 +67,6 @@ public abstract class MixinAbilityHandler{
                 }
             } else if (slotItemStack.getItem() instanceof InfinityArmorItem) {
                 modifyBoolean = true;
-            } else {
             }
         }
         return modifyBoolean;
@@ -87,7 +84,6 @@ public abstract class MixinAbilityHandler{
                 }
             } else if (slotItemStack.getItem() instanceof InfinityArmorItem) {
                 modifyBoolean = true;
-            } else {
             }
         }
         return modifyBoolean;

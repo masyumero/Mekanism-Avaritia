@@ -1,5 +1,6 @@
 package io.github.masyumero.mekanismavaritia.common.tile.factory;
 
+import dev.lapis256.mekanism_empowered.api.MekEmpUpgrade;
 import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttributeFactoryType;
 import io.github.masyumero.mekanismavaritia.common.content.blocktype.MAFactoryType;
@@ -226,7 +227,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
         if(tier == MAFactoryTier.ETERNAL) {
             for (IEnergyContainer energyContainer : getEnergyContainers(null)) {
                 if (energyContainer instanceof MachineEnergyContainer<?> machineEnergy) {
-                    machineEnergy.updateMaxEnergy();
+                    machineEnergy.setMaxEnergy(FloatingLong.MAX_VALUE);
                     machineEnergy.setEnergy(FloatingLong.MAX_VALUE);
                 }
             }
@@ -431,7 +432,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
         super.recalculateUpgrades(upgrade);
-        if (upgrade == Upgrade.SPEED) {
+        if (upgrade == Upgrade.SPEED || upgrade == MekEmpUpgrade.getEMPOWERED_SPEED()) {
             int ticks = switch (tier) {
                 case PRISMATIC -> BASE_TICKS_REQUIRED / 2;
                 case FLARE -> BASE_TICKS_REQUIRED / 4;

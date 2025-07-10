@@ -6,12 +6,11 @@
   "refmap": "mekanismavaritia.refmap.json",
   "mixins": [
     "avaritia.MixinAbilityHandler",
+    "avaritia.MixinModSingularities",
     "mekanism.MixinItemMekaBow",
     "mekanism.MixinItemMekaTana",
     "mekanism.MixinItemMekaTool",
-    "avaritia.MixinModSingularities",
-    "mekanism.MixinPacketHandler",
-    "avaritia.MixinToolUtils"
+    "mekanism.MixinPacketHandler"
   ],
   "client": [
   ],

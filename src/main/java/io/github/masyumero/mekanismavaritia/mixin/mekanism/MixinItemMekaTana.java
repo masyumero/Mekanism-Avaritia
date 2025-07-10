@@ -3,8 +3,8 @@ package io.github.masyumero.mekanismavaritia.mixin.mekanism;
 import committee.nova.mods.avaritia.init.config.ModConfig;
 import committee.nova.mods.avaritia.util.ToolUtils;
 import io.github.masyumero.mekanismavaritia.common.config.LoadConfig;
-import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleInfintyEnergyUnit;
 import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleCosmicUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.mekaweapons.ModuleCosmicStrikeUnit;
 import io.github.masyumero.mekanismavaritia.common.registry.MAModules;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
@@ -13,6 +13,7 @@ import mekanism.api.gear.IModule;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.math.FloatingLongSupplier;
 import mekanism.common.content.gear.IModuleContainerItem;
+import mekanism.common.content.gear.Module;
 import mekanism.common.item.ItemEnergized;
 import mekanism.common.lib.radial.IGenericRadialModeItem;
 import mekanism.common.util.StorageUtils;
@@ -21,6 +22,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -37,17 +39,22 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
         super(chargeRateSupplier, maxEnergySupplier, properties);
     }
 
+    @Override
+    public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
+        for (Module<?> module : getModules(p_41404_)) {
+            if (p_41406_ instanceof Player) {
+                module.tick((Player) p_41406_);
+            }
+        }
+    }
+
     @Inject(method = "hurtEnemy",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isCreative()Z",shift = At.Shift.AFTER))
     private void hurtEnemyInject(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
         IModule<ModuleCosmicUnit> cosmicUnit = getModule(stack, MAModules.COSMIC_UNIT);
-        IModule<ModuleInfintyEnergyUnit> infintyEnergyUnit = getModule(stack, MAModules.INFINITY_ENERGY_UNIT);
         IEnergyContainer energyContainer = StorageUtils.getEnergyContainer(stack, 0);
         FloatingLong energyRequired = FloatingLong.create(LoadConfig.GEAR_CONFIG.CosmicUnitUseageEnergy.get());
         if (cosmicUnit != null && cosmicUnit.isEnabled()) {
-            if (infintyEnergyUnit != null && infintyEnergyUnit.isEnabled()) {
-                target.hurt(target.damageSources().mobAttack(attacker), target.getMaxHealth() * (float) cosmicUnit.getInstalledCount());
-                energyContainer.setEnergy(FloatingLong.MAX_VALUE);
-            } else if (energyContainer.extract(energyRequired, Action.EXECUTE, AutomationType.MANUAL).greaterOrEqual(energyRequired)) {
+            if (energyContainer.extract(energyRequired, Action.EXECUTE, AutomationType.MANUAL).greaterOrEqual(energyRequired)) {
                 target.hurt(target.damageSources().mobAttack(attacker), target.getMaxHealth() * (float) cosmicUnit.getInstalledCount());
             }
         }
@@ -56,9 +63,9 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
     @Inject(method = "use",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;isClientSide()Z",shift = At.Shift.AFTER))
     private void useInject(Level world, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         var heldItem = player.getItemInHand(hand);
-        IModule<ModuleCosmicUnit> cosmicUnit = getModule(heldItem, MAModules.COSMIC_UNIT);
-        if (cosmicUnit != null && cosmicUnit.isEnabled()) {
-            int cosmicUnitCount = cosmicUnit.getInstalledCount();
+        IModule<ModuleCosmicStrikeUnit> cosmicStrikeUnit = getModule(heldItem, MAModules.COSMIC_STRIKE_UNIT);
+        if (cosmicStrikeUnit != null && cosmicStrikeUnit.isEnabled()) {
+            int cosmicUnitCount = cosmicStrikeUnit.getInstalledCount();
             ToolUtils.aoeAttack(player, cosmicUnitCount * 128, cosmicUnitCount * 10000, ModConfig.isSwordAttackAnimal.get(), ModConfig.isSwordAttackLightning.get());
             player.getCooldowns().addCooldown(heldItem.getItem(), 20 / cosmicUnitCount);
             world.playSound(player, player.getOnPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0f, 5.0f);

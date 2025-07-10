@@ -27,6 +27,10 @@ public class MAItems {
     //Modules
     public static final ItemRegistryObject<ItemModule> MODULE_INFINITY_ENERGY = ITEM.registerModule(MAModules.INFINITY_ENERGY_UNIT);
     public static final ItemRegistryObject<ItemModule> MODULE_COSMIC = ITEM.registerModule(MAModules.COSMIC_UNIT);
+    //Modules: Weapons
+    public static final ItemRegistryObject<ItemModule> MODULE_COSMIC_STRIKE = ITEM.registerModule(MAModules.COSMIC_STRIKE_UNIT);
+    public static final ItemRegistryObject<ItemModule> MODULE_CELESTIAL_SHOT = ITEM.registerModule(MAModules.CELESTIAL_SHOT_UNIT);
+    public static final ItemRegistryObject<ItemModule> MODULE_INFINITY_DAMAGE = ITEM.registerModule(MAModules.INFINITY_DAMAGE_UNIT);
 
     private static ItemRegistryObject<Item> registerCircuit(String name, Rarity rarity) {
         return ITEM.register(name + "_control_circuit", properties -> new Item(properties.rarity(rarity)));

@@ -141,6 +141,12 @@ repositories {
     maven {
         url 'https://modmaven.dev/'
     }
+    maven {
+        url "https://maven.lapis256.dev"
+    }
+    maven {
+        url 'https://thedarkcolour.github.io/KotlinForForge/'
+    }
 }
 
 dependencies {
@@ -151,6 +157,9 @@ dependencies {
     implementation fg.deobf("curse.maven:evolved-mekanism-1230085:6456494")
     implementation fg.deobf("curse.maven:mekanism-weapons-929829:6065486")
     runtimeOnly fg.deobf("curse.maven:iglee-library-541199:5329230")
+    implementation fg.deobf("curse.maven:mekanism-empowered-1256390:6736777")
+    implementation fg.deobf("curse.maven:mekanism-empowered-core-1256399:6736778")
+    runtimeOnly fg.deobf('thedarkcolour:kotlinforforge:4.11.0')
     implementation fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
 //    compileOnly "mekanism:Mekanism:${mekanism_version}"

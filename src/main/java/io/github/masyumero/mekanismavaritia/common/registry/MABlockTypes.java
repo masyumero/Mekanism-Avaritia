@@ -122,7 +122,7 @@ public class MABlockTypes {
             .withCustomShape(MABlockShapes.ELECTRIC_NEUTRON_COLLECTOR)
             .withSound(MekanismSounds.RESISTIVE_HEATER)
             .withGui(() -> MAContainerTypes.ELECTRIC_NEUTRON_COLLECTOR)
-            //.withEnergyConfig(LoadConfig.usageConfig.energyCatalystMachine, LoadConfig.storageConfig.energyCatalystMachine)
+            //.withEnergyConfig(LoadConfig.usageConfig.electricNeutronCollector, LoadConfig.storageConfig.electricNeutronCollector)
             .withEnergyConfig(MekanismConfig.usage.precisionSawmill, MekanismConfig.storage.precisionSawmill)
             .withSupportedUpgrades(EnumSet.of(Upgrade.SPEED,Upgrade.ENERGY,Upgrade.MUFFLING))
             .withComputerSupport("ElectricNeutronCollector")
