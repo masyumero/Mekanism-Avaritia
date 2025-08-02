@@ -51,8 +51,12 @@ public class MekanismAvaritia {
     }
 
     private void imcQueue(InterModEnqueueEvent event) {
-        MekanismIMC.addModulesToAll(MAModules.INFINITY_ENERGY_UNIT);
-        MekanismIMC.addModulesToAll(MAModules.COSMIC_UNIT);
+        MekanismIMC.addModulesToAll(MAModules.INFINITY_ENERGY_UNIT, MAModules.COSMIC_UNIT);
+        MekanismIMC.addMekaSuitModules(MAModules.INFINITY_ELYTRA_UNIT);
+        MekanismIMC.addMekaSuitHelmetModules(MAModules.NEBULIGHT_UNIT);
+        MekanismIMC.addMekaSuitBodyarmorModules(MAModules.CELESTIAL_UNIT);
+        MekanismIMC.addMekaSuitPantsModules(MAModules.STARFEAST_UNIT);
+        MekanismIMC.addMekaSuitBootsModules(MAModules.LIGHTSPEED_UNIT);
         if (ModList.get().isLoaded("mekaweapons")) {
             MekaWeapons.addModules(MekaWeapons.ADD_MEKATANA_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.COSMIC_STRIKE_UNIT);
             MekaWeapons.addModules(MekaWeapons.ADD_MEKA_BOW_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.CELESTIAL_SHOT_UNIT, MAModules.INFINITY_DAMAGE_UNIT);

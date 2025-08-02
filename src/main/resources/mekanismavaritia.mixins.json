@@ -6,8 +6,10 @@
   "refmap": "mekanismavaritia.refmap.json",
   "mixins": [
     "avaritia.MixinAbilityHandler",
+    "avaritia.MixinC2SElytraSpeedUpPacket",
     "avaritia.MixinModSingularities",
     "mekanism.MixinItemMekaBow",
+    "mekanism.MixinItemMekaSuitArmor",
     "mekanism.MixinItemMekaTana",
     "mekanism.MixinItemMekaTool",
     "mekanism.MixinPacketHandler"

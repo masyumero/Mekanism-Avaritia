@@ -2,7 +2,10 @@ package io.github.masyumero.mekanismavaritia.mixin.avaritia;
 
 import committee.nova.mods.avaritia.common.item.tools.InfinityArmorItem;
 import committee.nova.mods.avaritia.init.handler.AbilityHandler;
-import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleCosmicUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.mekasuit.ModuleCelestialUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.mekasuit.ModuleLightspeedUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.mekasuit.ModuleNebulightUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.mekasuit.ModuleStarfeastUnit;
 import io.github.masyumero.mekanismavaritia.common.registry.MAModules;
 import io.github.masyumero.mekanismavaritia.common.util.MAModuleUtil;
 import mekanism.api.gear.IModule;
@@ -27,8 +30,8 @@ public abstract class MixinAbilityHandler{
         if (entity instanceof Player player) {
             ItemStack slotItemStack = player.getItemBySlot(slot);
             if (slotItemStack.getItem() instanceof ItemMekaSuitArmor) {
-                IModule<ModuleCosmicUnit> cosmicUnit = MAModuleUtil.getModule(slotItemStack, MAModules.COSMIC_UNIT);
-                if (cosmicUnit != null && cosmicUnit.isEnabled()) {
+                IModule<ModuleNebulightUnit> nebulightUnit = MAModuleUtil.getModule(slotItemStack, MAModules.NEBULIGHT_UNIT);
+                if (nebulightUnit != null && nebulightUnit.isEnabled()) {
                     modifyBoolean = true;
                 }
             } else if (slotItemStack.getItem() instanceof InfinityArmorItem) {
@@ -44,8 +47,8 @@ public abstract class MixinAbilityHandler{
         if (entity instanceof Player player) {
             ItemStack slotItemStack = player.getItemBySlot(slot);
             if (slotItemStack.getItem() instanceof ItemMekaSuitArmor) {
-                IModule<ModuleCosmicUnit> cosmicUnit = MAModuleUtil.getModule(slotItemStack, MAModules.COSMIC_UNIT);
-                if (cosmicUnit != null && cosmicUnit.isEnabled()) {
+                IModule<ModuleCelestialUnit> celestialUnit = MAModuleUtil.getModule(slotItemStack, MAModules.CELESTIAL_UNIT);
+                if (celestialUnit != null && celestialUnit.isEnabled()) {
                     modifyBoolean = true;
                 }
             } else if (slotItemStack.getItem() instanceof InfinityArmorItem) {
@@ -61,8 +64,8 @@ public abstract class MixinAbilityHandler{
         if (entity instanceof Player player) {
             ItemStack slotItemStack = player.getItemBySlot(slot);
             if (slotItemStack.getItem() instanceof ItemMekaSuitArmor) {
-                IModule<ModuleCosmicUnit> cosmicUnit = MAModuleUtil.getModule(slotItemStack, MAModules.COSMIC_UNIT);
-                if (cosmicUnit != null && cosmicUnit.isEnabled()) {
+                IModule<ModuleStarfeastUnit> starfeastUnit = MAModuleUtil.getModule(slotItemStack, MAModules.STARFEAST_UNIT);
+                if (starfeastUnit != null && starfeastUnit.isEnabled()) {
                     modifyBoolean = true;
                 }
             } else if (slotItemStack.getItem() instanceof InfinityArmorItem) {
@@ -78,8 +81,8 @@ public abstract class MixinAbilityHandler{
         if (entity instanceof Player player) {
             ItemStack slotItemStack = player.getItemBySlot(slot);
             if (slotItemStack.getItem() instanceof ItemMekaSuitArmor) {
-                IModule<ModuleCosmicUnit> cosmicUnit = MAModuleUtil.getModule(slotItemStack, MAModules.COSMIC_UNIT);
-                if (cosmicUnit != null && cosmicUnit.isEnabled()) {
+                IModule<ModuleLightspeedUnit> lightspeedUnit = MAModuleUtil.getModule(slotItemStack, MAModules.LIGHTSPEED_UNIT);
+                if (lightspeedUnit != null && lightspeedUnit.isEnabled()) {
                     modifyBoolean = true;
                 }
             } else if (slotItemStack.getItem() instanceof InfinityArmorItem) {

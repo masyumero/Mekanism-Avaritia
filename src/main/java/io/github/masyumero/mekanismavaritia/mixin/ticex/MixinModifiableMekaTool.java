@@ -1,4 +1,4 @@
-//package io.github.masyumero.mekanismavaritia.mixin;
-//
-//public class MixinModifiableMekaTool {
-//}
+package io.github.masyumero.mekanismavaritia.mixin.ticex;
+
+public class MixinModifiableMekaTool {
+}

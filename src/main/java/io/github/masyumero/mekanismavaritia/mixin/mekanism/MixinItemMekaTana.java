@@ -3,7 +3,7 @@ package io.github.masyumero.mekanismavaritia.mixin.mekanism;
 import committee.nova.mods.avaritia.init.config.ModConfig;
 import committee.nova.mods.avaritia.util.ToolUtils;
 import io.github.masyumero.mekanismavaritia.common.config.LoadConfig;
-import io.github.masyumero.mekanismavaritia.common.content.gear.shared.ModuleCosmicUnit;
+import io.github.masyumero.mekanismavaritia.common.content.gear.mekatool.ModuleInfinityAttackAmplificationUnit;
 import io.github.masyumero.mekanismavaritia.common.content.gear.mekaweapons.ModuleCosmicStrikeUnit;
 import io.github.masyumero.mekanismavaritia.common.registry.MAModules;
 import mekanism.api.Action;
@@ -50,12 +50,12 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
 
     @Inject(method = "hurtEnemy",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;isCreative()Z",shift = At.Shift.AFTER))
     private void hurtEnemyInject(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
-        IModule<ModuleCosmicUnit> cosmicUnit = getModule(stack, MAModules.COSMIC_UNIT);
+        IModule<ModuleInfinityAttackAmplificationUnit> atkAmpUnit = getModule(stack, MAModules.INFINITY_ATTACK_AMPLIFICATION_UNIT);
         IEnergyContainer energyContainer = StorageUtils.getEnergyContainer(stack, 0);
         FloatingLong energyRequired = FloatingLong.create(LoadConfig.GEAR_CONFIG.CosmicUnitUseageEnergy.get());
-        if (cosmicUnit != null && cosmicUnit.isEnabled()) {
+        if (atkAmpUnit != null && atkAmpUnit.isEnabled()) {
             if (energyContainer.extract(energyRequired, Action.EXECUTE, AutomationType.MANUAL).greaterOrEqual(energyRequired)) {
-                target.hurt(target.damageSources().mobAttack(attacker), target.getMaxHealth() * (float) cosmicUnit.getInstalledCount());
+                target.hurt(target.damageSources().mobAttack(attacker), target.getMaxHealth() * (float) atkAmpUnit.getInstalledCount());
             }
         }
     }

@@ -20,6 +20,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 group = mod_group_id
 version = mod_version
+boolean loadextras = true
 
 base {
     archivesName = mod_id
@@ -156,12 +157,21 @@ dependencies {
     implementation fg.deobf("curse.maven:re-avaritia-623969:6418092")
     implementation fg.deobf("curse.maven:evolved-mekanism-1230085:6456494")
     implementation fg.deobf("curse.maven:mekanism-weapons-929829:6065486")
+    compileOnly fg.deobf("curse.maven:mekanism-empowered-1256390:6736777")
+    compileOnly fg.deobf("curse.maven:mekanism-empowered-core-1256399:6736778")
+    compileOnly fg.deobf('thedarkcolour:kotlinforforge:4.11.0')
     runtimeOnly fg.deobf("curse.maven:iglee-library-541199:5329230")
-    implementation fg.deobf("curse.maven:mekanism-empowered-1256390:6736777")
-    implementation fg.deobf("curse.maven:mekanism-empowered-core-1256399:6736778")
-    runtimeOnly fg.deobf('thedarkcolour:kotlinforforge:4.11.0')
+    if(!loadextras) {
+        runtimeOnly fg.deobf("curse.maven:mekanism-empowered-1256390:6736777")
+        runtimeOnly fg.deobf("curse.maven:mekanism-empowered-core-1256399:6736778")
+        runtimeOnly fg.deobf('thedarkcolour:kotlinforforge:4.11.0')
+    }
     implementation fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
+    compileOnly fg.deobf("curse.maven:mekanism-extras-1026040:6642674")
+    if(loadextras) {
+        runtimeOnly fg.deobf("curse.maven:mekanism-extras-1026040:6642674")
+    }
 //    compileOnly "mekanism:Mekanism:${mekanism_version}"
 //    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")// core
     implementation fg.deobf("curse.maven:mekanism-268560:6552911")

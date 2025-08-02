@@ -2,7 +2,6 @@ package io.github.masyumero.mekanismavaritia.common.registry;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
-import com.mojang.logging.LogUtils;
 import fr.iglee42.evolvedmekanism.registries.EMContainerTypes;
 import fr.iglee42.evolvedmekanism.registries.EMTileEntityTypes;
 import fr.iglee42.evolvedmekanism.tiles.machine.TileEntityAlloyer;
@@ -24,13 +23,11 @@ import mekanism.common.registries.MekanismSounds;
 import mekanism.common.registries.MekanismTileEntityTypes;
 import mekanism.common.tile.machine.*;
 import net.minecraftforge.fml.ModList;
-import org.slf4j.Logger;
 
 import java.util.EnumSet;
 
 public class MABlockTypes {
 
-    private static final Logger LOGGER = LogUtils.getLogger();
     private static final Table<MAFactoryTier, MAFactoryType, MAFactory<?>> FACTORIES = HashBasedTable.create();
 
     public static final MAMachine.MAFactoryMachine<TileEntityAlloyer> ALLOYER = MAMachine.MAMachineBuilder

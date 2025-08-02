@@ -14,6 +14,7 @@ public class MAContainerTypes {
 
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityElectricNeutronCollector>> ELECTRIC_NEUTRON_COLLECTOR = CONTAINER_TYPES.register(MABlocks.ELECTRIC_NEUTRON_COLLECTOR, TileEntityElectricNeutronCollector.class);
 
+
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityMAFactory<?>>> FACTORY = CONTAINER_TYPES.register("factory", factoryClass(), MAFactoryContainer::new);
 
     @SuppressWarnings({"rawtypes", "unchecked"})
