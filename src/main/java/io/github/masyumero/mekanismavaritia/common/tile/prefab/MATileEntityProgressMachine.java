@@ -23,6 +23,8 @@ public abstract class MATileEntityProgressMachine<RECIPE extends MekanismRecipe>
     protected int baseTicksRequired;
     private int operatingTicks;
 
+    protected int baselineMaxOperations = 1;
+
     protected MATileEntityProgressMachine(IBlockProvider blockProvider, BlockPos pos, BlockState state, List<CachedRecipe.OperationTracker.RecipeError> errorTypes, int baseTicksRequired) {
         super(blockProvider, pos, state, errorTypes);
         this.baseTicksRequired = baseTicksRequired;

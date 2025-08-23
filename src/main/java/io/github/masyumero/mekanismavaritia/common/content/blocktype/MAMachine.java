@@ -1,5 +1,6 @@
 package io.github.masyumero.mekanismavaritia.common.content.blocktype;
 
+import com.jerry.mekanism_extras.api.ExtraUpgrade;
 import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttributeFactoryType;
 import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttributeUpgradeable;
 import io.github.masyumero.mekanismavaritia.common.registry.MABlocks;
@@ -17,6 +18,7 @@ import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.tile.base.TileEntityMekanism;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraftforge.fml.ModList;
 
 import java.util.EnumSet;
 import java.util.Objects;
@@ -35,7 +37,11 @@ public class MAMachine <TILE extends TileEntityMekanism> extends BlockTypeTile<T
     public static class MAFactoryMachine<TILE extends TileEntityMekanism> extends MAMachine<TILE> {
         public MAFactoryMachine(Supplier<TileEntityTypeRegistryObject<TILE>> tileEntitySupplier, MekanismLang description, MAFactoryType factoryType) {
             super(tileEntitySupplier, description);
-            add(new AttributeUpgradeSupport(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING)));
+            if (ModList.get().isLoaded("mekanism_extras")) {
+                add(new AttributeUpgradeSupport(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, ExtraUpgrade.STACK, ExtraUpgrade.CREATIVE)));
+            } else {
+                add(new AttributeUpgradeSupport(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING)));
+            }
             add(new MAAttributeFactoryType(factoryType), new MAAttributeUpgradeable(() -> MABlocks.getMAFactory(MAFactoryTier.PRISMATIC, getFactoryType())));
         }
 

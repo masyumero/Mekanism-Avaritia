@@ -153,6 +153,11 @@ repositories {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.5.0"))
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.5.0")) {
+        jarJar.ranged(it, "[0.5.0,)")
+    }
+
 //    compileOnly "mekanism:Mekanism:${mekanism_version}"
     implementation fg.deobf("curse.maven:re-avaritia-623969:6418092")
     implementation fg.deobf("curse.maven:evolved-mekanism-1230085:6456494")
@@ -168,9 +173,9 @@ dependencies {
     }
     implementation fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
-    compileOnly fg.deobf("curse.maven:mekanism-extras-1026040:6642674")
+    compileOnly fg.deobf("curse.maven:mekanism-extras-1026040:6838499")
     if(loadextras) {
-        runtimeOnly fg.deobf("curse.maven:mekanism-extras-1026040:6642674")
+        runtimeOnly fg.deobf("curse.maven:mekanism-extras-1026040:6838499")
     }
 //    compileOnly "mekanism:Mekanism:${mekanism_version}"
 //    runtimeOnly fg.deobf("mekanism:Mekanism:${mekanism_version}")// core

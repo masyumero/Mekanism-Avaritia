@@ -1,6 +1,7 @@
 package io.github.masyumero.mekanismavaritia.common.tile.factory;
 
-import dev.lapis256.mekanism_empowered.api.MekEmpUpgrade;
+import com.jerry.mekanism_extras.api.ExtraUpgrade;
+import com.jerry.mekanism_extras.api.IMixinMachineEnergyContainer;
 import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekanismavaritia.common.block.attribute.MAAttributeFactoryType;
 import io.github.masyumero.mekanismavaritia.common.content.blocktype.MAFactoryType;
@@ -62,6 +63,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -383,7 +385,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
 
     @ComputerMethod(methodDescription = "Total number of ticks it takes currently for the recipe to complete")
     public int getTicksRequired() {
-        return tier == MAFactoryTier.ETERNAL ? 0 :ticksRequired;
+        return tier == MAFactoryTier.ETERNAL||upgradeComponent.isUpgradeInstalled(ExtraUpgrade.CREATIVE) ? 0 :ticksRequired;
     }
 
     @Override
@@ -397,12 +399,6 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
             for (int i = 0; i < tier.processes && i < savedProgress.length; i++) {
                 progress[i] = savedProgress[i];
             }
-            baselineMaxOperations = switch (tier) {
-                case PRISMATIC -> 2;
-                case FLARE -> 4;
-                case NEURAL -> 8;
-                case ETERNAL -> 99;
-            };
         }
     }
 
@@ -432,7 +428,8 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
         super.recalculateUpgrades(upgrade);
-        if (upgrade == Upgrade.SPEED || upgrade == MekEmpUpgrade.getEMPOWERED_SPEED()) {
+        if (getEnergyContainer() instanceof IMixinMachineEnergyContainer mixMach) mixMach.mekanism_Extras$extraRecalculateUpgrades(upgrade);
+        if (upgrade == Upgrade.SPEED) {
             int ticks = switch (tier) {
                 case PRISMATIC -> BASE_TICKS_REQUIRED / 2;
                 case FLARE -> BASE_TICKS_REQUIRED / 4;
@@ -440,6 +437,16 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
                 case ETERNAL -> 0;
             };
             ticksRequired = MekanismUtils.getTicks(this, ticks);
+        } else if (ModList.get().isLoaded("mekanism_extras")) {
+            if (upgrade == ExtraUpgrade.STACK) {
+                int stacks = switch (tier) {
+                    case PRISMATIC -> 2;
+                    case FLARE -> 4;
+                    case NEURAL -> 8;
+                    case ETERNAL -> 16;
+                };
+                baselineMaxOperations = (int) Math.pow(stacks, upgradeComponent.getUpgrades(ExtraUpgrade.STACK));
+            }
         }
     }
 

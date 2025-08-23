@@ -2,6 +2,7 @@ package io.github.masyumero.mekanismavaritia.common.registry;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
+import com.jerry.mekanism_extras.api.ExtraUpgrade;
 import fr.iglee42.evolvedmekanism.registries.EMContainerTypes;
 import fr.iglee42.evolvedmekanism.registries.EMTileEntityTypes;
 import fr.iglee42.evolvedmekanism.tiles.machine.TileEntityAlloyer;
@@ -25,10 +26,12 @@ import mekanism.common.tile.machine.*;
 import net.minecraftforge.fml.ModList;
 
 import java.util.EnumSet;
+import java.util.Set;
 
 public class MABlockTypes {
 
     private static final Table<MAFactoryTier, MAFactoryType, MAFactory<?>> FACTORIES = HashBasedTable.create();
+    private static final Set<Upgrade> UPGRADES = ModList.get().isLoaded("mekanism_extras") ? EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS, ExtraUpgrade.STACK, ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS);
 
     public static final MAMachine.MAFactoryMachine<TileEntityAlloyer> ALLOYER = MAMachine.MAMachineBuilder
             .createMAFactoryMachine(() -> EMTileEntityTypes.ALLOYER, MekanismAvaritiaLang.NULL.getAlloyer(), MAFactoryType.ALLOYING)
@@ -67,7 +70,8 @@ public class MABlockTypes {
             .withGui(() -> MekanismContainerTypes.OSMIUM_COMPRESSOR)
             .withSound(MekanismSounds.OSMIUM_COMPRESSOR)
             .withEnergyConfig(MekanismConfig.usage.osmiumCompressor, MekanismConfig.storage.osmiumCompressor)
-            .withSupportedUpgrades(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS))
+            //.withSupportedUpgrades(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS))
+            .withSupportedUpgrades(UPGRADES)
             .withComputerSupport("osmiumCompressor")
             .build();
 
@@ -84,7 +88,8 @@ public class MABlockTypes {
             .withGui(() -> MekanismContainerTypes.PURIFICATION_CHAMBER)
             .withSound(MekanismSounds.PURIFICATION_CHAMBER)
             .withEnergyConfig(MekanismConfig.usage.purificationChamber, MekanismConfig.storage.purificationChamber)
-            .withSupportedUpgrades(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS))
+            //.withSupportedUpgrades(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS))
+            .withSupportedUpgrades(UPGRADES)
             .withComputerSupport("purificationChamber")
             .build();
 
@@ -93,7 +98,8 @@ public class MABlockTypes {
             .withGui(() -> MekanismContainerTypes.CHEMICAL_INJECTION_CHAMBER)
             .withSound(MekanismSounds.CHEMICAL_INJECTION_CHAMBER)
             .withEnergyConfig(MekanismConfig.usage.chemicalInjectionChamber, MekanismConfig.storage.chemicalInjectionChamber)
-            .withSupportedUpgrades(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS))
+            //.withSupportedUpgrades(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS))
+            .withSupportedUpgrades(UPGRADES)
             .withComputerSupport("chemicalInjectionChamber")
             .build();
 
@@ -121,7 +127,7 @@ public class MABlockTypes {
             .withGui(() -> MAContainerTypes.ELECTRIC_NEUTRON_COLLECTOR)
             //.withEnergyConfig(LoadConfig.usageConfig.electricNeutronCollector, LoadConfig.storageConfig.electricNeutronCollector)
             .withEnergyConfig(MekanismConfig.usage.precisionSawmill, MekanismConfig.storage.precisionSawmill)
-            .withSupportedUpgrades(EnumSet.of(Upgrade.SPEED,Upgrade.ENERGY,Upgrade.MUFFLING))
+            .withSupportedUpgrades(ModList.get().isLoaded("mekanism_extras") ? EnumSet.of(Upgrade.MUFFLING,ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.MUFFLING))
             .withComputerSupport("ElectricNeutronCollector")
             .replace(Attributes.ACTIVE_LIGHT)
             .build();

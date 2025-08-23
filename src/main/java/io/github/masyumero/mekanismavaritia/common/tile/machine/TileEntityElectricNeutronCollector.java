@@ -1,5 +1,7 @@
 package io.github.masyumero.mekanismavaritia.common.tile.machine;
 
+import com.jerry.mekanism_extras.api.ExtraUpgrade;
+import com.jerry.mekanism_extras.api.IMixinMachineEnergyContainer;
 import io.github.masyumero.mekanismavaritia.api.recipes.ElectricNeutronCollectorRecipe;
 import io.github.masyumero.mekanismavaritia.api.recipes.cache.ElectricNeutronCollectorCachedRecipe;
 import io.github.masyumero.mekanismavaritia.common.capabilities.energy.ENCMEnergyContainer;
@@ -39,6 +41,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -116,7 +119,7 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
             recipeEnergyRequired = recipe.getEnergyRequired();
         }
         boolean update = baseTicksRequired != recipeDuration;
-        baseTicksRequired = recipeDuration;
+        baseTicksRequired = upgradeComponent.isUpgradeInstalled(ExtraUpgrade.CREATIVE)? 0 : recipeDuration;
         if (update) {
             recalculateUpgrades(Upgrade.SPEED);
         }
@@ -134,6 +137,21 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
         recipeCacheLookupMonitor.updateAndProcess();
     }
 
+    @Override
+    public void recalculateUpgrades(Upgrade upgrade) {
+        super.recalculateUpgrades(upgrade);
+        if (upgrade == Upgrade.SPEED) {
+            ticksRequired = MekanismUtils.getTicks(this, baseTicksRequired);
+        } else if (ModList.get().isLoaded("mekanism_extras")) {
+            if (getEnergyContainer() instanceof IMixinMachineEnergyContainer mixMach) mixMach.mekanism_Extras$extraRecalculateUpgrades(upgrade);
+            if (upgradeComponent.isUpgradeInstalled(ExtraUpgrade.CREATIVE)) {
+                baselineMaxOperations = 64;
+            } else {
+                baselineMaxOperations = 1;
+            }
+        }
+    }
+
     @Nullable
     @Override
     public ElectricNeutronCollectorRecipe getRecipe(int cacheIndex) {
@@ -149,6 +167,7 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
                 .setActive(this::setActive)
                 .setEnergyRequirements(energyContainer::getEnergyPerTick, energyContainer)
                 .setRequiredTicks(this::getTicksRequired)
+                .setBaselineMaxOperations(() -> baselineMaxOperations)
                 .setOnFinish(this::markForSave)
                 .setOperatingTicksChanged(this::setOperatingTicks);
     }
