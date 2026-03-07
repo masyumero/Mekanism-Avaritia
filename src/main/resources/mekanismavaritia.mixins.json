@@ -12,7 +12,9 @@
     "mekanism.MixinItemMekaSuitArmor",
     "mekanism.MixinItemMekaTana",
     "mekanism.MixinItemMekaTool",
-    "mekanism.MixinPacketHandler"
+    "mekanism.MixinPacketHandler",
+    "ticex.MixinModifiableMekaSuitArmor",
+    "ticex.MixinModifiableMekaTool"
   ],
   "client": [
   ],

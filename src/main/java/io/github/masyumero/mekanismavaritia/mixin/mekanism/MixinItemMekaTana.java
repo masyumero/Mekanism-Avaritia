@@ -1,5 +1,6 @@
 package io.github.masyumero.mekanismavaritia.mixin.mekanism;
 
+import committee.nova.mods.avaritia.api.iface.ISwitchable;
 import committee.nova.mods.avaritia.init.config.ModConfig;
 import committee.nova.mods.avaritia.util.ToolUtils;
 import io.github.masyumero.mekanismavaritia.common.config.LoadConfig;
@@ -33,7 +34,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ItemMekaTana.class)
-public abstract class MixinItemMekaTana extends ItemEnergized implements IModuleContainerItem, IGenericRadialModeItem {
+public abstract class MixinItemMekaTana extends ItemEnergized implements IModuleContainerItem, IGenericRadialModeItem, ISwitchable {
 
     public MixinItemMekaTana(FloatingLongSupplier chargeRateSupplier, FloatingLongSupplier maxEnergySupplier, Properties properties) {
         super(chargeRateSupplier, maxEnergySupplier, properties);
@@ -65,8 +66,16 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
         var heldItem = player.getItemInHand(hand);
         IModule<ModuleCosmicStrikeUnit> cosmicStrikeUnit = getModule(heldItem, MAModules.COSMIC_STRIKE_UNIT);
         if (cosmicStrikeUnit != null && cosmicStrikeUnit.isEnabled()) {
+            if (player.isShiftKeyDown()) {
+                switchMode(world, player, hand, "infinity_sword_kill");
+                cir.setReturnValue(InteractionResultHolder.success(heldItem));
+            }
             int cosmicUnitCount = cosmicStrikeUnit.getInstalledCount();
-            ToolUtils.aoeAttack(player, cosmicUnitCount * 128, cosmicUnitCount * 10000, ModConfig.isSwordAttackAnimal.get(), ModConfig.isSwordAttackLightning.get());
+            if (isActive(heldItem, "infinity_sword_kill")) {
+                ToolUtils.aoeAttack(player, cosmicUnitCount * 128, cosmicUnitCount * 10000, true, ModConfig.isSwordAttackLightning.get());
+            } else {
+                ToolUtils.aoeAttack(player, cosmicUnitCount * 128, cosmicUnitCount * 10000, false, ModConfig.isSwordAttackLightning.get());
+            }
             player.getCooldowns().addCooldown(heldItem.getItem(), 20 / cosmicUnitCount);
             world.playSound(player, player.getOnPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0f, 5.0f);
         }

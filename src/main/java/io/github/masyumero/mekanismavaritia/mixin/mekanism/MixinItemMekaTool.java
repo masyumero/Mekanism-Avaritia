@@ -39,10 +39,10 @@ public abstract class MixinItemMekaTool extends ItemEnergized implements IModule
     }
 
     @Override
-    public void inventoryTick(ItemStack p_41404_, Level p_41405_, Entity p_41406_, int p_41407_, boolean p_41408_) {
-        for (Module<?> module : getModules(p_41404_)) {
-            if (p_41406_ instanceof Player) {
-                module.tick((Player) p_41406_);
+    public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        for (Module<?> module : getModules(stack)) {
+            if (entityIn instanceof Player) {
+                module.tick((Player) entityIn);
             }
         }
     }
@@ -73,16 +73,4 @@ public abstract class MixinItemMekaTool extends ItemEnergized implements IModule
             }
         }
     }
-
-//    @Inject(method = "use",at = @At(value = "INVOKE", target = "Lmekanism/common/item/gear/ItemMekaTool;getModule(Lnet/minecraft/world/item/ItemStack;Lmekanism/api/providers/IModuleDataProvider;)Lmekanism/api/gear/IModule;",shift = At.Shift.AFTER),remap = true)
-//    private void InjectUse(Level world, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
-//        var heldItem = player.getItemInHand(hand);
-//        IModule<ModuleCosmicUnit> cosmicUnit = getModule(heldItem, MAModules.COSMIC_UNIT);
-//        if (cosmicUnit != null && cosmicUnit.isEnabled()) {
-//            int cosmicUnitCount = cosmicUnit.getInstalledCount();
-//            ToolUtils.aoeAttack(player, cosmicUnitCount * 128, cosmicUnitCount * 10000, ModConfig.isSwordAttackAnimal.get(), ModConfig.isSwordAttackLightning.get());
-//            player.getCooldowns().addCooldown(heldItem.getItem(), 20 / cosmicUnitCount);
-//            world.playSound(player, player.getOnPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0f, 5.0f);
-//        }
-//    }
 }

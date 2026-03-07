@@ -13,7 +13,7 @@ public class MATab {
     }
 
     public static final CreativeTabDeferredRegister TAB = new CreativeTabDeferredRegister(MekanismAvaritia.MODID, MATab::addToExistingTabs);
-    public static final CreativeTabRegistryObject MEKANISM_AVARITIA_EXTRAS_TAB = TAB.registerMain(MekanismAvaritiaLang.TAB, MAItems.INFINITE_ALLOY, builder ->
+    public static final CreativeTabRegistryObject MEKANISM_AVARITIA_TAB = TAB.registerMain(MekanismAvaritiaLang.TAB, MAItems.INFINITE_ALLOY, builder ->
             builder.displayItems((displayParameters, output) -> {
                 CreativeTabDeferredRegister.addToDisplay(MABlocks.BLOCK, output);
                 CreativeTabDeferredRegister.addToDisplay(MAItems.ITEM, output);

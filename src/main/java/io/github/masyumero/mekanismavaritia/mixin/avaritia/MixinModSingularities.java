@@ -1,7 +1,7 @@
 package io.github.masyumero.mekanismavaritia.mixin.avaritia;
 
 import com.google.common.collect.ImmutableList;
-import committee.nova.mods.avaritia.common.item.singularity.Singularity;
+import committee.nova.mods.avaritia.core.singularity.Singularity;
 import committee.nova.mods.avaritia.init.registry.ModSingularities;
 import io.github.masyumero.mekanismavaritia.common.registry.MASingularities;
 import org.spongepowered.asm.mixin.Mixin;

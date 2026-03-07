@@ -1,5 +1,6 @@
 package io.github.masyumero.mekanismavaritia.api.tier;
 
+import lombok.Getter;
 import mekanism.api.SupportsColorMap;
 import mekanism.api.math.MathUtils;
 import net.minecraft.network.chat.TextColor;
@@ -18,6 +19,7 @@ public enum MATier implements StringRepresentable, SupportsColorMap {
     private static final MATier[] TIERS = values();
 
     private final String name;
+    @Getter
     private final MapColor mapColor;
     private TextColor textColor;
     private int[] rgbCode;
@@ -34,10 +36,6 @@ public enum MATier implements StringRepresentable, SupportsColorMap {
 
     public String getLowerName() {
         return getSimpleName().toLowerCase(Locale.ROOT);
-    }
-
-    public MapColor getMapColor() {
-        return mapColor;
     }
 
     @Override
