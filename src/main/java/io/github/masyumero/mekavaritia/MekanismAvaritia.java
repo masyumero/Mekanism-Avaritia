@@ -59,6 +59,10 @@ public class MekanismAvaritia implements IModModule {
         packetHandler = new MAPacketHandler();
     }
 
+    public static MAPacketHandler packetHandler() {
+        return instance.packetHandler;
+    }
+
     @SuppressWarnings("removal")
     public static ResourceLocation rl(String path){
         return new ResourceLocation(MekanismAvaritia.MODID, path);

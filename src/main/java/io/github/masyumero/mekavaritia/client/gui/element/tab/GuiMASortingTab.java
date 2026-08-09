@@ -1,5 +1,6 @@
 package io.github.masyumero.mekavaritia.client.gui.element.tab;
 
+import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.network.to_server.MAPacketGuiInteract;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import mekanism.client.SpecialColors;
@@ -38,6 +39,6 @@ public class GuiMASortingTab extends GuiInsetElement<TileEntityMAFactory<?>> {
 
     @Override
     public void onClick(double mouseX, double mouseY, int button) {
-        Mekanism.packetHandler().sendToServer(new MAPacketGuiInteract(MAPacketGuiInteract.MAGuiInteraction.AUTO_SORT_BUTTON, dataSource));
+        MekanismAvaritia.packetHandler().sendToServer(new MAPacketGuiInteract(MAPacketGuiInteract.MAGuiInteraction.AUTO_SORT_BUTTON, dataSource));
     }
 }
