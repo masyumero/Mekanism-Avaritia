@@ -43,7 +43,8 @@ public class MekanismAvaritiaRecipeProvider extends BaseRecipeProvider {
                 new EnrichingRecipeProvider(),
                 new InfusionConversionRecipeProvider(),
                 new MetallurgicInfuserRecipeProvider(),
-                new ElectricNeutronCollectorRecipeProvider()
+                new ElectricNeutronCollectorRecipeProvider(),
+                new SmeltingRecipeProvider()
         );
     }
 
