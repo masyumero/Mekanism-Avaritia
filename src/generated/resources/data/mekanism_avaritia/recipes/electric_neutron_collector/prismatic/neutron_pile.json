@@ -1,0 +1,13 @@
+{
+  "type": "mekanism_avaritia:electric_neutron_collector",
+  "duration": 40,
+  "energyRequired": 125,
+  "input": {
+    "ingredient": {
+      "tag": "forge:circuits/prismatic"
+    }
+  },
+  "output": {
+    "item": "avaritia:neutron_pile"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "mekanism:infusion_conversion",
+  "input": {
+    "ingredient": {
+      "tag": "mekanism_avaritia:enriched/neutronium"
+    }
+  },
+  "output": {
+    "amount": 80,
+    "infuse_type": "mekanism_avaritia:neutron"
+  }
+}

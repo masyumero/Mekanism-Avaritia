@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "mekanism_avaritia:item/module_infinity_elytra_unit"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemicalInput": {
+    "amount": 160,
+    "infuse_type": "mekanism_avaritia:infinity"
+  },
+  "itemInput": {
+    "ingredient": {
+      "tag": "mekanism_avaritia:alloys/neutronium"
+    }
+  },
+  "output": {
+    "item": "mekanism_avaritia:alloy_infinity"
+  }
+}

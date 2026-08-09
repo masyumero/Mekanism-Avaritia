@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "mekanism:module_base"
+    },
+    "A": {
+      "item": "mekanism_avaritia:alloy_infinity"
+    },
+    "H": {
+      "item": "mekanism:hdpe_sheet"
+    },
+    "O": {
+      "item": "avaritia:infinity_bow"
+    }
+  },
+  "pattern": [
+    "AOA",
+    "A#A",
+    "HHH"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:module_celestial_shot_unit"
+  }
+}

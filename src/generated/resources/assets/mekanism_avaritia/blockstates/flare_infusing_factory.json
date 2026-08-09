@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "active=false,facing=east": {
+      "model": "mekanism_avaritia:block/factory/infusing/flare",
+      "y": 90
+    },
+    "active=false,facing=north": {
+      "model": "mekanism_avaritia:block/factory/infusing/flare"
+    },
+    "active=false,facing=south": {
+      "model": "mekanism_avaritia:block/factory/infusing/flare",
+      "y": 180
+    },
+    "active=false,facing=west": {
+      "model": "mekanism_avaritia:block/factory/infusing/flare",
+      "y": -90
+    },
+    "active=true,facing=east": {
+      "model": "mekanism_avaritia:block/factory/infusing/active/flare",
+      "y": 90
+    },
+    "active=true,facing=north": {
+      "model": "mekanism_avaritia:block/factory/infusing/active/flare"
+    },
+    "active=true,facing=south": {
+      "model": "mekanism_avaritia:block/factory/infusing/active/flare",
+      "y": 180
+    },
+    "active=true,facing=west": {
+      "model": "mekanism_avaritia:block/factory/infusing/active/flare",
+      "y": -90
+    }
+  }
+}

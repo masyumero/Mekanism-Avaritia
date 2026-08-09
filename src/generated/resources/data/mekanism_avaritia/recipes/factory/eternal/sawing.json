@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "#": {
+      "item": "avaritia:infinity_catalyst"
+    },
+    "A": {
+      "tag": "forge:alloys/eternal"
+    },
+    "C": {
+      "tag": "forge:circuits/eternal"
+    },
+    "P": {
+      "item": "mekanism_avaritia:neural_sawing_factory"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "#P#",
+    "ACA"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:eternal_sawing_factory"
+  }
+}

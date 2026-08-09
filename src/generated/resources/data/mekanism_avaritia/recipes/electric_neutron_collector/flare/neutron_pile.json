@@ -1,0 +1,13 @@
+{
+  "type": "mekanism_avaritia:electric_neutron_collector",
+  "duration": 20,
+  "energyRequired": 250,
+  "input": {
+    "ingredient": {
+      "tag": "forge:circuits/flare"
+    }
+  },
+  "output": {
+    "item": "avaritia:neutron_pile"
+  }
+}

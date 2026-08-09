@@ -1,0 +1,15 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemicalInput": {
+    "amount": 80,
+    "infuse_type": "mekanism_avaritia:blazing"
+  },
+  "itemInput": {
+    "ingredient": {
+      "tag": "mekanism_avaritia:alloys/crystalline"
+    }
+  },
+  "output": {
+    "item": "mekanism_avaritia:alloy_blazing"
+  }
+}

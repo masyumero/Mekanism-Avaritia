@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "mekanism:module_base"
+    },
+    "A": {
+      "item": "mekanism_avaritia:alloy_infinity"
+    },
+    "E": {
+      "item": "mekanism:creative_energy_cube"
+    },
+    "H": {
+      "item": "mekanism:hdpe_sheet"
+    }
+  },
+  "pattern": [
+    "AEA",
+    "A#A",
+    "HHH"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:module_infinity_energy_unit"
+  }
+}

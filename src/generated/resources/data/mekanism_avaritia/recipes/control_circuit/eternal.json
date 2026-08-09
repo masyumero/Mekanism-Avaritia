@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "forge:alloys/eternal"
+    },
+    "C": {
+      "tag": "forge:circuits/neural"
+    }
+  },
+  "pattern": [
+    "ACA"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:eternal_control_circuit"
+  }
+}

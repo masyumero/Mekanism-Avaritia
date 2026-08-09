@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "#": {
+      "item": "avaritia:crystal_matrix_ingot"
+    },
+    "A": {
+      "tag": "forge:alloys/prismatic"
+    },
+    "C": {
+      "tag": "forge:circuits/prismatic"
+    },
+    "P": {
+      "item": "mekanism:ultimate_smelting_factory"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "#P#",
+    "ACA"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:prismatic_smelting_factory"
+  }
+}

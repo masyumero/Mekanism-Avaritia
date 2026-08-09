@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "forge:alloys/flare"
+    },
+    "C": {
+      "tag": "forge:circuits/prismatic"
+    }
+  },
+  "pattern": [
+    "ACA"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:flare_control_circuit"
+  }
+}

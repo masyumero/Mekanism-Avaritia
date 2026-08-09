@@ -1,0 +1,15 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemicalInput": {
+    "amount": 120,
+    "infuse_type": "mekanism_avaritia:neutron"
+  },
+  "itemInput": {
+    "ingredient": {
+      "tag": "mekanism_avaritia:alloys/blazing"
+    }
+  },
+  "output": {
+    "item": "mekanism_avaritia:alloy_neutron"
+  }
+}

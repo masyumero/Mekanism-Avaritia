@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "forge:alloys/neural"
+    },
+    "C": {
+      "tag": "forge:circuits/flare"
+    }
+  },
+  "pattern": [
+    "ACA"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:neural_control_circuit"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "#": {
+      "item": "avaritia:blaze_cube"
+    },
+    "A": {
+      "tag": "forge:alloys/flare"
+    },
+    "C": {
+      "tag": "forge:circuits/flare"
+    },
+    "P": {
+      "item": "mekanism_avaritia:prismatic_injecting_factory"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "#P#",
+    "ACA"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:flare_injecting_factory"
+  }
+}

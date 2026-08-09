@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "mekanism:module_base"
+    },
+    "?": {
+      "item": "avaritia:infinity_catalyst"
+    },
+    "A": {
+      "item": "mekanism_avaritia:alloy_infinity"
+    },
+    "H": {
+      "item": "mekanism:hdpe_sheet"
+    },
+    "I": {
+      "item": "avaritia:infinity_ingot"
+    }
+  },
+  "pattern": [
+    "AIA",
+    "A#A",
+    "H?H"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:module_infinity_damage_unit"
+  }
+}

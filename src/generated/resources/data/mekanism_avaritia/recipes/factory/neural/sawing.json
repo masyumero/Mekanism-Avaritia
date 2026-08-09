@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "#": {
+      "item": "avaritia:neutron_ingot"
+    },
+    "A": {
+      "tag": "forge:alloys/neural"
+    },
+    "C": {
+      "tag": "forge:circuits/neural"
+    },
+    "P": {
+      "item": "mekanism_avaritia:flare_sawing_factory"
+    }
+  },
+  "pattern": [
+    "ACA",
+    "#P#",
+    "ACA"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:neural_sawing_factory"
+  }
+}

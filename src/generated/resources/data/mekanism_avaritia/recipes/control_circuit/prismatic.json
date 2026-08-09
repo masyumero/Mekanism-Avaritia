@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "forge:alloys/prismatic"
+    },
+    "C": {
+      "tag": "forge:circuits/ultimate"
+    }
+  },
+  "pattern": [
+    "ACA"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:prismatic_control_circuit"
+  }
+}

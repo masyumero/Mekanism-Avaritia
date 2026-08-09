@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:item/generated",
+  "cosmic": {
+    "mask": "mekanism_avaritia:mask/eternal_control_circuit_mask"
+  },
+  "loader": "avaritia:cosmic",
+  "textures": {
+    "layer0": "mekanism_avaritia:item/eternal_control_circuit"
+  }
+}

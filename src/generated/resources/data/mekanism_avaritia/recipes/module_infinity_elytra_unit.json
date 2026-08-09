@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "item": "mekanism:module_base"
+    },
+    "?": {
+      "item": "mekanism_avaritia:enriched_crystalline"
+    },
+    "A": {
+      "item": "mekanism_avaritia:alloy_infinity"
+    },
+    "I": {
+      "item": "mekanism:pellet_antimatter"
+    },
+    "O": {
+      "item": "avaritia:infinity_elytra"
+    }
+  },
+  "pattern": [
+    "AOA",
+    "A#A",
+    "I?I"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:module_infinity_elytra_unit"
+  }
+}
