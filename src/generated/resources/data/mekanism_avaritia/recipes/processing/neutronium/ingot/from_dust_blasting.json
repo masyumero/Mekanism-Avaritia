@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "cookingtime": 100,
+  "experience": 0.3,
+  "ingredient": {
+    "item": "mekanism_avaritia:dust_neutron"
+  },
+  "result": "avaritia:neutron_ingot"
+}
