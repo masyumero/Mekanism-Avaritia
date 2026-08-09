@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "mekanismavaritia:item/flare_control_circuit"
-  }
-}

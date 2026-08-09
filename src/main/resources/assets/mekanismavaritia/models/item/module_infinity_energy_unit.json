@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "mekanismavaritia:item/module_infinity_energy_unit"
-  }
-}

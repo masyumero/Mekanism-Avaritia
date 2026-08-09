@@ -120,3 +120,7 @@ runs/
 /blockstates.js
 /model.js
 /itemmodel.js
+/src/generated/resources/.cache/
+/run-client/
+/run-data/
+/run-server/

@@ -49,6 +49,13 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+sourceSets {
+    data {
+        compileClasspath += main.output + main.compileClasspath
+        runtimeClasspath += main.output + main.runtimeClasspath
+    }
+}
+
 legacyForge {
     // Specify Forge version
     version = libs.versions.minecraftForge.get()
@@ -58,20 +65,21 @@ legacyForge {
         mappingsVersion = libs.versions.parchment.get()
     }
 
-    // accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
+    accessTransformers = project.files('src/main/resources/META-INF/accesstransformer.cfg')
 
     addModdingDependenciesTo(sourceSets.test)
 
     runs {
         client {
             client()
-
+            gameDirectory = project.file('run-client')
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
 
         server {
             server()
+            gameDirectory = project.file('run-server')
             programArgument '--nogui'
             systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
@@ -86,12 +94,23 @@ legacyForge {
 
         data {
             data()
-
             // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
-            // gameDirectory = project.file('run-data')
-
+            gameDirectory = project.file('run-data')
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            programArguments.addAll '--mod', project.mod_id,
+                    '--all', '--output',
+                    file('src/generated/resources/').getAbsolutePath(),
+                    '--existing', file('src/main/resources/').getAbsolutePath(),
+                    '--existing-mod', 'mekanism',
+                    '--existing-mod', 'evolvedmekanism',
+                    '--existing-mod', 'mekanism_extras',
+                    '--existing-mod', 'avaritia'
+
+            mods {
+                "${mod_id}" {
+                    sourceSet(sourceSets.data)
+                }
+            }
         }
 
         configureEach {
@@ -126,27 +145,20 @@ dependencies {
     api(annotationProcessor(forge.mixinExtras.common.get()))
 
     //Mekanism
-    modImplementation(forge.mekanism)
+    modImplementation(forge.bundles.mekanism)
     modImplementation(forge.evolvedMekanism)
     modImplementation(forge.mekanismExtras)
-    modImplementation(variantOf(forge.mekanism) { classifier("generators")})
-    modRuntimeOnly(variantOf(forge.mekanism) { classifier("additions")})
-    modRuntimeOnly(variantOf(forge.mekanism) { classifier("tools")})
+    modImplementation(forge.mekmm)
+    modImplementation(forge.mekanismWeapons)
 
-    modImplementation("curse.maven:re-avaritia-623969:7445855")
-    modImplementation("curse.maven:mekanism-weapons-929829:6949839")
-    modImplementation("curse.maven:ticex-tinkers-construct-ex-1242469:7695635")
-    modImplementation("curse.maven:tinkers-construct-74072:7449219")
-    modImplementation("mezz.jei:jei-1.20.1-forge:${jei_version}")
-    modImplementation("curse.maven:mekanism-empowered-1256390:7545276")
-    modImplementation("curse.maven:mekanism-empowered-core-1256399:7545277")
+    modImplementation(forge.avaritia)
+    modCompileOnly(forge.tconstract)
 
-    modRuntimeOnly('thedarkcolour:kotlinforforge:4.12.0')
-    modRuntimeOnly("curse.maven:iglee-library-541199:5329230")
-    modRuntimeOnly("curse.maven:moffs-addonapi-dynload-1242459:7695505")
-    modRuntimeOnly("curse.maven:mantle-74924:7563777")
-    modRuntimeOnly("curse.maven:emi-580555:5872526")
-    modRuntimeOnly("curse.maven:jade-324717:5672013")
+    modCompileOnly(forge.ticex)
+
+    modRuntimeOnly(forge.igreeLib)
+    modRuntimeOnly(forge.moffsAddonApi)
+    modRuntimeOnly(forge.mantle)
 
     // JEI, EMI, Jade
     modImplementation(forge.bundles.jei)
