@@ -60,7 +60,7 @@ public abstract class MixinItemMekaTool extends ItemEnergized implements IModule
         }
     }
 
-    @Inject(method = "hurtEnemy",at = @At(value = "INVOKE", target = "Lmekanism/common/item/gear/ItemMekaTool;getModule(Lnet/minecraft/world/item/ItemStack;Lmekanism/api/providers/IModuleDataProvider;)Lmekanism/api/gear/IModule;",shift = At.Shift.AFTER), remap = false)
+    @Inject(method = "hurtEnemy",at = @At(value = "INVOKE", target = "Lmekanism/common/item/gear/ItemMekaTool;getModule(Lnet/minecraft/world/item/ItemStack;Lmekanism/api/providers/IModuleDataProvider;)Lmekanism/api/gear/IModule;",shift = At.Shift.AFTER))
     private void hurtEnemyInject(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
         IModule<ModuleInfinityAttackAmplificationUnit> atkAmpUnit = getModule(stack, MAModules.INFINITY_ATTACK_AMPLIFICATION_UNIT);
         IEnergyContainer energyContainer = StorageUtils.getEnergyContainer(stack, 0);
