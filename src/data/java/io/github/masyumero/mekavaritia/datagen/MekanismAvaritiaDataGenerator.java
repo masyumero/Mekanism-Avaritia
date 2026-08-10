@@ -9,11 +9,11 @@ import io.github.masyumero.mekavaritia.datagen.client.lang.MekanismAvaritiaLangP
 import io.github.masyumero.mekavaritia.datagen.client.lang.JapaneseLangProvider;
 import io.github.masyumero.mekavaritia.datagen.client.models.block.MekanismAvaritiaBlockModelProvider;
 import io.github.masyumero.mekavaritia.datagen.client.models.item.MekanismAvaritiaItemModelProvider;
+import io.github.masyumero.mekavaritia.datagen.client.texture.MekanismAvaritiaSpriteSourceProvider;
 import io.github.masyumero.mekavaritia.datagen.common.loot.MekanismAvaritiaLootProvider;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.impl.MekanismAvaritiaRecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.registries.MekanismAvaritiaDatapackRegistryProvider;
 import io.github.masyumero.mekavaritia.datagen.common.tag.MekanismAvaritiaTagProvider;
-import mekanism.common.Mekanism;
 import net.minecraft.Util;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.CachedOutput;
@@ -41,7 +41,6 @@ public class MekanismAvaritiaDataGenerator {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        bootstrapConfigs(Mekanism.MODID);
         bootstrapConfigs(MekanismAvaritia.MODID);
         DataGenerator gen = event.getGenerator();
         PackOutput output = gen.getPackOutput();
@@ -54,6 +53,7 @@ public class MekanismAvaritiaDataGenerator {
         //addProvider(gen, event.includeClient(), SimplifiedChineseLangProvider::new);
         gen.addProvider(event.includeClient(), new MekanismAvaritiaBlockModelProvider(output, existingFileHelper));
         gen.addProvider(event.includeClient(), new MekanismAvaritiaItemModelProvider(output, existingFileHelper));
+        gen.addProvider(event.includeClient(), new MekanismAvaritiaSpriteSourceProvider(output, existingFileHelper));
         //Server side data generators
         MekanismAvaritiaRecipeProvider recipeProvider = new MekanismAvaritiaRecipeProvider(output, existingFileHelper);
         gen.addProvider(event.includeServer(), recipeProvider);

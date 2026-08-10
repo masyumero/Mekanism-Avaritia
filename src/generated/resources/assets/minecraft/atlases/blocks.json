@@ -1,0 +1,16 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "mekanism:infuse_type/base"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "mekanism_avaritia:infuse_type/infinity"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "mekanism_avaritia:entity/armor/mekasuit_infinity_elytra"
+    }
+  ]
+}
