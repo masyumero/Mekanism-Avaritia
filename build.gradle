@@ -77,6 +77,12 @@ legacyForge {
             systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
 
+        register("dataClient") {
+            client()
+            gameDirectory = project.file('run-client')
+            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+        }
+
         server {
             server()
             gameDirectory = project.file('run-server')
@@ -115,7 +121,7 @@ legacyForge {
 
         configureEach {
             systemProperty 'forge.logging.markers', 'REGISTRIES'
-
+            jvmArgument '-Dmixin.debug.export=true'
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }
@@ -143,6 +149,9 @@ dependencies {
     // Mixin
     annotationProcessor(variantOf(libs.mixin) { classifier("processor") })
     api(annotationProcessor(forge.mixinExtras.common.get()))
+    jarJar(api(forge.mixinExtras.forge.get())).version {
+        require("[${forge.versions.mixinExtras.get()},)")
+    }
 
     //Mekanism
     modImplementation(forge.bundles.mekanism)
@@ -213,6 +222,10 @@ publishing {
             url "file://${project.projectDir}/repo"
         }
     }
+}
+
+tasks.named("runDataClient").configure {
+    dependsOn(tasks.named("runData"))
 }
 
 tasks.withType(JavaCompile).configureEach {
