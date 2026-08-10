@@ -9,7 +9,8 @@ import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 public enum MAAddons {
     MEKMM("MekanismMoreMachine"),
     EVOMEK("EvolvedMekanism"),
-    MEK_EXTRA("Mekanism_Extras");
+    MEK_EXTRA("Mekanism_Extras"),
+    MEK_WEAPONS("MekaWeapons");
 
     private final String modName;
 

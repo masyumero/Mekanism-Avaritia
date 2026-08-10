@@ -47,7 +47,7 @@ public abstract class MixinItemMekaTool extends ItemEnergized implements IModule
         }
     }
 
-    @Inject(method = "getDestroySpeed",at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getDestroySpeed",at = @At(value = "RETURN", ordinal = 2), cancellable = true)
     private void getDestroySpeedInject(ItemStack stack, BlockState state, CallbackInfoReturnable<Float> cir) {
         IModule<ModuleExcavationEscalationUnit> excavationEscalationUnit = getModule(stack, MekanismModules.EXCAVATION_ESCALATION_UNIT);
         IModule<ModuleInfinityExcavationEscalationUnit> infinityExcavationEscalationUnit = getModule(stack, MAModules.INFINITY_EXCAVATION_ESCALATION_UNIT);
@@ -60,6 +60,7 @@ public abstract class MixinItemMekaTool extends ItemEnergized implements IModule
         }
     }
 
+    @SuppressWarnings("mapping")
     @Inject(method = "hurtEnemy",at = @At(value = "INVOKE", target = "Lmekanism/common/item/gear/ItemMekaTool;getModule(Lnet/minecraft/world/item/ItemStack;Lmekanism/api/providers/IModuleDataProvider;)Lmekanism/api/gear/IModule;",shift = At.Shift.AFTER))
     private void hurtEnemyInject(ItemStack stack, LivingEntity target, LivingEntity attacker, CallbackInfoReturnable<Boolean> cir) {
         IModule<ModuleInfinityAttackAmplificationUnit> atkAmpUnit = getModule(stack, MAModules.INFINITY_ATTACK_AMPLIFICATION_UNIT);

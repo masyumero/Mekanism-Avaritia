@@ -3,6 +3,7 @@ package io.github.masyumero.mekavaritia;
 import com.mojang.logging.LogUtils;
 import io.github.masyumero.mekavaritia.common.MATags;
 import io.github.masyumero.mekavaritia.common.config.LoadConfig;
+import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.network.MAPacketHandler;
 import io.github.masyumero.mekavaritia.common.recipe.MARecipeType;
 import io.github.masyumero.mekavaritia.common.registry.*;
@@ -13,7 +14,6 @@ import meranha.mekaweapons.MekaWeapons;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -76,7 +76,7 @@ public class MekanismAvaritia implements IModModule {
         MekanismIMC.addMekaSuitPantsModules(MAModules.STARFEAST_UNIT);
         MekanismIMC.addMekaSuitBootsModules(MAModules.LIGHTSPEED_UNIT);
         MekanismIMC.addMekaToolModules(MAModules.INFINITY_EXCAVATION_ESCALATION_UNIT, MAModules.INFINITY_ATTACK_AMPLIFICATION_UNIT);
-        if (ModList.get().isLoaded("mekaweapons")) {
+        if (MAAddons.MEK_WEAPONS.isLoaded()) {
             MekaWeapons.addModules(MekaWeapons.ADD_MEKATANA_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.COSMIC_STRIKE_UNIT);
             MekaWeapons.addModules(MekaWeapons.ADD_MEKABOW_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.CELESTIAL_SHOT_UNIT, MAModules.INFINITY_DAMAGE_UNIT);
             MekaWeapons.addModules(MekaWeapons.ADD_MEKAGUN_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.INFINITY_DAMAGE_UNIT);
