@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 import mekanism.api.MekanismAPI;
 import mekanism.api.chemical.Chemical;
+import mekanism.common.Mekanism;
 import mekanism.common.registration.impl.FluidDeferredRegister;
 import mekanism.common.registration.impl.FluidDeferredRegister.MekanismFluidType;
 import mekanism.common.registration.impl.FluidRegistryObject;
@@ -43,7 +44,9 @@ public abstract class BaseSpriteSourceProvider extends SpriteSourceProvider {
     private <CHEMICAL extends Chemical<CHEMICAL>> void addChemicalSprites(SourceList atlas, IForgeRegistry<CHEMICAL> chemicalRegistry) {
         for (Chemical<?> chemical : chemicalRegistry.getValues()) {
             if (chemical.getRegistryName().getNamespace().equals(modid)) {
-                addFiles(atlas, chemical.getIcon());
+                if (!chemical.getIcon().equals(Mekanism.rl("infuse_type/base"))) {
+                    addFiles(atlas, chemical.getIcon());
+                }
             }
         }
     }

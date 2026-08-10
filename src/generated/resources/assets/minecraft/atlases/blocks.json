@@ -2,10 +2,6 @@
   "sources": [
     {
       "type": "minecraft:single",
-      "resource": "mekanism:infuse_type/base"
-    },
-    {
-      "type": "minecraft:single",
       "resource": "mekanism_avaritia:infuse_type/infinity"
     },
     {
