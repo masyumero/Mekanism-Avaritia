@@ -55,7 +55,7 @@ public class MAJEI implements IModPlugin {
         MACatalystRegistryHelper.register(registry, MekanismBlocks.METALLURGIC_INFUSER, MekanismJEIRecipeType.INFUSION_CONVERSION);
         MACatalystRegistryHelper.registerRecipeItem(registry, MekanismBlocks.ENERGIZED_SMELTER, MekanismJEIRecipeType.SMELTING, RecipeTypes.SMELTING);
 
-        if (MAAddons.EVOMEK.isLoaded()) {
+        if (MAAddons.EVOLVEDMEKANISM.isLoaded()) {
             MACatalystRegistryHelper.register(registry, EMBlocks.ALLOYER);
         }
     }

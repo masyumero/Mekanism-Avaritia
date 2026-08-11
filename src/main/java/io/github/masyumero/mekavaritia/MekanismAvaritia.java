@@ -76,7 +76,7 @@ public class MekanismAvaritia implements IModModule {
         MekanismIMC.addMekaSuitPantsModules(MAModules.STARFEAST_UNIT);
         MekanismIMC.addMekaSuitBootsModules(MAModules.LIGHTSPEED_UNIT);
         MekanismIMC.addMekaToolModules(MAModules.INFINITY_EXCAVATION_ESCALATION_UNIT, MAModules.INFINITY_ATTACK_AMPLIFICATION_UNIT);
-        if (MAAddons.MEK_WEAPONS.isLoaded()) {
+        if (MAAddons.MEKWEAPONS.isLoaded()) {
             MekaWeapons.addModules(MekaWeapons.ADD_MEKATANA_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.COSMIC_STRIKE_UNIT);
             MekaWeapons.addModules(MekaWeapons.ADD_MEKABOW_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.CELESTIAL_SHOT_UNIT, MAModules.INFINITY_DAMAGE_UNIT);
             MekaWeapons.addModules(MekaWeapons.ADD_MEKAGUN_MODULES, MAModules.INFINITY_ENERGY_UNIT, MAModules.INFINITY_DAMAGE_UNIT);

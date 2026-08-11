@@ -431,7 +431,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
         super.recalculateUpgrades(upgrade);
-        if (MAAddons.MEK_EXTRA.isLoaded()) {
+        if (MAAddons.MEKANISM_EXTRA.isLoaded()) {
             if (getEnergyContainer() instanceof IMixinMachineEnergyContainer mixMach) {
                 mixMach.mekanism_Extras$extraRecalculateUpgrades(upgrade);
                 mixMach.mekanism_Extras$extraUpdateMaxEnergy();
@@ -445,7 +445,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
                 case ETERNAL -> 0;
             };
             ticksRequired = MekanismUtils.getTicks(this, ticks);
-        } else if (MAAddons.MEK_EXTRA.isLoaded()) {
+        } else if (MAAddons.MEKANISM_EXTRA.isLoaded()) {
             if (upgrade == ExtraUpgrade.STACK) {
                 int stacks = switch (tier) {
                     case PRISMATIC -> 2;
