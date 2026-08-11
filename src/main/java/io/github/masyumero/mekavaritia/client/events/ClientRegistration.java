@@ -5,6 +5,7 @@ import io.github.masyumero.mekavaritia.client.gui.machine.GuiElectricNeutronColl
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAFactory;
 import io.github.masyumero.mekavaritia.common.registry.MAContainerTypes;
 import io.github.masyumero.mekavaritia.common.registry.MAModules;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.api.gear.IModuleHelper;
 import mekanism.client.ClientRegistrationUtil;
 import net.minecraft.core.registries.Registries;
@@ -33,7 +34,7 @@ public class ClientRegistration {
     @SubscribeEvent
     public static void init(FMLClientSetupEvent event) {
         IModuleHelper moduleHelper = IModuleHelper.INSTANCE;
-        moduleHelper.addMekaSuitModuleModels(MekanismAvaritia.rl("models/entity/mekasuit_modules.obj"));
+        moduleHelper.addMekaSuitModuleModels(MAUtils.rl("models/entity/mekasuit_modules.obj"));
         moduleHelper.addMekaSuitModuleModelSpec("infinityelytra", MAModules.INFINITY_ELYTRA_UNIT, EquipmentSlot.CHEST, LivingEntity::isFallFlying);
     }
 

@@ -1,8 +1,8 @@
 package io.github.masyumero.mekavaritia.datagen.common.recipe.impl;
 
-import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.MATags;
 import io.github.masyumero.mekavaritia.common.registry.MAItems;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.ISubRecipeProvider;
 import mekanism.api.datagen.recipe.builder.ItemStackToItemStackRecipeBuilder;
 import mekanism.api.recipes.ingredients.creator.IngredientCreatorAccess;
@@ -23,21 +23,21 @@ public class EnrichingRecipeProvider implements ISubRecipeProvider {
         ItemStackToItemStackRecipeBuilder.enriching(
                 IngredientCreatorAccess.item().from(MATags.Items.DUSTS_CRYSTALLINE),
                 MAItems.ENRICHED_CRYSTALLINE.getItemStack()
-        ).build(consumer, MekanismAvaritia.rl(basePath + "crystalline"));
+        ).build(consumer, MAUtils.rl(basePath + "crystalline"));
         // Blazing
         ItemStackToItemStackRecipeBuilder.enriching(
                 IngredientCreatorAccess.item().from(MATags.Items.DUSTS_BLAZING),
                 MAItems.ENRICHED_BLAZING.getItemStack()
-        ).build(consumer, MekanismAvaritia.rl(basePath + "blazing"));
+        ).build(consumer, MAUtils.rl(basePath + "blazing"));
         // Neutron
         ItemStackToItemStackRecipeBuilder.enriching(
                 IngredientCreatorAccess.item().from(MATags.Items.DUSTS_NEUTRON),
                 MAItems.ENRICHED_NEUTRON.getItemStack()
-        ).build(consumer, MekanismAvaritia.rl(basePath + "neutron"));
+        ).build(consumer, MAUtils.rl(basePath + "neutron"));
         // Infinite
         ItemStackToItemStackRecipeBuilder.enriching(
                 IngredientCreatorAccess.item().from(MATags.Items.DUSTS_INFINITY),
                 MAItems.ENRICHED_INFINITY.getItemStack()
-        ).build(consumer, MekanismAvaritia.rl(basePath + "infinite"));
+        ).build(consumer, MAUtils.rl(basePath + "infinite"));
     }
 }

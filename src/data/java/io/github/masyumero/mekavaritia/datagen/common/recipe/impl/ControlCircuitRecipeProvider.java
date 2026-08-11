@@ -1,9 +1,9 @@
 package io.github.masyumero.mekavaritia.datagen.common.recipe.impl;
 
-import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.api.tier.MATier;
 import io.github.masyumero.mekavaritia.common.MATags;
 import io.github.masyumero.mekavaritia.common.registry.MAItems;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.ISubRecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.builder.ExtendedShapedRecipeBuilder;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.pattern.Pattern;
@@ -35,6 +35,6 @@ public class ControlCircuitRecipeProvider implements ISubRecipeProvider {
                 .pattern(CIRCUIT_PATTERN)
                 .key(Pattern.ALLOY, circuitTag)
                 .key(Pattern.CIRCUIT, alloyTag)
-                .build(consumer, MekanismAvaritia.rl(basePath + tier.getLowerName()));
+                .build(consumer, MAUtils.rl(basePath + tier.getLowerName()));
     }
 }

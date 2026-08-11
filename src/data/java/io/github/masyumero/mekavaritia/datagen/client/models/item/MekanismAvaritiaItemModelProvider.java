@@ -1,12 +1,12 @@
 package io.github.masyumero.mekavaritia.datagen.client.models.item;
 
-import committee.nova.mods.avaritia.Const;
 import committee.nova.mods.avaritia.client.model.loader.base.HaloSetting;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.registry.MAItems;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.api.providers.IItemProvider;
 import mekanism.common.content.blocktype.FactoryType;
 import mekanism.common.util.EnumUtils;
@@ -25,14 +25,14 @@ public class MekanismAvaritiaItemModelProvider extends BaseItemModelProvider {
     );
 
     private static final List<HaloItem> HALO_ITEMS = List.of(
-            new HaloItem(MAItems.NEURAL_CONTROL_CIRCUIT, Const.rl("misc/halo_noise"), new HaloSetting(null, "#halo", -1711276033, 6, false)),
-            new HaloItem(MAItems.NEUTRON_DUST, Const.rl("misc/halo_noise"), new HaloSetting(null, "#halo", -1711276033, 6, false)),
-            new HaloItem(MAItems.ENRICHED_NEUTRON, Const.rl("misc/halo_noise"), new HaloSetting(null, "#halo", -1711276033, 6, false)),
-            new HaloItem(MAItems.NEUTRON_ALLOY, Const.rl("misc/halo_noise"), new HaloSetting(null, "#halo", -1711276033, 6, false)),
-            new HaloItem(MAItems.ETERNAL_CONTROL_CIRCUIT, Const.rl("misc/halo"), new HaloSetting(null, "#halo", -16777216, 10, true)),
-            new HaloItem(MAItems.INFINITY_DUST, Const.rl("misc/halo"), new HaloSetting(null, "#halo", -16777216, 10, true)),
-            new HaloItem(MAItems.ENRICHED_INFINITY, Const.rl("misc/halo"), new HaloSetting(null, "#halo", -16777216, 10, true)),
-            new HaloItem(MAItems.INFINITY_ALLOY, Const.rl("misc/halo"), new HaloSetting(null, "#halo", -16777216, 10, true))
+            new HaloItem(MAItems.NEURAL_CONTROL_CIRCUIT, MAUtils.avaritia("misc/halo_noise"), new HaloSetting(null, "#halo", -1711276033, 6, false)),
+            new HaloItem(MAItems.NEUTRON_DUST, MAUtils.avaritia("misc/halo_noise"), new HaloSetting(null, "#halo", -1711276033, 6, false)),
+            new HaloItem(MAItems.ENRICHED_NEUTRON, MAUtils.avaritia("misc/halo_noise"), new HaloSetting(null, "#halo", -1711276033, 6, false)),
+            new HaloItem(MAItems.NEUTRON_ALLOY, MAUtils.avaritia("misc/halo_noise"), new HaloSetting(null, "#halo", -1711276033, 6, false)),
+            new HaloItem(MAItems.ETERNAL_CONTROL_CIRCUIT, MAUtils.avaritia("misc/halo"), new HaloSetting(null, "#halo", -16777216, 10, true)),
+            new HaloItem(MAItems.INFINITY_DUST, MAUtils.avaritia("misc/halo"), new HaloSetting(null, "#halo", -16777216, 10, true)),
+            new HaloItem(MAItems.ENRICHED_INFINITY, MAUtils.avaritia("misc/halo"), new HaloSetting(null, "#halo", -16777216, 10, true)),
+            new HaloItem(MAItems.INFINITY_ALLOY, MAUtils.avaritia("misc/halo"), new HaloSetting(null, "#halo", -16777216, 10, true))
     );
 
     public MekanismAvaritiaItemModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {

@@ -23,7 +23,7 @@ import java.util.List;
 public class ExtendedShapedRecipeBuilder extends BaseRecipeBuilder<ExtendedShapedRecipeBuilder> {
 
     private final Char2ObjectMap<Ingredient> key = new Char2ObjectArrayMap<>(9);
-    private final List<String> pattern = new ArrayList<>();
+    protected final List<String> pattern = new ArrayList<>();
 
     protected ExtendedShapedRecipeBuilder(RecipeSerializer<?> serializer, ItemLike result, int count) {
         super(serializer, result, count);

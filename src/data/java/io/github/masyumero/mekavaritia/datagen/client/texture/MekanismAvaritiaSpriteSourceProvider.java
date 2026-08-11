@@ -1,6 +1,7 @@
 package io.github.masyumero.mekavaritia.datagen.client.texture;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -15,6 +16,6 @@ public class MekanismAvaritiaSpriteSourceProvider extends BaseSpriteSourceProvid
         SourceList atlas = atlas(BLOCKS_ATLAS);
         addChemicalSprites(atlas);
         addFiles(atlas,
-                MekanismAvaritia.rl("entity/armor/mekasuit_infinity_elytra"));
+                MAUtils.rl("entity/armor/mekasuit_infinity_elytra"));
     }
 }

@@ -5,12 +5,15 @@ import io.github.masyumero.mekavaritia.api.recipes.ElectricNeutronCollectorRecip
 import io.github.masyumero.mekavaritia.common.recipe.lookup.cache.MAInputRecipeCache;
 import io.github.masyumero.mekavaritia.common.registration.MARecipeTypeDeferredRegister;
 import io.github.masyumero.mekavaritia.common.registration.impl.MARecipeTypeRegistryObject;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.api.recipes.MekanismRecipe;
 import mekanism.client.MekanismClient;
 import mekanism.common.recipe.lookup.cache.IInputRecipeCache;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.loading.FMLEnvironment;
@@ -46,7 +49,7 @@ public class MARecipeType<RECIPE extends MekanismRecipe, INPUT_CACHE extends IIn
     private final INPUT_CACHE inputCache;
 
     private MARecipeType(String name, Function<MARecipeType<RECIPE, INPUT_CACHE>, INPUT_CACHE> inputCacheCreator) {
-        this.registryName = MekanismAvaritia.rl(name);
+        this.registryName = MAUtils.rl(name);
         this.inputCache = inputCacheCreator.apply(this);
     }
 

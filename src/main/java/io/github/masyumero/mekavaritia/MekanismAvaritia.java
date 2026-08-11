@@ -6,12 +6,13 @@ import io.github.masyumero.mekavaritia.common.config.LoadConfig;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.network.MAPacketHandler;
 import io.github.masyumero.mekavaritia.common.recipe.MARecipeType;
+import io.github.masyumero.mekavaritia.common.recipe.condition.ConfigEnabledCondition.Serializer;
 import io.github.masyumero.mekavaritia.common.registry.*;
 import mekanism.api.MekanismIMC;
 import mekanism.common.base.IModModule;
 import mekanism.common.lib.Version;
 import meranha.mekaweapons.MekaWeapons;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -19,6 +20,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -44,6 +47,7 @@ public class MekanismAvaritia implements IModModule {
 
         modEventBus.addListener(this::imcQueue);
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::registerEventListener);
         LoadConfig.registerConfigs(ModLoadingContext.get());
         MAItems.register(modEventBus);
         MABlocks.register(modEventBus);
@@ -61,11 +65,6 @@ public class MekanismAvaritia implements IModModule {
 
     public static MAPacketHandler packetHandler() {
         return instance.packetHandler;
-    }
-
-    @SuppressWarnings("removal")
-    public static ResourceLocation rl(String path){
-        return new ResourceLocation(MekanismAvaritia.MODID, path);
     }
 
     private void imcQueue(InterModEnqueueEvent event) {
@@ -87,6 +86,12 @@ public class MekanismAvaritia implements IModModule {
         packetHandler.initialize();
         MATags.init();
         MASingularities.init();
+    }
+
+    private void registerEventListener(RegisterEvent event) {
+        if (event.getRegistryKey().equals(ForgeRegistries.Keys.RECIPE_SERIALIZERS)) {
+            CraftingHelper.register(Serializer.INSTANCE);
+        }
     }
 
     @Override

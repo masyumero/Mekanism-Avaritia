@@ -1,8 +1,5 @@
 package io.github.masyumero.mekavaritia.datagen.client.texture;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 import mekanism.api.MekanismAPI;
 import mekanism.api.chemical.Chemical;
 import mekanism.common.Mekanism;
@@ -16,6 +13,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.common.data.SpriteSourceProvider;
 import net.minecraftforge.registries.IForgeRegistry;
+
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 public abstract class BaseSpriteSourceProvider extends SpriteSourceProvider {
 

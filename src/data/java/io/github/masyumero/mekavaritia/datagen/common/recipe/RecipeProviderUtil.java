@@ -1,7 +1,5 @@
 package io.github.masyumero.mekavaritia.datagen.common.recipe;
 
-import java.util.function.Consumer;
-
 import io.github.masyumero.mekavaritia.datagen.common.recipe.builder.ExtendedCookingRecipeBuilder;
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.api.datagen.recipe.RecipeCriterion;
@@ -9,6 +7,8 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+
+import java.util.function.Consumer;
 
 /**
  * Class for helpers that are also used by some of our recipe compat providers for convenience

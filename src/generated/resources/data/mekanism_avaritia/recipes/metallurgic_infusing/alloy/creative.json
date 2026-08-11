@@ -1,0 +1,33 @@
+{
+  "type": "mekanism:metallurgic_infusing",
+  "chemicalInput": {
+    "amount": 1280,
+    "infuse_type": "mekanism_avaritia:infinity"
+  },
+  "conditions": [
+    {
+      "type": "forge:and",
+      "values": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "evolvedmekanism"
+        },
+        {
+          "type": "forge:not",
+          "value": {
+            "type": "mekanism_avaritia:config_enabled",
+            "config_name": "hard_creative"
+          }
+        }
+      ]
+    }
+  ],
+  "itemInput": {
+    "ingredient": {
+      "tag": "mekanism_avaritia:alloys/infinity"
+    }
+  },
+  "output": {
+    "item": "evolvedmekanism:alloy_creative"
+  }
+}

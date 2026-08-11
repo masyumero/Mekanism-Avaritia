@@ -1,11 +1,11 @@
 package io.github.masyumero.mekavaritia.client.jei;
 
 import fr.iglee42.evolvedmekanism.registries.EMBlocks;
-import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.client.jei.machine.ElectricNeutronCollectorRecipeCategory;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.recipe.MARecipeType;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.client.jei.CatalystRegistryHelper;
 import mekanism.client.jei.MekanismJEI;
 import mekanism.client.jei.MekanismJEIRecipeType;
@@ -27,7 +27,7 @@ public class MAJEI implements IModPlugin {
     @Nonnull
     @Override
     public ResourceLocation getPluginUid() {
-        return MekanismAvaritia.rl("jei_plugin");
+        return MAUtils.rl("jei_plugin");
     }
 
     @Override

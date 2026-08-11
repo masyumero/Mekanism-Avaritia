@@ -1,6 +1,6 @@
 package io.github.masyumero.mekavaritia.common;
 
-import io.github.masyumero.mekavaritia.MekanismAvaritia;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -51,7 +51,7 @@ public class MATags {
         }
 
         private static TagKey<Item> tag(String name) {
-            return ItemTags.create(MekanismAvaritia.rl(name));
+            return ItemTags.create(MAUtils.rl(name));
         }
     }
 }

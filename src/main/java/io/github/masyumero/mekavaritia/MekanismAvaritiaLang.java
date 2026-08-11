@@ -1,6 +1,7 @@
 package io.github.masyumero.mekavaritia;
 
 import fr.iglee42.evolvedmekanism.EvolvedMekanismLang;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.api.text.ILangEntry;
 import mekanism.common.MekanismLang;
 import net.minecraft.Util;
@@ -18,7 +19,7 @@ public enum MekanismAvaritiaLang implements ILangEntry{
     private final String key;
 
     MekanismAvaritiaLang(String type, String path) {
-        this(Util.makeDescriptionId(type, MekanismAvaritia.rl(path)));
+        this(Util.makeDescriptionId(type, MAUtils.rl(path)));
     }
 
     MekanismAvaritiaLang(String key) {

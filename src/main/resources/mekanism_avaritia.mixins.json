@@ -13,6 +13,7 @@
     "mekanism.MixinItemMekaTana",
     "mekanism.MixinItemMekaTool",
     "mekanism.MixinMekaWeaponsUtils",
+    "minecraft.MixinRecipeManager",
     "ticex.MixinModifiableMekaSuitArmor",
     "ticex.MixinModifiableMekaTool"
   ],

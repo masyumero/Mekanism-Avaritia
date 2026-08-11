@@ -1,0 +1,52 @@
+{
+  "type": "avaritia:shaped_table",
+  "conditions": [
+    {
+      "type": "mekanism_avaritia:config_enabled",
+      "config_name": "hard_creative"
+    }
+  ],
+  "key": {
+    "A": {
+      "item": "evolvedmekanism:alloy_subatomic"
+    },
+    "B": {
+      "item": "mekanism_avaritia:alloy_blazing"
+    },
+    "C": {
+      "item": "avaritia:infinity_catalyst"
+    },
+    "E": {
+      "item": "evolvedmekanism:alloy_exoversal"
+    },
+    "H": {
+      "item": "evolvedmekanism:alloy_hypercharged"
+    },
+    "I": {
+      "item": "mekanism_avaritia:alloy_infinity"
+    },
+    "L": {
+      "item": "mekanism_avaritia:alloy_crystalline"
+    },
+    "N": {
+      "item": "mekanism_avaritia:alloy_neutron"
+    },
+    "S": {
+      "item": "evolvedmekanism:alloy_singular"
+    }
+  },
+  "pattern": [
+    "SSSAHASSS",
+    "SLLLLLLLS",
+    "SLNNBNNLS",
+    "ALNCICNLA",
+    "HLBIEIBLH",
+    "ALNCICNLA",
+    "SLNNBNNLS",
+    "SLLLLLLLS",
+    "SSSAHASSS"
+  ],
+  "result": {
+    "item": "evolvedmekanism:alloy_creative"
+  }
+}

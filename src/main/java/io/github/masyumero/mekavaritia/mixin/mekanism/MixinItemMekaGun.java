@@ -27,6 +27,4 @@ public abstract class MixinItemMekaGun extends ItemEnergized implements IModuleC
             }
         }
     }
-
-
 }

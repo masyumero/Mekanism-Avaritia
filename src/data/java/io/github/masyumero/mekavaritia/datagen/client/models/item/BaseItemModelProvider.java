@@ -7,9 +7,9 @@ import com.jerry.mekanism_extras.common.tier.ExtraFactoryTier;
 import com.jerry.mekmm.common.block.attribute.AttributeMoreMachineFactoryType;
 import com.jerry.mekmm.common.content.blocktype.MoreMachineFactoryType;
 import committee.nova.mods.avaritia.client.model.loader.base.HaloSetting;
-import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import io.github.masyumero.mekavaritia.datagen.client.models.loaders.CosmicModelBuilder;
 import io.github.masyumero.mekavaritia.datagen.client.models.loaders.HaloModelBuilder;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
@@ -39,7 +39,7 @@ public abstract class BaseItemModelProvider extends ItemModelProvider {
 
     protected ItemModelBuilder maskedItem(IItemProvider item) {
         return customLoaderItem(item.asItem(), CosmicModelBuilder::begin, builder ->
-                builder.mask(MekanismAvaritia.rl("mask/" + item.getRegistryName().getPath() + "_mask")));
+                builder.mask(MAUtils.rl("mask/" + item.getRegistryName().getPath() + "_mask")));
     }
 
     protected ItemModelBuilder hasHaloItem(IItemProvider item, ResourceLocation halo, HaloSetting haloSetting) {
@@ -63,27 +63,27 @@ public abstract class BaseItemModelProvider extends ItemModelProvider {
         FactoryType type = Attribute.get(blockRO, AttributeFactoryType.class).getFactoryType();
         MAFactoryTier tier = MAAttribute.getTier(blockRO.getBlock(), MAFactoryTier.class);
 
-        return this.withExistingParent(blockRO.getName(), MekanismAvaritia.rl("block/factory/" + type.getRegistryNameComponent() +  "/" + tier.getMATier().getLowerName()));
+        return this.withExistingParent(blockRO.getName(), MAUtils.rl("block/factory/" + type.getRegistryNameComponent() +  "/" + tier.getMATier().getLowerName()));
     }
 
     protected ItemModelBuilder extraAlloyingFactoryBlock(BlockRegistryObject<?, ?> blockRO) {
         ExtraFactoryTier tier = ExtraAttribute.getTier(blockRO.getBlock(), ExtraFactoryTier.class);
 
-        return this.withExistingParent(blockRO.getName(), MekanismAvaritia.rl("block/factory/alloying/" + tier.getAdvanceTier().getLowerName()));
+        return this.withExistingParent(blockRO.getName(), MAUtils.rl("block/factory/alloying/" + tier.getAdvanceTier().getLowerName()));
     }
 
     protected ItemModelBuilder advancedFactoryBlock(BlockRegistryObject<?, ?> blockRO) {
         AdvancedFactoryType type = Attribute.get(blockRO, AttributeAdvancedFactoryType.class).getAdvancedFactoryType();
         MAFactoryTier tier = MAAttribute.getTier(blockRO.getBlock(), MAFactoryTier.class);
 
-        return this.withExistingParent(blockRO.getName(), MekanismAvaritia.rl("block/factory/" + type.getRegistryNameComponent() +  "/" + tier.getMATier().getLowerName()));
+        return this.withExistingParent(blockRO.getName(), MAUtils.rl("block/factory/" + type.getRegistryNameComponent() +  "/" + tier.getMATier().getLowerName()));
     }
 
     protected ItemModelBuilder moreMachineFactoryBlock(BlockRegistryObject<?, ?> blockRO) {
         MoreMachineFactoryType type = Attribute.get(blockRO, AttributeMoreMachineFactoryType.class).getMoreMachineFactoryType();
         MAFactoryTier tier = MAAttribute.getTier(blockRO.getBlock(), MAFactoryTier.class);
 
-        return this.withExistingParent(blockRO.getName(), MekanismAvaritia.rl("block/factory/" + type.getRegistryNameComponent() +  "/" + tier.getMATier().getLowerName()));
+        return this.withExistingParent(blockRO.getName(), MAUtils.rl("block/factory/" + type.getRegistryNameComponent() +  "/" + tier.getMATier().getLowerName()));
     }
 
     protected ItemModelBuilder doubleLayeredBlock(ItemModelBuilder modelBuilder) {

@@ -1,7 +1,7 @@
 package io.github.masyumero.mekavaritia.api.recipes.builder;
 
 import com.google.gson.JsonObject;
-import io.github.masyumero.mekavaritia.MekanismAvaritia;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.api.JsonConstants;
 import mekanism.api.SerializerHelper;
 import mekanism.api.annotations.NothingNullByDefault;
@@ -22,7 +22,7 @@ public class ElectricNeutronCollectorRecipeBuilder extends MekanismRecipeBuilder
     private final int duration;
 
     protected ElectricNeutronCollectorRecipeBuilder(ItemStackIngredient input, ItemStack mainOutput, FloatingLong energyRequired, int duration) {
-        super(MekanismAvaritia.rl("electric_neutron_collector"));
+        super(MAUtils.rl("electric_neutron_collector"));
         this.input = input;
         this.mainOutput = mainOutput;
         this.energyRequired = energyRequired;

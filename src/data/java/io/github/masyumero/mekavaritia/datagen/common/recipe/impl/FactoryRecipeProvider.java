@@ -1,10 +1,10 @@
 package io.github.masyumero.mekavaritia.datagen.common.recipe.impl;
 
 import committee.nova.mods.avaritia.init.registry.ModItems;
-import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.MATags;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.ISubRecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.builder.MekDataShapedRecipeBuilder;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.pattern.Pattern;
@@ -47,7 +47,7 @@ public class FactoryRecipeProvider implements ISubRecipeProvider {
                     .key(Pattern.CIRCUIT, circuit)
                     .key(Pattern.CONSTANT, constant)
                     .key(Pattern.PREVIOUS, previous.apply(type))
-                    .build(consumer, MekanismAvaritia.rl(path + tier.getMATier().getLowerName() + "/" + type.getRegistryNameComponent()));
+                    .build(consumer, MAUtils.rl(path + tier.getMATier().getLowerName() + "/" + type.getRegistryNameComponent()));
         }
     }
 }

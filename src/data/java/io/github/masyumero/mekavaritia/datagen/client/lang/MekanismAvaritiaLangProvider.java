@@ -1,10 +1,12 @@
 package io.github.masyumero.mekavaritia.datagen.client.lang;
 
+import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.registry.MAItems;
 import io.github.masyumero.mekavaritia.common.registry.MAModules;
 import io.github.masyumero.mekavaritia.common.util.MATextUtils;
+import mekanism.api.MekanismAPI;
 import mekanism.api.providers.IItemProvider;
 import mekanism.common.item.ItemModule;
 import net.minecraft.data.PackOutput;
@@ -34,6 +36,7 @@ public class MekanismAvaritiaLangProvider extends BaseLanguageProvider {
         addBlocks();
         addItem();
         addMisc();
+        addInfuse();
 
         LANGS.forEach(this::add);
     }
@@ -55,6 +58,14 @@ public class MekanismAvaritiaLangProvider extends BaseLanguageProvider {
                 addENAny(item);
             }
         }
+    }
+
+    private void addInfuse() {
+        MekanismAPI.infuseTypeRegistry().forEach(type -> {
+            if (type.getRegistryName().getNamespace().equals(MekanismAvaritia.MODID)) {
+                addENAny(type);
+            }
+        });
     }
 
     private void addMisc() {

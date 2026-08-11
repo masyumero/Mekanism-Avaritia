@@ -3,11 +3,10 @@ package io.github.masyumero.mekavaritia.datagen.client.models.block;
 import com.jerry.mekanism_extras.MekanismExtras;
 import com.jerry.mekanism_extras.common.block.attribute.ExtraAttribute;
 import com.jerry.mekanism_extras.common.tier.ExtraFactoryTier;
-import fr.iglee42.evolvedmekanism.EvolvedMekanism;
 import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
-import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.common.Mekanism;
 import mekanism.common.block.attribute.Attribute;
 import mekanism.common.block.attribute.AttributeFactoryType;
@@ -32,15 +31,15 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
 //    protected void transmitters(BlockRegistryObject<?, ?> transmitter, String type, ITier tier, ResourceLocation parent, boolean isSmall) {
 //        ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
 //        MATier maTier = MATransporterUtils.baseToMATier(tier.getBaseTier());
-//        ResourceLocation path = MekanismAvaritia.rl("block/transmitter/" + (isSmall ? "small/" : "large/") + type + "/" + maTier.getLowerName());
+//        ResourceLocation path = MAUtils.rl("block/transmitter/" + (isSmall ? "small/" : "large/") + type + "/" + maTier.getLowerName());
 //        String name = transmitter.getName();
 //
 //        simpleBlockItem(transmitter.getBlock(),
 //                models().withExistingParent(path.getPath(), parent)
-//                .texture("side", MekanismAvaritia.rl("block/models/multipart/" + name + "_vertical"))
-//                .texture("center_down", MekanismAvaritia.rl("block/models/multipart/" + name))
-//                .texture("side_opaque",  MekanismAvaritia.rl("block/models/multipart/opaque/" + name + "_vertical"))
-//                .texture("center_opaque", MekanismAvaritia.rl("block/models/multipart/" + (isSmall ? "" : "opaque/") + name)));
+//                .texture("side", MAUtils.rl("block/models/multipart/" + name + "_vertical"))
+//                .texture("center_down", MAUtils.rl("block/models/multipart/" + name))
+//                .texture("side_opaque",  MAUtils.rl("block/models/multipart/opaque/" + name + "_vertical"))
+//                .texture("center_opaque", MAUtils.rl("block/models/multipart/" + (isSmall ? "" : "opaque/") + name)));
 //
 //        getVariantBuilder(transmitter.getBlock())
 //                .forAllStatesExcept(state -> builder.modelFile(models().getExistingFile(path)).build());
@@ -50,11 +49,11 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
 //        ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
 //        MATier cellTier = MAAttribute.getTier(cellBlockRO.getBlock(), MAICTier.class).getMATier();
 //        MATier providerTier = MAAttribute.getTier(providerBlockRO.getBlock(), MAIPTier.class).getMATier();
-//        ResourceLocation cellPath = MekanismAvaritia.rl("block/induction/cell/" + cellTier.getLowerName());
-//        ResourceLocation providerPath = MekanismAvaritia.rl("block/induction/provider/" + providerTier.getLowerName());
+//        ResourceLocation cellPath = MAUtils.rl("block/induction/cell/" + cellTier.getLowerName());
+//        ResourceLocation providerPath = MAUtils.rl("block/induction/provider/" + providerTier.getLowerName());
 //
-//        ResourceLocation cellTexture = MekanismAvaritia.rl("block/" + cellBlockRO.getName());
-//        ResourceLocation providerTexture = MekanismAvaritia.rl("block/" + providerBlockRO.getName());
+//        ResourceLocation cellTexture = MAUtils.rl("block/" + cellBlockRO.getName());
+//        ResourceLocation providerTexture = MAUtils.rl("block/" + providerBlockRO.getName());
 //
 //        simpleBlockItem(cellBlockRO.getBlock(),
 //                models().withExistingParent(cellPath.getPath() , Mekanism.rl("block/induction/cell/basic"))
@@ -90,16 +89,16 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
         return models().withExistingParent(blockPath + "/" + tier.getMATier().getLowerName(), this.mcLoc("block/block"))
                 .texture("particle", Mekanism.rl("block/factory/factory_front_back"))
                 .customLoader(CompositeModelBuilder::begin)
-                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(factoryType == EMFactoryType.ALLOYING ? EvolvedMekanism.rl("block/factory/" + factoryType.getRegistryNameComponent() + "/base") : Mekanism.rl("block/factory/" + factoryType.getRegistryNameComponent() + "/base"))))
-                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile((MekanismAvaritia.rl("block/factory/front_led/" + tier.getMATier().getLowerName()))))).end();
+                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(factoryType == EMFactoryType.ALLOYING ? MAUtils.evolvedMekanism("block/factory/" + factoryType.getRegistryNameComponent() + "/base") : Mekanism.rl("block/factory/" + factoryType.getRegistryNameComponent() + "/base"))))
+                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile((MAUtils.rl("block/factory/front_led/" + tier.getMATier().getLowerName()))))).end();
     }
 
     private ModelFile getActiveFactoryBlockModel(String blockPath, MAFactoryTier tier, FactoryType factoryType) {
         return models().withExistingParent(blockPath + "/active/" + tier.getMATier().getLowerName(), this.mcLoc("block/block"))
                 .texture("particle", Mekanism.rl("block/factory/factory_front_back"))
                 .customLoader(CompositeModelBuilder::begin)
-                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(factoryType == EMFactoryType.ALLOYING ? EvolvedMekanism.rl("block/factory/" + factoryType.getRegistryNameComponent() + "/base") : Mekanism.rl("block/factory/" + factoryType.getRegistryNameComponent() + "/base"))))
-                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MekanismAvaritia.rl("block/factory/front_led/active/" + tier.getMATier().getLowerName())))).end();
+                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(factoryType == EMFactoryType.ALLOYING ? MAUtils.evolvedMekanism("block/factory/" + factoryType.getRegistryNameComponent() + "/base") : Mekanism.rl("block/factory/" + factoryType.getRegistryNameComponent() + "/base"))))
+                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/front_led/active/" + tier.getMATier().getLowerName())))).end();
     }
 
     protected void alloyingFactoryMachineBlock(BlockRegistryObject<?, ?> blockRO) {
@@ -114,7 +113,7 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
         return models().withExistingParent(blockPath + "/" + tier.getAdvanceTier().getLowerName(), this.mcLoc("block/block"))
                 .texture("particle", Mekanism.rl("block/factory/factory_front_back"))
                 .customLoader(CompositeModelBuilder::begin)
-                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(EvolvedMekanism.rl("block/factory/alloying/base"))))
+                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(MAUtils.evolvedMekanism("block/factory/alloying/base"))))
                 .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MekanismExtras.rl("block/factory/front_led/" + tier.getAdvanceTier().getLowerName())))).end();
     }
 
@@ -122,7 +121,7 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
         return models().withExistingParent(blockPath + "/active/" + tier.getAdvanceTier().getLowerName(), this.mcLoc("block/block"))
                 .texture("particle", Mekanism.rl("block/factory/factory_front_back"))
                 .customLoader(CompositeModelBuilder::begin)
-                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(EvolvedMekanism.rl("block/factory/alloying/base"))))
+                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(MAUtils.evolvedMekanism("block/factory/alloying/base"))))
                 .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MekanismExtras.rl("block/factory/front_led/active/" + tier.getAdvanceTier().getLowerName())))).end();
     }
 //
@@ -140,7 +139,7 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
 //                .texture("particle", Mekanism.rl("block/factory/factory_front_back"))
 //                .customLoader(CompositeModelBuilder::begin)
 //                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(Mekmm.rl("block/factory/" + advancedFactoryType.getRegistryNameComponent() + "/base"))))
-//                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MekanismAvaritia.rl("block/factory/front_led/" + tier.getMATier().getLowerName())))).end();
+//                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/front_led/" + tier.getMATier().getLowerName())))).end();
 //    }
 //
 //    private ModelFile getActiveAdvancedFactoryBlockModel(String blockPath, MAFactoryTier tier, AdvancedFactoryType advancedFactoryType) {
@@ -148,7 +147,7 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
 //                .texture("particle", Mekanism.rl("block/factory/factory_front_back"))
 //                .customLoader(CompositeModelBuilder::begin)
 //                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(Mekmm.rl("block/factory/" + advancedFactoryType.getRegistryNameComponent() + "/base"))))
-//                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MekanismAvaritia.rl("block/factory/front_led/active/" + tier.getMATier().getLowerName())))).end();
+//                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/front_led/active/" + tier.getMATier().getLowerName())))).end();
 //    }
 //
 //    public void simpleMoreMachineFactoryMachineBlock(BlockRegistryObject<?, ?> blockRO) {
@@ -165,7 +164,7 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
 //                .texture("particle", Mekanism.rl("block/factory/factory_front_back"))
 //                .customLoader(CompositeModelBuilder::begin)
 //                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(Mekmm.rl("block/factory/" + moreMachineFactoryType.getRegistryNameComponent() + "/base"))))
-//                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MekanismAvaritia.rl("block/factory/front_led/" + tier.getMATier().getLowerName())))).end();
+//                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/front_led/" + tier.getMATier().getLowerName())))).end();
 //    }
 //
 //    private ModelFile getActiveMoreMachineFactoryBlockModel(String blockPath, MAFactoryTier tier, MoreMachineFactoryType moreMachineFactoryType) {
@@ -173,7 +172,7 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
 //                .texture("particle", Mekanism.rl("block/factory/factory_front_back"))
 //                .customLoader(CompositeModelBuilder::begin)
 //                .child("base", models().nested().parent(new ModelFile.UncheckedModelFile(Mekmm.rl("block/factory/" + moreMachineFactoryType.getRegistryNameComponent() + "/base"))))
-//                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MekanismAvaritia.rl("block/factory/front_led/active/" + tier.getMATier().getLowerName())))).end();
+//                .child("front_led", models().nested().parent(new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/front_led/active/" + tier.getMATier().getLowerName())))).end();
 //    }
 
     private void machineState(BlockRegistryObject<?, ?> blockRO, ModelFile activeBlockModel, ModelFile blockModel) {
