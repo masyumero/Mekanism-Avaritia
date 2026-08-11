@@ -1,0 +1,14 @@
+{
+  "conditions": [],
+  "count": 1000,
+  "displayName": "singularity.mekanism_avaritia.crystalline_alloy",
+  "enabled": true,
+  "ingredient": {
+    "item": "mekanism_avaritia:alloy_crystalline"
+  },
+  "name": "mekanism_avaritia:crystalline_alloy",
+  "overlayColor": "6fb0ac",
+  "recipeEnabled": true,
+  "timeCost": 240,
+  "underlayColor": "134340"
+}

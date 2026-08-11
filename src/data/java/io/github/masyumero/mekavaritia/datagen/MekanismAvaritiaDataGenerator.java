@@ -13,6 +13,7 @@ import io.github.masyumero.mekavaritia.datagen.client.texture.MekanismAvaritiaSp
 import io.github.masyumero.mekavaritia.datagen.common.loot.MekanismAvaritiaLootProvider;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.impl.MekanismAvaritiaRecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.registries.MekanismAvaritiaDatapackRegistryProvider;
+import io.github.masyumero.mekavaritia.datagen.common.singularity.MekanismAvaritiaSingularityProvider;
 import io.github.masyumero.mekavaritia.datagen.common.tag.MekanismAvaritiaTagProvider;
 import net.minecraft.Util;
 import net.minecraft.core.HolderLookup;
@@ -58,6 +59,7 @@ public class MekanismAvaritiaDataGenerator {
         MekanismAvaritiaRecipeProvider recipeProvider = new MekanismAvaritiaRecipeProvider(output, existingFileHelper);
         gen.addProvider(event.includeServer(), recipeProvider);
         gen.addProvider(event.includeServer(), new MekanismAvaritiaTagProvider(output, lookupProvider, existingFileHelper));
+        gen.addProvider(event.includeServer(), new MekanismAvaritiaSingularityProvider(gen, lookupProvider, existingFileHelper));
         addProvider(gen, event.includeServer(), MekanismAvaritiaLootProvider::new);
     }
 

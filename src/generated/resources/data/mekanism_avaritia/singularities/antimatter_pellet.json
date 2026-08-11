@@ -1,0 +1,14 @@
+{
+  "conditions": [],
+  "count": 1000,
+  "displayName": "singularity.mekanism_avaritia.antimatter_pellet",
+  "enabled": true,
+  "ingredient": {
+    "item": "mekanism:pellet_antimatter"
+  },
+  "name": "mekanism_avaritia:antimatter_pellet",
+  "overlayColor": "9654a6",
+  "recipeEnabled": true,
+  "timeCost": 240,
+  "underlayColor": "bd80a5"
+}

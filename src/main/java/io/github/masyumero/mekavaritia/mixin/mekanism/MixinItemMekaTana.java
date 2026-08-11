@@ -3,6 +3,7 @@ package io.github.masyumero.mekavaritia.mixin.mekanism;
 import committee.nova.mods.avaritia.api.iface.ISwitchable;
 import committee.nova.mods.avaritia.common.item.tools.infinity.InfinitySwordItem;
 import committee.nova.mods.avaritia.init.config.ModConfig;
+import committee.nova.mods.avaritia.init.registry.ModItems;
 import committee.nova.mods.avaritia.util.ToolUtils;
 import io.github.masyumero.mekavaritia.common.config.LoadConfig;
 import io.github.masyumero.mekavaritia.common.content.gear.mekatool.ModuleInfinityAttackAmplificationUnit;
@@ -54,7 +55,7 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         IModule<ModuleCosmicStrikeUnit> cosmicStrikeUnit = getModule(stack, MAModules.COSMIC_STRIKE_UNIT);
         if (cosmicStrikeUnit != null && cosmicStrikeUnit.isEnabled()) {
-            return new InfinitySwordItem().onLeftClickEntity(stack, player, entity);
+            return ((InfinitySwordItem)ModItems.infinity_sword.get()).onLeftClickEntity(stack, player, entity);
         }
         return super.onLeftClickEntity(stack, player, entity);
     }
@@ -74,15 +75,13 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
     @Inject(method = "use",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;isClientSide()Z"), cancellable = true)
     private void useInject(Level world, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         var heldItem = player.getItemInHand(hand);
-        if (world.isClientSide()) {
+        if (player.isShiftKeyDown()) {
+            switchMode(world, player, hand, "infinity_sword_kill");
             cir.setReturnValue(InteractionResultHolder.success(heldItem));
         } else {
+            if (!world.isClientSide()) {
             IModule<ModuleCosmicStrikeUnit> cosmicStrikeUnit = getModule(heldItem, MAModules.COSMIC_STRIKE_UNIT);
             if (cosmicStrikeUnit != null && cosmicStrikeUnit.isEnabled()) {
-                if (player.isShiftKeyDown()) {
-                    switchMode(world, player, hand, "infinity_sword_kill");
-                    cir.setReturnValue(InteractionResultHolder.success(heldItem));
-                }
                 int cosmicUnitCount = cosmicStrikeUnit.getInstalledCount();
                 if (isActive(heldItem, "infinity_sword_kill")) {
                     ToolUtils.aoeAttack(player, cosmicUnitCount * 128, cosmicUnitCount * 10000, true, ModConfig.isSwordAttackLightning.get());
@@ -90,8 +89,10 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
                     ToolUtils.aoeAttack(player, cosmicUnitCount * 128, cosmicUnitCount * 10000, false, ModConfig.isSwordAttackLightning.get());
                 }
                 player.getCooldowns().addCooldown(heldItem.getItem(), 20 / cosmicUnitCount);
-                world.playSound(player, player.getOnPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0f, 5.0f);
+                }
             }
+            world.playSound(player, player.getOnPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 1.0F, 5.0F);
+            cir.setReturnValue(InteractionResultHolder.success(heldItem));
         }
     }
 }

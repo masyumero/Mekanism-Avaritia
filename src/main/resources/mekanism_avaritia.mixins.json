@@ -6,7 +6,6 @@
   "refmap": "mekanism_avaritia.refmap.json",
   "mixins": [
     "avaritia.MixinInfinityElytraUtils",
-    "avaritia.MixinModSingularities",
     "avaritia.MixinToolUtils",
     "mekanism.MixinItemMekaBow",
     "mekanism.MixinItemMekaGun",
