@@ -71,7 +71,7 @@ public abstract class MixinItemMekaTana extends ItemEnergized implements IModule
         }
     }
 
-    @Inject(method = "use",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;isClientSide()Z"))
+    @Inject(method = "use",at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;isClientSide()Z"), cancellable = true)
     private void useInject(Level world, Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
         var heldItem = player.getItemInHand(hand);
         if (world.isClientSide()) {
