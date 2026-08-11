@@ -1,5 +1,6 @@
 package io.github.masyumero.mekavaritia.common.tile.factory;
 
+import lombok.Getter;
 import mekanism.api.IContentsListener;
 import mekanism.api.RelativeSide;
 import mekanism.api.chemical.ChemicalTankBuilder;
@@ -63,6 +64,7 @@ public class TileEntityMetallurgicInfuserMAFactory extends TileEntityItemToItemM
 
     @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper.class, methodNames = "getInfuseTypeItem", docPlaceholder = "infusion extra input slot")
     InfusionInventorySlot extraSlot;
+    @Getter
     @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerChemicalTankWrapper.class, methodNames = {"getInfuseType", "getInfuseTypeCapacity", "getInfuseTypeNeeded",
             "getInfuseTypeFilledPercentage"}, docPlaceholder = "infusion buffer")
     IInfusionTank infusionTank;
@@ -102,10 +104,6 @@ public class TileEntityMetallurgicInfuserMAFactory extends TileEntityItemToItemM
         super.addSlots(builder, listener, updateSortingListener);
         //Note: We care about the infusion tank not the slot when it comes to recipes and updating sorting
         builder.addSlot(extraSlot = InfusionInventorySlot.fillOrConvert(infusionTank, this::getLevel, listener, 7, 57));
-    }
-
-    public IInfusionTank getInfusionTank() {
-        return infusionTank;
     }
 
     @Nullable

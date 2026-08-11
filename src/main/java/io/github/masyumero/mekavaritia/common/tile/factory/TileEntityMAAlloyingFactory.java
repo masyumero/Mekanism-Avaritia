@@ -9,6 +9,7 @@ import fr.iglee42.evolvedmekanism.registries.EMRecipeType;
 import fr.iglee42.evolvedmekanism.tiles.LimitedInputInventorySlot;
 import fr.iglee42.evolvedmekanism.tiles.upgrade.AlloyerUpgradeData;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
+import lombok.Getter;
 import mekanism.api.IContentsListener;
 import mekanism.api.inventory.IInventorySlot;
 import mekanism.api.math.MathUtils;
@@ -61,6 +62,7 @@ public class TileEntityMAAlloyingFactory extends TileEntityItemToItemMAFactory<A
 
     @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper.class, methodNames = "getSecondaryInput", docPlaceholder = "secondary input slot")
     LimitedInputInventorySlot extraSlot;
+    @Getter
     @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper.class, methodNames = "getTertiaryInput", docPlaceholder = "tertiary input slot")
     LimitedInputInventorySlot secondExtraSlot;
 
@@ -92,10 +94,6 @@ public class TileEntityMAAlloyingFactory extends TileEntityItemToItemMAFactory<A
     @Override
     protected LimitedInputInventorySlot getExtraSlot() {
         return extraSlot;
-    }
-
-    public LimitedInputInventorySlot getSecondExtraSlot() {
-        return secondExtraSlot;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package io.github.masyumero.mekavaritia.api.recipes;
 
+import lombok.Getter;
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.recipes.MekanismRecipe;
@@ -19,20 +20,23 @@ import java.util.function.Predicate;
 @NothingNullByDefault
 public abstract class ElectricNeutronCollectorRecipe extends MekanismRecipe implements Predicate<@NotNull ItemStack> {
     private final ResourceLocation id;
+    @Getter
     private final ItemStackIngredient input;
-    private final ItemStack mainOutput;
+    private final ItemStack output;
+    @Getter
     private final FloatingLong energyRequired;
+    @Getter
     private final int duration;
 
-    public ElectricNeutronCollectorRecipe(ResourceLocation id, ItemStackIngredient input, ItemStack mainOutput, FloatingLong energyRequired, int duration) {
+    public ElectricNeutronCollectorRecipe(ResourceLocation id, ItemStackIngredient input, ItemStack output, FloatingLong energyRequired, int duration) {
         super(id);
         this.id = id;
         this.input = Objects.requireNonNull(input, "Input cannot be null.");
-        Objects.requireNonNull(mainOutput, "Main output cannot be null.");
-        if (mainOutput.isEmpty()) {
+        Objects.requireNonNull(output, "Main output cannot be null.");
+        if (output.isEmpty()) {
             throw new IllegalArgumentException("At least one output must not be empty.");
         }
-        this.mainOutput = mainOutput.copy();
+        this.output = output.copy();
         this.energyRequired = Objects.requireNonNull(energyRequired, "Required energy cannot be null.").copyAsConst();
         this.duration = duration;
     }
@@ -42,31 +46,19 @@ public abstract class ElectricNeutronCollectorRecipe extends MekanismRecipe impl
         return this.input.test(input);
     }
 
-    public ItemStackIngredient getInput() {
-        return input;
-    }
-
     @Contract(value = "_ -> new", pure = true)
     public ItemStack getOutput(ItemStack input) {
-        return mainOutput.copy();
-    }
-
-    public FloatingLong getEnergyRequired() {
-        return energyRequired;
-    }
-
-    public int getDuration() {
-        return duration;
+        return output.copy();
     }
 
     @NotNull
     @Override
     public ItemStack getResultItem(@NotNull RegistryAccess registryAccess) {
-        return mainOutput.copy();
+        return output.copy();
     }
 
     public List<ItemStack> getMainOutputDefinition() {
-        return Collections.singletonList(mainOutput);
+        return Collections.singletonList(output);
     }
 
     @Override
@@ -82,7 +74,7 @@ public abstract class ElectricNeutronCollectorRecipe extends MekanismRecipe impl
     @Override
     public void write(FriendlyByteBuf buffer) {
         input.write(buffer);
-        buffer.writeItem(mainOutput);
+        buffer.writeItem(output);
         energyRequired.writeToBuffer(buffer);
         buffer.writeVarInt(duration);
     }

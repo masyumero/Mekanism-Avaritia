@@ -1,6 +1,7 @@
 package io.github.masyumero.mekavaritia.datagen.client.lang;
 
 import com.google.common.collect.ImmutableList;
+import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
 
 import java.text.ChoiceFormat;
@@ -169,11 +170,13 @@ public class FormatSplitter {
      */
     public static class MessageFormatComponent extends FormatComponent {
 
+        @Getter
         private final int argumentIndex;
         @Nullable
         private final String formatType;
         @Nullable
         private final String formatStyle;
+        @Getter
         private final boolean isChoice;
 
         private MessageFormatComponent(String contents, int argumentIndex, @Nullable String formatType, @Nullable String formatStyle, boolean isChoice) {
@@ -182,10 +185,6 @@ public class FormatSplitter {
             this.formatType = formatType;
             this.formatStyle = formatStyle;
             this.isChoice = isChoice;
-        }
-
-        public int getArgumentIndex() {
-            return argumentIndex;
         }
 
         /**
@@ -199,10 +198,6 @@ public class FormatSplitter {
         @Nullable
         public String getFormatStyle() {
             return formatStyle;
-        }
-
-        public boolean isChoice() {
-            return isChoice;
         }
 
         /**

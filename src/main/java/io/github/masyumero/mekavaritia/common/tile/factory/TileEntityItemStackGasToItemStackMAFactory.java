@@ -1,5 +1,6 @@
 package io.github.masyumero.mekavaritia.common.tile.factory;
 
+import lombok.Getter;
 import mekanism.api.IContentsListener;
 import mekanism.api.NBTConstants;
 import mekanism.api.RelativeSide;
@@ -74,6 +75,7 @@ public class TileEntityItemStackGasToItemStackMAFactory extends TileEntityItemTo
     private final ILongInputHandler<@NotNull GasStack> gasInputHandler;
     @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper.class, methodNames = "getChemicalItem", docPlaceholder = "chemical item (extra) slot")
     GasInventorySlot extraSlot;
+    @Getter
     @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerChemicalTankWrapper.class, methodNames = {"getChemical", "getChemicalCapacity", "getChemicalNeeded",
             "getChemicalFilledPercentage"}, docPlaceholder = "gas tank")
     IGasTank gasTank;
@@ -143,10 +145,6 @@ public class TileEntityItemStackGasToItemStackMAFactory extends TileEntityItemTo
         super.addSlots(builder, listener, updateSortingListener);
         //Note: We care about the gas tank not the slot when it comes to recipes and updating sorting
         builder.addSlot(extraSlot = GasInventorySlot.fillOrConvert(gasTank, this::getLevel, listener, 7, 57));
-    }
-
-    public IGasTank getGasTank() {
-        return gasTank;
     }
 
     @Nullable

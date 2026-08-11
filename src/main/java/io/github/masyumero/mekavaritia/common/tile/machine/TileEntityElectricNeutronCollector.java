@@ -11,6 +11,7 @@ import io.github.masyumero.mekavaritia.common.recipe.lookup.IMASingleRecipeLooku
 import io.github.masyumero.mekavaritia.common.recipe.lookup.cache.MAInputRecipeCache;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.tile.prefab.MATileEntityProgressMachine;
+import lombok.Getter;
 import mekanism.api.IContentsListener;
 import mekanism.api.Upgrade;
 import mekanism.api.math.FloatingLong;
@@ -63,8 +64,10 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
 
     private static final int BASE_DURATION = 400;
 
+    @Getter
     private FloatingLong recipeEnergyRequired = FloatingLong.ZERO;
 
+    @Getter
     private MachineEnergyContainer<TileEntityElectricNeutronCollector> energyContainer;
     @WrappingComputerMethod(wrapper = SpecialComputerMethodWrapper.ComputerIInventorySlotWrapper.class, methodNames = "getInput", docPlaceholder = "input slot")
     InputInventorySlot inputSlot;
@@ -126,10 +129,6 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
         energyContainer.updateEnergyPerTick();
     }
 
-    public FloatingLong getRecipeEnergyRequired() {
-        return recipeEnergyRequired;
-    }
-
     @Override
     protected void onUpdateServer() {
         super.onUpdateServer();
@@ -176,10 +175,6 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
     @Override
     public MachineUpgradeData getUpgradeData() {
         return new MachineUpgradeData(redstone, getControlType(), getEnergyContainer(), getOperatingTicks(), energySlot, inputSlot, outputSlot, getComponents());
-    }
-
-    public MachineEnergyContainer<TileEntityElectricNeutronCollector> getEnergyContainer() {
-        return energyContainer;
     }
 
     @Override
