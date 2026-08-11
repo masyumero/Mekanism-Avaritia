@@ -10,7 +10,7 @@ public enum MAAddons {
     MEKMM("MekanismMoreMachine"),
     EVOLVEDMEKANISM("EvolvedMekanism"),
     MEKANISM_EXTRA("Mekanism Extras"),
-    MEKWEAPONS("Mekanism Weapons");
+    MEKAWEAPONS("Mekanism Weapons");
 
     private final String modName;
 
