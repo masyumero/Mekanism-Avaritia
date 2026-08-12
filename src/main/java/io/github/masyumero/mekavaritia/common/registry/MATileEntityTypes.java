@@ -5,6 +5,7 @@ import com.google.common.collect.Table;
 import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
 import fr.iglee42.evolvedmekanism.registries.EMTileEntityTypes;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
+import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.tile.factory.*;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
@@ -14,7 +15,6 @@ import mekanism.common.registration.impl.TileEntityTypeDeferredRegister;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.tile.base.TileEntityMekanism;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
 
 public class MATileEntityTypes {
 
@@ -33,7 +33,7 @@ public class MATileEntityTypes {
             FACTORIES.put(tier, FactoryType.INFUSING, TILE_ENTITY_TYPES.register(MABlocks.getMAFactory(tier, FactoryType.INFUSING), (pos, state) -> new TileEntityMetallurgicInfuserMAFactory(MABlocks.getMAFactory(tier, FactoryType.INFUSING), pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient));
             FACTORIES.put(tier, FactoryType.COMBINING, TILE_ENTITY_TYPES.register(MABlocks.getMAFactory(tier, FactoryType.COMBINING), (pos, state) -> new TileEntityCombiningMAFactory(MABlocks.getMAFactory(tier, FactoryType.COMBINING), pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient));
             FACTORIES.put(tier, FactoryType.SAWING, TILE_ENTITY_TYPES.register(MABlocks.getMAFactory(tier, FactoryType.SAWING), (pos, state) -> new TileEntitySawingMAFactory(MABlocks.getMAFactory(tier, FactoryType.SAWING), pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient));
-            if(ModList.get().isLoaded("evolvedmekanism")) {
+            if(MAAddons.EVOLVEDMEKANISM.isLoaded()) {
                 FACTORIES.put(tier, EMFactoryType.ALLOYING, EMTileEntityTypes.TILE_ENTITY_TYPES.register(MABlocks.getMAFactory(tier, EMFactoryType.ALLOYING), (pos, state) -> new TileEntityMAAlloyingFactory(MABlocks.getMAFactory(tier, EMFactoryType.ALLOYING), pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient));
             }
         }

@@ -1,6 +1,5 @@
 package io.github.masyumero.mekavaritia.common.content.blocktype;
 
-import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeTier;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeUpgradeable;
 import io.github.masyumero.mekavaritia.common.registry.MABlockTypes;
@@ -9,6 +8,7 @@ import io.github.masyumero.mekavaritia.common.registry.MAContainerTypes;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.common.MekanismLang;
 import mekanism.common.block.attribute.*;
 import mekanism.common.content.blocktype.FactoryType;
@@ -73,7 +73,7 @@ public class MAFactory<TILE extends TileEntityMAFactory<?>> extends MAMachine.MA
 
         MAFactoryBuilder<MAFactory<TILE>, TILE, ?> builder = new MAFactoryBuilder<>(new MAFactory<>(tileEntityRegistrar,
                 () -> MAContainerTypes.FACTORY,
-                type == EMFactoryType.ALLOYING ? MABlockTypes.ALLOYER : switch (type) {
+                MAUtils.isAlloying(type) ? MABlockTypes.ALLOYER : switch (type) {
                     case SMELTING -> MABlockTypes.ENERGIZED_SMELTER;
                     case ENRICHING -> MABlockTypes.ENRICHMENT_CHAMBER;
                     case CRUSHING -> MABlockTypes.CRUSHER;

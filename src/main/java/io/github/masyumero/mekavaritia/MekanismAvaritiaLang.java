@@ -1,11 +1,11 @@
 package io.github.masyumero.mekavaritia;
 
 import fr.iglee42.evolvedmekanism.EvolvedMekanismLang;
+import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.api.text.ILangEntry;
 import mekanism.common.MekanismLang;
 import net.minecraft.Util;
-import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 
 public enum MekanismAvaritiaLang implements ILangEntry{
@@ -26,8 +26,8 @@ public enum MekanismAvaritiaLang implements ILangEntry{
         this.key = key;
     }
 
-    public @NotNull MekanismLang getAlloyer() {
-        if (ModList.get().isLoaded("evolvedmekanism")) {
+    public static MekanismLang getAlloyer() {
+        if (MAAddons.EVOLVEDMEKANISM.isLoaded()) {
             return EvolvedMekanismLang.DESCRIPTION_ALLOYER;
         }
         return MekanismLang.MEKANISM;

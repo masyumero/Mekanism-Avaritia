@@ -5,6 +5,7 @@ import com.jerry.mekanism_extras.api.IMixinMachineEnergyContainer;
 import io.github.masyumero.mekavaritia.api.recipes.ElectricNeutronCollectorRecipe;
 import io.github.masyumero.mekavaritia.api.recipes.cache.ElectricNeutronCollectorCachedRecipe;
 import io.github.masyumero.mekavaritia.common.capabilities.energy.ENCMEnergyContainer;
+import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.recipe.IMARecipeTypeProvider;
 import io.github.masyumero.mekavaritia.common.recipe.MARecipeType;
 import io.github.masyumero.mekavaritia.common.recipe.lookup.IMASingleRecipeLookupHandler;
@@ -42,7 +43,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -139,10 +139,11 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
         super.recalculateUpgrades(upgrade);
-        if (upgrade == Upgrade.SPEED) {
-            ticksRequired = MekanismUtils.getTicks(this, baseTicksRequired);
-        } else if (ModList.get().isLoaded("mekanism_extras")) {
-            if (getEnergyContainer() instanceof IMixinMachineEnergyContainer mixMach) mixMach.mekanism_Extras$extraRecalculateUpgrades(upgrade);
+        if (MAAddons.MEKANISM_EXTRAS.isLoaded()) {
+            if (getEnergyContainer() instanceof IMixinMachineEnergyContainer mixMach) {
+                mixMach.mekanism_Extras$extraRecalculateUpgrades(upgrade);
+                mixMach.mekanism_Extras$extraUpdateMaxEnergy();
+            }
             if (upgradeComponent.isUpgradeInstalled(ExtraUpgrade.CREATIVE)) {
                 baselineMaxOperations = 64;
             } else {

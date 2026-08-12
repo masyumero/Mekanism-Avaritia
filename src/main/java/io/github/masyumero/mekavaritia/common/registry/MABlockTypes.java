@@ -11,6 +11,7 @@ import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MABlockShapes;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAMachine;
+import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
@@ -25,7 +26,6 @@ import mekanism.common.registries.MekanismSounds;
 import mekanism.common.registries.MekanismTileEntityTypes;
 import mekanism.common.tile.machine.*;
 import mekanism.common.util.EnumUtils;
-import net.minecraftforge.fml.ModList;
 
 import java.util.EnumSet;
 import java.util.Set;
@@ -33,10 +33,10 @@ import java.util.Set;
 public class MABlockTypes {
 
     private static final Table<MAFactoryTier, FactoryType, MAFactory<?>> FACTORIES = HashBasedTable.create();
-    private static final Set<Upgrade> UPGRADES = ModList.get().isLoaded("mekanism_extras") ? EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS, ExtraUpgrade.STACK, ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS);
+    private static final Set<Upgrade> UPGRADES = MAAddons.MEKANISM_EXTRAS.isLoaded() ? EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS, ExtraUpgrade.STACK, ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS);
 
     public static final MAMachine.MAFactoryMachine<TileEntityAlloyer> ALLOYER = MAMachine.MAMachineBuilder
-            .createMAFactoryMachine(() -> EMTileEntityTypes.ALLOYER, MekanismAvaritiaLang.NULL.getAlloyer(), EMFactoryType.ALLOYING)
+            .createMAFactoryMachine(() -> EMTileEntityTypes.ALLOYER, MekanismAvaritiaLang.getAlloyer(), EMFactoryType.ALLOYING)
             .withGui(() -> EMContainerTypes.ALLOYER)
             .withSound(MekanismSounds.COMBINER)
             .withEnergyConfig(MekanismConfig.usage.combiner, MekanismConfig.storage.combiner)
@@ -129,7 +129,7 @@ public class MABlockTypes {
             .withGui(() -> MAContainerTypes.ELECTRIC_NEUTRON_COLLECTOR)
             //.withEnergyConfig(LoadConfig.usageConfig.electricNeutronCollector, LoadConfig.storageConfig.electricNeutronCollector)
             .withEnergyConfig(MekanismConfig.usage.precisionSawmill, MekanismConfig.storage.precisionSawmill)
-            .withSupportedUpgrades(ModList.get().isLoaded("mekanism_extras") ? EnumSet.of(Upgrade.MUFFLING,ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.MUFFLING))
+            .withSupportedUpgrades(MAAddons.MEKANISM_EXTRAS.isLoaded() ? EnumSet.of(Upgrade.MUFFLING,ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.MUFFLING))
             .withComputerSupport("ElectricNeutronCollector")
             .replace(Attributes.ACTIVE_LIGHT)
             .build();
@@ -138,13 +138,7 @@ public class MABlockTypes {
     static {
         for (MAFactoryTier tier : MAEnumUtils.MA_FACTORY_TIERS) {
             for (FactoryType type : EnumUtils.FACTORY_TYPES) {
-                if (type == EMFactoryType.ALLOYING) {
-                    if(ModList.get().isLoaded("evolvedmekanism")) {
-                        FACTORIES.put(tier, type, MAFactory.MAFactoryBuilder.createFactory(() -> MATileEntityTypes.getMAFactoryTile(tier, type), type, tier).build());
-                    }
-                } else {
-                    FACTORIES.put(tier, type, MAFactory.MAFactoryBuilder.createFactory(() -> MATileEntityTypes.getMAFactoryTile(tier, type), type, tier).build());
-                }
+                FACTORIES.put(tier, type, MAFactory.MAFactoryBuilder.createFactory(() -> MATileEntityTypes.getMAFactoryTile(tier, type), type, tier).build());
             }
         }
     }

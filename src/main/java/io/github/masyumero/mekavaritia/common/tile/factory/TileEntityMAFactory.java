@@ -2,7 +2,6 @@ package io.github.masyumero.mekavaritia.common.tile.factory;
 
 import com.jerry.mekanism_extras.api.ExtraUpgrade;
 import com.jerry.mekanism_extras.api.IMixinMachineEnergyContainer;
-import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.inventory.slot.MAFactoryInputInventorySlot;
@@ -10,6 +9,7 @@ import io.github.masyumero.mekavaritia.common.registry.MABlockTypes;
 import io.github.masyumero.mekavaritia.common.registry.MATileEntityTypes;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
@@ -388,7 +388,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
 
     @ComputerMethod(methodDescription = "Total number of ticks it takes currently for the recipe to complete")
     public int getTicksRequired() {
-        return tier == MAFactoryTier.ETERNAL||upgradeComponent.isUpgradeInstalled(ExtraUpgrade.CREATIVE) ? 0 : ticksRequired;
+        return tier == MAFactoryTier.ETERNAL || (MAAddons.MEKANISM_EXTRAS.isLoaded() && upgradeComponent.isUpgradeInstalled(ExtraUpgrade.CREATIVE)) ? 0 : ticksRequired;
     }
 
     @Override
@@ -431,7 +431,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
         super.recalculateUpgrades(upgrade);
-        if (MAAddons.MEKANISM_EXTRA.isLoaded()) {
+        if (MAAddons.MEKANISM_EXTRAS.isLoaded()) {
             if (getEnergyContainer() instanceof IMixinMachineEnergyContainer mixMach) {
                 mixMach.mekanism_Extras$extraRecalculateUpgrades(upgrade);
                 mixMach.mekanism_Extras$extraUpdateMaxEnergy();
@@ -445,7 +445,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
                 case ETERNAL -> 0;
             };
             ticksRequired = MekanismUtils.getTicks(this, ticks);
-        } else if (MAAddons.MEKANISM_EXTRA.isLoaded()) {
+        } else if (MAAddons.MEKANISM_EXTRAS.isLoaded()) {
             if (upgrade == ExtraUpgrade.STACK) {
                 int stacks = switch (tier) {
                     case PRISMATIC -> 2;
@@ -478,7 +478,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
         }
 
         //And finally check if it is the non factory version (it will be missing sorting data, but we can gracefully ignore that)
-        return type == EMFactoryType.ALLOYING ? MABlockTypes.ALLOYER.getTileType().get() == tileType : switch (type) {
+        return MAUtils.isAlloying(type) ? MABlockTypes.ALLOYER.getTileType().get() == tileType : switch (type) {
             case SMELTING -> MABlockTypes.ENERGIZED_SMELTER.getTileType().get();
             case ENRICHING -> MABlockTypes.ENRICHMENT_CHAMBER.getTileType().get();
             case CRUSHING -> MABlockTypes.CRUSHER.getTileType().get();

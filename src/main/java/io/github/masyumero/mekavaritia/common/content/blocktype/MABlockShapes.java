@@ -1,7 +1,7 @@
 package io.github.masyumero.mekavaritia.common.content.blocktype;
 
-import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.common.content.blocktype.BlockShapes;
 import mekanism.common.content.blocktype.FactoryType;
 import mekanism.common.util.EnumUtils;
@@ -38,7 +38,7 @@ public final class MABlockShapes {
     }
 
     public static VoxelShape[] getShape(MAFactoryTier tier, FactoryType type) {
-        return type == EMFactoryType.ALLOYING ? BlockShapes.SMELTING_FACTORY : switch (type) {
+        return MAUtils.isAlloying(type) ? BlockShapes.SMELTING_FACTORY : switch (type) {
             case SMELTING -> BlockShapes.SMELTING_FACTORY;
             case ENRICHING -> BlockShapes.ENRICHING_FACTORY;
             case CRUSHING -> BlockShapes.CRUSHING_FACTORY;
