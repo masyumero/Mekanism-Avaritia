@@ -35,13 +35,13 @@ public class MABlockTypes {
     private static final Table<MAFactoryTier, FactoryType, MAFactory<?>> FACTORIES = HashBasedTable.create();
     private static final Set<Upgrade> UPGRADES = MAAddons.MEKANISM_EXTRAS.isLoaded() ? EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS, ExtraUpgrade.STACK, ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS);
 
-    public static final MAMachine.MAFactoryMachine<TileEntityAlloyer> ALLOYER = MAMachine.MAMachineBuilder
+    public static final MAMachine.MAFactoryMachine<TileEntityAlloyer> ALLOYER = MAAddons.EVOLVEDMEKANISM.isLoaded() ? MAMachine.MAMachineBuilder
             .createMAFactoryMachine(() -> EMTileEntityTypes.ALLOYER, MekanismAvaritiaLang.getAlloyer(), EMFactoryType.ALLOYING)
             .withGui(() -> EMContainerTypes.ALLOYER)
             .withSound(MekanismSounds.COMBINER)
             .withEnergyConfig(MekanismConfig.usage.combiner, MekanismConfig.storage.combiner)
             .withComputerSupport("alloyer")
-            .build();
+            .build() : null;
 
     public static final MAMachine.MAFactoryMachine<TileEntityEnergizedSmelter> ENERGIZED_SMELTER = MAMachine.MAMachineBuilder
             .createMAFactoryMachine(() -> MekanismTileEntityTypes.ENERGIZED_SMELTER, MekanismLang.DESCRIPTION_ENERGIZED_SMELTER, FactoryType.SMELTING)
