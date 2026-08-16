@@ -22,6 +22,6 @@ public abstract class MixinModifiableMekaSuitArmor extends MultilayerArmorItem i
     @Override
     public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
         IModule<ModuleInfiniteElytraUnit> infiniteElytraUnit = MAModuleUtil.getModule(stack, MAModules.INFINITY_ELYTRA_UNIT);
-        return infiniteElytraUnit != null && infiniteElytraUnit.isEnabled();
+        return super.canElytraFly(stack, entity) || infiniteElytraUnit != null && infiniteElytraUnit.isEnabled();
     }
 }

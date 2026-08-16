@@ -20,6 +20,7 @@ public abstract class MixinModifiableMekaTool extends ModifiableItem {
 
     @Override
     public void inventoryTick(ItemStack stack, Level worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
+        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
         for (Module<?> module : MAModuleUtil.getModules(stack)) {
             if (entityIn instanceof Player) {
                 module.tick((Player) entityIn);
