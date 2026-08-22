@@ -25,8 +25,8 @@ public class ItemMAAlloy extends Item {
 
     private final MAAlloyTier tier;
 
-    public ItemMAAlloy(MAAlloyTier tier, Properties properties) {
-        super(properties);
+    public ItemMAAlloy(MAAlloyTier tier) {
+        super(new Properties());
         this.tier = tier;
     }
 

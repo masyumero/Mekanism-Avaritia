@@ -1,9 +1,9 @@
 package io.github.masyumero.mekavaritia.common.registry;
 
-import committee.nova.mods.avaritia.init.registry.ModRarities;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.api.tier.MAAlloyTier;
 import io.github.masyumero.mekavaritia.api.tier.MATier;
+import io.github.masyumero.mekavaritia.common.item.ItemAlloyCrystalline;
 import io.github.masyumero.mekavaritia.common.item.ItemMAAlloy;
 import io.github.masyumero.mekavaritia.common.item.MATieredItem;
 import io.github.masyumero.mekavaritia.common.resource.MAMiscResource;
@@ -12,8 +12,10 @@ import mekanism.common.registration.impl.ItemDeferredRegister;
 import mekanism.common.registration.impl.ItemRegistryObject;
 import mekanism.common.resource.IResource;
 import mekanism.common.resource.ResourceType;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
+
+import java.util.function.Function;
 
 public class MAItems {
     public static final ItemDeferredRegister ITEM = new ItemDeferredRegister(MekanismAvaritia.MODID);
@@ -24,10 +26,10 @@ public class MAItems {
     public static final ItemRegistryObject<MATieredItem> NEURAL_CONTROL_CIRCUIT = registerCircuit(MATier.NEURAL);
     public static final ItemRegistryObject<MATieredItem> ETERNAL_CONTROL_CIRCUIT = registerCircuit(MATier.ETERNAL);
     //alloy
-    public static final ItemRegistryObject<ItemMAAlloy> CRYSTALLINE_ALLOY = registerAlloy(MAAlloyTier.CRYSTALLINE, ModRarities.RARE);
-    public static final ItemRegistryObject<ItemMAAlloy> BLAZING_ALLOY = registerAlloy(MAAlloyTier.BLAZING, ModRarities.EPIC);
-    public static final ItemRegistryObject<ItemMAAlloy> NEUTRON_ALLOY = registerAlloy(MAAlloyTier.NEUTRON, ModRarities.COSMIC);
-    public static final ItemRegistryObject<ItemMAAlloy> INFINITY_ALLOY = registerAlloy(MAAlloyTier.INFINITY, ModRarities.LEGEND);
+    public static final ItemRegistryObject<ItemAlloyCrystalline> CRYSTALLINE_ALLOY = registerAlloy(MAAlloyTier.CRYSTALLINE, tier -> new ItemAlloyCrystalline());
+    public static final ItemRegistryObject<ItemMAAlloy> BLAZING_ALLOY = registerAlloy(MAAlloyTier.BLAZING, ItemMAAlloy::new);
+    public static final ItemRegistryObject<ItemMAAlloy> NEUTRON_ALLOY = registerAlloy(MAAlloyTier.NEUTRON, ItemMAAlloy::new);
+    public static final ItemRegistryObject<ItemMAAlloy> INFINITY_ALLOY = registerAlloy(MAAlloyTier.INFINITY, ItemMAAlloy::new);
     //Modules
     public static final ItemRegistryObject<ItemModule> MODULE_INFINITY_ENERGY = ITEM.registerModule(MAModules.INFINITY_ENERGY_UNIT);
     public static final ItemRegistryObject<ItemModule> MODULE_INFINITY_ELYTRA = ITEM.registerModule(MAModules.INFINITY_ELYTRA_UNIT);
@@ -61,8 +63,8 @@ public class MAItems {
         return ITEM.register(tier.getLowerName() + "_control_circuit", properties -> new MATieredItem(tier, properties));
     }
 
-    private static ItemRegistryObject<ItemMAAlloy> registerAlloy(MAAlloyTier tier, Rarity rarity) {
-        return ITEM.register("alloy_" + tier.getName(), properties -> new ItemMAAlloy(tier, properties.rarity(rarity)));
+    private static <I extends Item> ItemRegistryObject<I> registerAlloy(MAAlloyTier tier, Function<MAAlloyTier, I> alloyItem) {
+        return ITEM.register("alloy_" + tier.getName(), () -> alloyItem.apply(tier));
     }
 
     public static void register(IEventBus eventBus) {
