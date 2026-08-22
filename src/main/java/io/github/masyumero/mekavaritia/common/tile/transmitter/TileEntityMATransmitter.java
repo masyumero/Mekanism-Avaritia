@@ -3,12 +3,15 @@ package io.github.masyumero.mekavaritia.common.tile.transmitter;
 import io.github.masyumero.mekavaritia.api.IMAAlloyInteraction;
 import io.github.masyumero.mekavaritia.api.tier.MAAlloyTier;
 import io.github.masyumero.mekavaritia.api.tier.MATier;
+import io.github.masyumero.mekavaritia.common.capabilities.MACapabilities;
 import io.github.masyumero.mekavaritia.common.content.network.transmitter.IMAUpgradeableTransmitter;
 
 import mekanism.api.providers.IBlockProvider;
 import mekanism.common.Mekanism;
 import mekanism.common.advancements.MekanismCriteriaTriggers;
+import mekanism.common.capabilities.Capabilities;
 import mekanism.common.capabilities.proxy.ProxyConfigurable;
+import mekanism.common.capabilities.resolver.BasicCapabilityResolver;
 import mekanism.common.content.network.transmitter.BufferedTransmitter;
 import mekanism.common.content.network.transmitter.Transmitter;
 import mekanism.common.lib.transmitter.DynamicBufferedNetwork;
@@ -31,6 +34,7 @@ public abstract class TileEntityMATransmitter extends TileEntityTransmitter impl
 
     public TileEntityMATransmitter(IBlockProvider blockProvider, BlockPos pos, BlockState state) {
         super(blockProvider, pos, state);
+        this.addCapabilityResolver(BasicCapabilityResolver.constant(MACapabilities.MA_ALLOY_INTERACTION, this));
     }
 
     public static void extraTickServer(Level level, BlockPos blockPos, BlockState blockState, TileEntityMALogisticalTransporter tileEntityMALogisticalTransporter) {
