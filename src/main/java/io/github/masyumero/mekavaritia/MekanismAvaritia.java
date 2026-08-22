@@ -84,8 +84,10 @@ public class MekanismAvaritia implements IModModule {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         packetHandler.initialize();
-        MATags.init();
-        MASingularities.init();
+        event.enqueueWork(() -> {
+            MATags.init();
+            MASingularities.init();
+        });
     }
 
     private void registerEventListener(RegisterEvent event) {

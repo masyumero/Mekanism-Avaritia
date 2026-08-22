@@ -4,9 +4,11 @@ import com.jerry.mekanism_extras.MekanismExtras;
 import com.jerry.mekanism_extras.common.block.attribute.ExtraAttribute;
 import com.jerry.mekanism_extras.common.tier.ExtraFactoryTier;
 import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
+import io.github.masyumero.mekavaritia.api.tier.MATier;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
+import mekanism.api.tier.ITier;
 import mekanism.common.Mekanism;
 import mekanism.common.block.attribute.Attribute;
 import mekanism.common.block.attribute.AttributeFactoryType;
@@ -14,6 +16,7 @@ import mekanism.common.block.states.BlockStateHelper;
 import mekanism.common.content.blocktype.FactoryType;
 import mekanism.common.registration.impl.BlockRegistryObject;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -28,23 +31,28 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
         super(output, modid, exFileHelper);
     }
 
-//    protected void transmitters(BlockRegistryObject<?, ?> transmitter, String type, ITier tier, ResourceLocation parent, boolean isSmall) {
-//        ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-//        MATier maTier = MATransporterUtils.baseToMATier(tier.getBaseTier());
-//        ResourceLocation path = MAUtils.rl("block/transmitter/" + (isSmall ? "small/" : "large/") + type + "/" + maTier.getLowerName());
-//        String name = transmitter.getName();
-//
-//        simpleBlockItem(transmitter.getBlock(),
-//                models().withExistingParent(path.getPath(), parent)
-//                .texture("side", MAUtils.rl("block/models/multipart/" + name + "_vertical"))
-//                .texture("center_down", MAUtils.rl("block/models/multipart/" + name))
-//                .texture("side_opaque",  MAUtils.rl("block/models/multipart/opaque/" + name + "_vertical"))
-//                .texture("center_opaque", MAUtils.rl("block/models/multipart/" + (isSmall ? "" : "opaque/") + name)));
-//
-//        getVariantBuilder(transmitter.getBlock())
-//                .forAllStatesExcept(state -> builder.modelFile(models().getExistingFile(path)).build());
-//    }
-//
+    protected void transmitters(BlockRegistryObject<?, ?> transmitter, String type, ITier tier, ResourceLocation parent, boolean isSmall) {
+        ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+        MATier maTier = switch (tier.getBaseTier()) {
+            case ADVANCED -> MATier.FLARE;
+            case ELITE -> MATier.NEURAL;
+            case ULTIMATE -> MATier.ETERNAL;
+            default -> MATier.PRISMATIC;
+        };
+        ResourceLocation path = MAUtils.rl("block/transmitter/" + (isSmall ? "small/" : "large/") + type + "/" + maTier.getLowerName());
+        String name = transmitter.getName();
+
+        simpleBlockItem(transmitter.getBlock(),
+                models().withExistingParent(path.getPath(), parent)
+                .texture("side", MAUtils.rl("block/models/multipart/" + name + "_vertical"))
+                .texture("center_down", MAUtils.rl("block/models/multipart/" + name))
+                .texture("side_opaque",  MAUtils.rl("block/models/multipart/opaque/" + name + "_vertical"))
+                .texture("center_opaque", MAUtils.rl("block/models/multipart/" + (isSmall ? "" : "opaque/") + name)));
+
+        getVariantBuilder(transmitter.getBlock())
+                .forAllStatesExcept(state -> builder.modelFile(models().getExistingFile(path)).build());
+    }
+
 //    protected void inductionCellAndProvider(BlockRegistryObject<?, ?> cellBlockRO, BlockRegistryObject<?, ?> providerBlockRO) {
 //        ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
 //        MATier cellTier = MAAttribute.getTier(cellBlockRO.getBlock(), MAICTier.class).getMATier();

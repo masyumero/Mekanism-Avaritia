@@ -34,7 +34,7 @@ public record ConfigEnabledCondition(String name, CachedBooleanValue cachedBoole
         return  "config_enabled(" + name + ")";
     }
 
-    private static ConfigEnabledCondition createConfig(String name, CachedBooleanValue cachedBooleanValue) {
+    public static ConfigEnabledCondition createConfig(String name, CachedBooleanValue cachedBooleanValue) {
         ConfigEnabledCondition condition = new ConfigEnabledCondition(name, cachedBooleanValue);
         CONDITIONS.put(name, condition);
         return condition;
