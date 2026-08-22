@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "fluid_logged=empty": {
+      "model": "mekanism_avaritia:block/transmitter/small/thermodynamic_conductor/neural"
+    },
+    "fluid_logged=lava": {
+      "model": "mekanism_avaritia:block/transmitter/small/thermodynamic_conductor/neural"
+    },
+    "fluid_logged=water": {
+      "model": "mekanism_avaritia:block/transmitter/small/thermodynamic_conductor/neural"
+    }
+  }
+}

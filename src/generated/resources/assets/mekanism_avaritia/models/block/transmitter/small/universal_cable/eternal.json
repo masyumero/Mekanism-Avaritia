@@ -1,0 +1,9 @@
+{
+  "parent": "mekanism:block/transmitter/small/small",
+  "textures": {
+    "center_down": "mekanism_avaritia:block/models/multipart/eternal_universal_cable",
+    "center_opaque": "mekanism_avaritia:block/models/multipart/eternal_universal_cable",
+    "side": "mekanism_avaritia:block/models/multipart/eternal_universal_cable_vertical",
+    "side_opaque": "mekanism_avaritia:block/models/multipart/opaque/eternal_universal_cable_vertical"
+  }
+}

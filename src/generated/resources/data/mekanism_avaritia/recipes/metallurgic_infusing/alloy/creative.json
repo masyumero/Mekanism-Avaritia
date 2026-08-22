@@ -1,7 +1,7 @@
 {
   "type": "mekanism:metallurgic_infusing",
   "chemicalInput": {
-    "amount": 1280,
+    "amount": 320,
     "infuse_type": "mekanism_avaritia:infinity"
   },
   "conditions": [

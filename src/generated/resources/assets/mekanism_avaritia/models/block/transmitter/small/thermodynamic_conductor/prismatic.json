@@ -1,0 +1,9 @@
+{
+  "parent": "mekanism:block/transmitter/small/small",
+  "textures": {
+    "center_down": "mekanism_avaritia:block/models/multipart/prismatic_thermodynamic_conductor",
+    "center_opaque": "mekanism_avaritia:block/models/multipart/prismatic_thermodynamic_conductor",
+    "side": "mekanism_avaritia:block/models/multipart/prismatic_thermodynamic_conductor_vertical",
+    "side_opaque": "mekanism_avaritia:block/models/multipart/opaque/prismatic_thermodynamic_conductor_vertical"
+  }
+}

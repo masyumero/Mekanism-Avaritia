@@ -1,0 +1,9 @@
+{
+  "parent": "mekanism:block/transmitter/large/logistical_transporter/transporter",
+  "textures": {
+    "center_down": "mekanism_avaritia:block/models/multipart/neural_logistical_transporter",
+    "center_opaque": "mekanism_avaritia:block/models/multipart/opaque/neural_logistical_transporter",
+    "side": "mekanism_avaritia:block/models/multipart/neural_logistical_transporter_vertical",
+    "side_opaque": "mekanism_avaritia:block/models/multipart/opaque/neural_logistical_transporter_vertical"
+  }
+}

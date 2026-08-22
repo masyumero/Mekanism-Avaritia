@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "fluid_logged=empty": {
+      "model": "mekanism_avaritia:block/transmitter/large/logistical_transporter/prismatic"
+    },
+    "fluid_logged=lava": {
+      "model": "mekanism_avaritia:block/transmitter/large/logistical_transporter/prismatic"
+    },
+    "fluid_logged=water": {
+      "model": "mekanism_avaritia:block/transmitter/large/logistical_transporter/prismatic"
+    }
+  }
+}
