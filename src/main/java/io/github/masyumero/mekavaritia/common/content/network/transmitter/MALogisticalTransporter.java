@@ -1,10 +1,10 @@
 package io.github.masyumero.mekavaritia.common.content.network.transmitter;
 
-import com.jerry.mekanism_extras.api.IMixinLogisticalTransporterBase;
-import com.jerry.mekanism_extras.common.util.ExtraTransporterUtils;
 import io.github.masyumero.mekavaritia.common.tier.transmitter.MATPTier;
 import io.github.masyumero.mekavaritia.common.tile.transmitter.TileEntityMATransmitter;
 import io.github.masyumero.mekavaritia.common.util.MATransporterUtils;
+import io.github.masyumero.mekavaritia.mixin.mekanism.InvokerLogisticalTransporterBase;
+
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
@@ -108,24 +108,24 @@ public class MALogisticalTransporter extends LogisticalTransporterBase implement
 
     protected void readFromNBT(CompoundTag nbtTags) {
         super.readFromNBT(nbtTags);
-        NBTUtils.setEnumIfPresent(nbtTags, NBTConstants.COLOR, ExtraTransporterUtils::readColor, this::setColor);
+        NBTUtils.setEnumIfPresent(nbtTags, NBTConstants.COLOR, TransporterUtils::readColor, this::setColor);
     }
 
     public void writeToNBT(CompoundTag nbtTags) {
         super.writeToNBT(nbtTags);
-        nbtTags.putInt(NBTConstants.COLOR, ExtraTransporterUtils.getColorIndex(this.getColor()));
+        nbtTags.putInt(NBTConstants.COLOR, TransporterUtils.getColorIndex(this.getColor()));
     }
 
     @Nonnull
     public CompoundTag getReducedUpdateTag(CompoundTag updateTag) {
         updateTag = super.getReducedUpdateTag(updateTag);
-        updateTag.putInt(NBTConstants.COLOR, ExtraTransporterUtils.getColorIndex(this.getColor()));
+        updateTag.putInt(NBTConstants.COLOR, TransporterUtils.getColorIndex(this.getColor()));
         return updateTag;
     }
 
     public void handleUpdateTag(@Nonnull CompoundTag tag) {
         super.handleUpdateTag(tag);
-        NBTUtils.setEnumIfPresent(tag, NBTConstants.COLOR, ExtraTransporterUtils::readColor, this::setColor);
+        NBTUtils.setEnumIfPresent(tag, NBTConstants.COLOR, TransporterUtils::readColor, this::setColor);
     }
 
     public void onUpdateClient() {
@@ -178,8 +178,8 @@ public class MALogisticalTransporter extends LogisticalTransporterBase implement
                 for (Int2ObjectMap.Entry<TransporterStack> entry : transit.int2ObjectEntrySet()) {
                     int stackId = entry.getIntKey();
                     TransporterStack stack = entry.getValue();
-                    if (!stack.initiatedPath && this instanceof IMixinLogisticalTransporterBase mixLog) {
-                        if (stack.itemStack.isEmpty() || !mixLog.mekanismExtras$getRecalculate(stackId, stack, null)) {
+                    if (!stack.initiatedPath) {
+                        if (stack.itemStack.isEmpty() || ((InvokerLogisticalTransporterBase)this).recalculate(stackId, stack, null)) {
                             deletes.add(stackId);
                             continue;
                         }
@@ -200,8 +200,7 @@ public class MALogisticalTransporter extends LogisticalTransporterBase implement
                                 if (!stack.isFinal(this)) {
                                     LogisticalTransporterBase transmitter = network.getTransmitter(next);
                                     if (stack.canInsertToTransporter(transmitter, stack.getSide(this), this)) {
-                                        if (transmitter instanceof IMixinLogisticalTransporterBase mixTransmitter)
-                                            mixTransmitter.mekanismExtras$getEntering(stack, stack.progress % 100);
+                                        ((InvokerLogisticalTransporterBase)this).entityEntering(stack, stack.progress % 100);
                                         deletes.add(stackId);
                                         continue;
                                     }
@@ -233,14 +232,12 @@ public class MALogisticalTransporter extends LogisticalTransporterBase implement
                                 }
                             }
                         }
-                        if (this instanceof IMixinLogisticalTransporterBase mixLog) {
-                            if (!mixLog.mekanismExtras$getRecalculate(stackId, stack, prevSet)) {
-                                deletes.add(stackId);
-                            } else if (prevSet == null) {
-                                stack.progress = 50;
-                            } else {
-                                stack.progress = 0;
-                            }
+                        if (((InvokerLogisticalTransporterBase)this).recalculate(stackId, stack, prevSet)) {
+                            deletes.add(stackId);
+                        } else if (prevSet == null) {
+                            stack.progress = 50;
+                        } else {
+                            stack.progress = 0;
                         }
                     } else if (prevProgress < 50 && stack.progress >= 50) {
                         boolean tryRecalculate;
@@ -268,10 +265,8 @@ public class MALogisticalTransporter extends LogisticalTransporterBase implement
                                 tryRecalculate = !stack.canInsertToTransporter(nextTransmitter, stack.getSide(this), this);
                             }
                         }
-                        if (this instanceof IMixinLogisticalTransporterBase mixLog) {
-                            if (tryRecalculate && !mixLog.mekanismExtras$getRecalculate(stackId, stack, null)) {
-                                deletes.add(stackId);
-                            }
+                        if (tryRecalculate && ((InvokerLogisticalTransporterBase)this).recalculate(stackId, stack, null)) {
+                            deletes.add(stackId);
                         }
                     }
                 }

@@ -1,7 +1,7 @@
 package io.github.masyumero.mekavaritia.common.content.network.transmitter;
 
-import com.jerry.mekanism_extras.common.capabilities.heat.ExtraVariableHeatCapacitor;
 import io.github.masyumero.mekavaritia.common.tier.transmitter.MATCTier;
+
 import mekanism.api.DataHandlerUtils;
 import mekanism.api.NBTConstants;
 import mekanism.api.heat.IHeatCapacitor;
@@ -10,6 +10,7 @@ import mekanism.api.providers.IBlockProvider;
 import mekanism.common.block.attribute.Attribute;
 import mekanism.common.capabilities.Capabilities;
 import mekanism.common.capabilities.heat.CachedAmbientTemperature;
+import mekanism.common.capabilities.heat.VariableHeatCapacitor;
 import mekanism.common.content.network.transmitter.ThermodynamicConductor;
 import mekanism.common.lib.transmitter.TransmissionType;
 import mekanism.common.lib.transmitter.acceptor.AcceptorCache;
@@ -36,13 +37,13 @@ public class MAThermodynamicConductor extends ThermodynamicConductor implements 
     // Default to negative one, so we know we need to calculate it when needed
     public final ConductorTier tier;
     private final List<IHeatCapacitor> capacitors;
-    public final ExtraVariableHeatCapacitor buffer;
+    public final VariableHeatCapacitor buffer;
     private double clientTemperature = -1;
 
     public MAThermodynamicConductor(IBlockProvider blockProvider, TileEntityTransmitter tile) {
         super(blockProvider, tile);
         this.tier = Attribute.getTier(blockProvider, ConductorTier.class);
-        buffer = ExtraVariableHeatCapacitor.create(MATCTier.getHeatCapacity(tier), MATCTier.getConduction(tier), MATCTier.getConductionInsulation(tier), ambientTemperature, this);
+        buffer = VariableHeatCapacitor.create(MATCTier.getHeatCapacity(tier), () -> MATCTier.getConduction(tier), () -> MATCTier.getConductionInsulation(tier), ambientTemperature, this);
         capacitors = Collections.singletonList(buffer);
     }
 

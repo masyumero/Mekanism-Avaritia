@@ -8,6 +8,7 @@ import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
 import fr.iglee42.evolvedmekanism.registries.EMTileEntityTypes;
 import fr.iglee42.evolvedmekanism.tiles.machine.TileEntityAlloyer;
 import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;
+import io.github.masyumero.mekavaritia.common.config.LoadConfig;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MABlockShapes;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAMachine;
@@ -127,8 +128,7 @@ public class MABlockTypes {
             .withCustomShape(MABlockShapes.ELECTRIC_NEUTRON_COLLECTOR)
             .withSound(MekanismSounds.RESISTIVE_HEATER)
             .withGui(() -> MAContainerTypes.ELECTRIC_NEUTRON_COLLECTOR)
-            //.withEnergyConfig(LoadConfig.usageConfig.electricNeutronCollector, LoadConfig.storageConfig.electricNeutronCollector)
-            .withEnergyConfig(MekanismConfig.usage.precisionSawmill, MekanismConfig.storage.precisionSawmill)
+            .withEnergyConfig(LoadConfig.USAGE_CONFIG.electricNeutronCollector, LoadConfig.STORAGE_CONFIG.electricNeutronCollector)
             .withSupportedUpgrades(MAAddons.MEKANISM_EXTRAS.isLoaded() ? EnumSet.of(Upgrade.MUFFLING,ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.MUFFLING))
             .withComputerSupport("ElectricNeutronCollector")
             .replace(Attributes.ACTIVE_LIGHT)
