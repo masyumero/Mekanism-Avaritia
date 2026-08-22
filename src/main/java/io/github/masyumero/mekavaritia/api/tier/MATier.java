@@ -1,5 +1,6 @@
 package io.github.masyumero.mekavaritia.api.tier;
 
+import io.github.masyumero.mekavaritia.common.util.MAColorUtils;
 import lombok.Getter;
 import mekanism.api.SupportsColorMap;
 import mekanism.api.math.MathUtils;
@@ -9,25 +10,29 @@ import net.minecraft.world.level.material.MapColor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
+import java.util.function.IntSupplier;
 
 public enum MATier implements StringRepresentable, SupportsColorMap {
-    PRISMATIC("prismatic", new int[]{40, 173, 255}, MapColor.COLOR_MAGENTA),
-    FLARE("flare", new int[]{255, 0, 0}, MapColor.COLOR_RED),
-    NEURAL("neural", new int[]{50, 50, 50}, MapColor.COLOR_BLACK),
-    ETERNAL("eternal", new int[]{0, 255, 255}, MapColor.COLOR_CYAN),;
+    PRISMATIC("prismatic", MATierColorMap.prismaticColor, MapColor.COLOR_MAGENTA),
+    FLARE("flare", MATierColorMap.flareColor, MapColor.COLOR_RED),
+    NEURAL("neural", MATierColorMap.neuralColor, MapColor.COLOR_BLACK),
+    ETERNAL("eternal", MATierColorMap.eternalColor, MapColor.COLOR_CYAN),;
 
     private static final MATier[] TIERS = values();
 
     private final String name;
     @Getter
     private final MapColor mapColor;
+    @Getter
+    private final IntSupplier rgbSupplier;
     private TextColor textColor;
     private int[] rgbCode;
 
-    MATier(String name, int[] rgbCode, MapColor mapColor) {
+    MATier(String name, IntSupplier rgbCode, MapColor mapColor) {
         this.name = name;
         this.mapColor = mapColor;
-        setColorFromAtlas(rgbCode);
+        this.rgbSupplier = rgbCode;
+        setColorFromAtlas(MAColorUtils.getRGBColor(rgbCode.getAsInt()));
     }
 
     public String getSimpleName() {

@@ -54,7 +54,7 @@ public class ItemBlockMA<BLOCK extends Block> extends BlockItem {
 
     public TextColor getTextColor(ItemStack stack) {
         IMATier tier = getMATier();
-        return tier == null ? null : tier.getMATier().getColor();
+        return tier == null ? null : TextColor.fromRgb(tier.getMATier().getRgbSupplier().getAsInt());
     }
 
     @NotNull

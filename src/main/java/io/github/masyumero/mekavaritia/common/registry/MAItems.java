@@ -3,14 +3,15 @@ package io.github.masyumero.mekavaritia.common.registry;
 import committee.nova.mods.avaritia.init.registry.ModRarities;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.api.tier.MAAlloyTier;
+import io.github.masyumero.mekavaritia.api.tier.MATier;
 import io.github.masyumero.mekavaritia.common.item.ItemMAAlloy;
+import io.github.masyumero.mekavaritia.common.item.MATieredItem;
 import io.github.masyumero.mekavaritia.common.resource.MAMiscResource;
 import mekanism.common.item.ItemModule;
 import mekanism.common.registration.impl.ItemDeferredRegister;
 import mekanism.common.registration.impl.ItemRegistryObject;
 import mekanism.common.resource.IResource;
 import mekanism.common.resource.ResourceType;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;
 
@@ -18,10 +19,10 @@ public class MAItems {
     public static final ItemDeferredRegister ITEM = new ItemDeferredRegister(MekanismAvaritia.MODID);
 
     //circuit
-    public static final ItemRegistryObject<Item> PRISMATIC_CONTROL_CIRCUIT = registerCircuit("prismatic", ModRarities.RARE);
-    public static final ItemRegistryObject<Item> FLARE_CONTROL_CIRCUIT = registerCircuit("flare", ModRarities.EPIC);
-    public static final ItemRegistryObject<Item> NEURAL_CONTROL_CIRCUIT = registerCircuit("neural", ModRarities.COSMIC);
-    public static final ItemRegistryObject<Item> ETERNAL_CONTROL_CIRCUIT = registerCircuit("eternal", ModRarities.LEGEND);
+    public static final ItemRegistryObject<MATieredItem> PRISMATIC_CONTROL_CIRCUIT = registerCircuit(MATier.PRISMATIC);
+    public static final ItemRegistryObject<MATieredItem> FLARE_CONTROL_CIRCUIT = registerCircuit(MATier.FLARE);
+    public static final ItemRegistryObject<MATieredItem> NEURAL_CONTROL_CIRCUIT = registerCircuit(MATier.NEURAL);
+    public static final ItemRegistryObject<MATieredItem> ETERNAL_CONTROL_CIRCUIT = registerCircuit(MATier.ETERNAL);
     //alloy
     public static final ItemRegistryObject<ItemMAAlloy> CRYSTALLINE_ALLOY = registerAlloy(MAAlloyTier.CRYSTALLINE, ModRarities.RARE);
     public static final ItemRegistryObject<ItemMAAlloy> BLAZING_ALLOY = registerAlloy(MAAlloyTier.BLAZING, ModRarities.EPIC);
@@ -42,22 +43,22 @@ public class MAItems {
     public static final ItemRegistryObject<ItemModule> MODULE_CELESTIAL_SHOT = ITEM.registerModule(MAModules.CELESTIAL_SHOT_UNIT);
     public static final ItemRegistryObject<ItemModule> MODULE_INFINITY_DAMAGE = ITEM.registerModule(MAModules.INFINITY_DAMAGE_UNIT);
     //Dusts
-    public static final ItemRegistryObject<Item> CRYSTALLINE_DUST = registerResource(ResourceType.DUST, MAMiscResource.CRYSTALLINE, ModRarities.RARE);
-    public static final ItemRegistryObject<Item> BLAZING_DUST = registerResource(ResourceType.DUST, MAMiscResource.BLAZING, ModRarities.EPIC);
-    public static final ItemRegistryObject<Item> NEUTRON_DUST = registerResource(ResourceType.DUST, MAMiscResource.NEUTRON, ModRarities.COSMIC);
-    public static final ItemRegistryObject<Item> INFINITY_DUST = registerResource(ResourceType.DUST, MAMiscResource.INFINITY, ModRarities.LEGEND);
+    public static final ItemRegistryObject<MATieredItem> CRYSTALLINE_DUST = registerResource(ResourceType.DUST, MAMiscResource.CRYSTALLINE, MATier.PRISMATIC);
+    public static final ItemRegistryObject<MATieredItem> BLAZING_DUST = registerResource(ResourceType.DUST, MAMiscResource.BLAZING, MATier.FLARE);
+    public static final ItemRegistryObject<MATieredItem> NEUTRON_DUST = registerResource(ResourceType.DUST, MAMiscResource.NEUTRON, MATier.NEURAL);
+    public static final ItemRegistryObject<MATieredItem> INFINITY_DUST = registerResource(ResourceType.DUST, MAMiscResource.INFINITY, MATier.ETERNAL);
     //Enriched
-    public static final ItemRegistryObject<Item> ENRICHED_CRYSTALLINE = registerResource(ResourceType.ENRICHED, MAMiscResource.CRYSTALLINE, ModRarities.RARE);
-    public static final ItemRegistryObject<Item> ENRICHED_BLAZING = registerResource(ResourceType.ENRICHED, MAMiscResource.BLAZING, ModRarities.EPIC);
-    public static final ItemRegistryObject<Item> ENRICHED_NEUTRON = registerResource(ResourceType.ENRICHED, MAMiscResource.NEUTRON, ModRarities.COSMIC);
-    public static final ItemRegistryObject<Item> ENRICHED_INFINITY = registerResource(ResourceType.ENRICHED, MAMiscResource.INFINITY, ModRarities.LEGEND);
+    public static final ItemRegistryObject<MATieredItem> ENRICHED_CRYSTALLINE = registerResource(ResourceType.ENRICHED, MAMiscResource.CRYSTALLINE, MATier.PRISMATIC);
+    public static final ItemRegistryObject<MATieredItem> ENRICHED_BLAZING = registerResource(ResourceType.ENRICHED, MAMiscResource.BLAZING, MATier.FLARE);
+    public static final ItemRegistryObject<MATieredItem> ENRICHED_NEUTRON = registerResource(ResourceType.ENRICHED, MAMiscResource.NEUTRON, MATier.NEURAL);
+    public static final ItemRegistryObject<MATieredItem> ENRICHED_INFINITY = registerResource(ResourceType.ENRICHED, MAMiscResource.INFINITY, MATier.ETERNAL);
 
-    private static ItemRegistryObject<Item> registerResource(ResourceType type, IResource resource, Rarity rarity) {
-        return ITEM.register(type.getRegistryPrefix() + "_" + resource.getRegistrySuffix(), properties -> new Item(properties.rarity(rarity)));
+    private static ItemRegistryObject<MATieredItem> registerResource(ResourceType type, IResource resource, MATier tier) {
+        return ITEM.register(type.getRegistryPrefix() + "_" + resource.getRegistrySuffix(), properties -> new MATieredItem(tier, properties));
     }
 
-    private static ItemRegistryObject<Item> registerCircuit(String name, Rarity rarity) {
-        return ITEM.register(name + "_control_circuit", properties -> new Item(properties.rarity(rarity)));
+    private static ItemRegistryObject<MATieredItem> registerCircuit(MATier tier) {
+        return ITEM.register(tier.getLowerName() + "_control_circuit", properties -> new MATieredItem(tier, properties));
     }
 
     private static ItemRegistryObject<ItemMAAlloy> registerAlloy(MAAlloyTier tier, Rarity rarity) {
