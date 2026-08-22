@@ -1,22 +1,12 @@
 package io.github.masyumero.mekavaritia.common.util;
 
-import mekanism.api.Upgrade;
-import mekanism.common.block.attribute.AttributeUpgradeSupport;
-import mekanism.common.content.blocktype.BlockType;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import com.jerry.mekanism_extras.api.ExtraUpgrade;
+import io.github.masyumero.mekavaritia.common.integration.MAAddons;
+import mekanism.common.tile.component.TileComponentUpgrade;
 
 public class MAUpgradeUtil {
 
-    public static void addSupported(BlockType blockType, Upgrade... upgrades) {
-        AttributeUpgradeSupport attribute = blockType.get(AttributeUpgradeSupport.class);
-        if (attribute == null) {
-            return;
-        }
-        Set<Upgrade> supportedUpgrades = new HashSet<>(attribute.supportedUpgrades());
-        supportedUpgrades.addAll(Arrays.asList(upgrades));
-        blockType.add(new AttributeUpgradeSupport(supportedUpgrades));
+    public static boolean isCreative(TileComponentUpgrade upgradeComponent) {
+        return MAAddons.MEKANISM_EXTRAS.isLoaded() && upgradeComponent.isUpgradeInstalled(ExtraUpgrade.CREATIVE);
     }
 }

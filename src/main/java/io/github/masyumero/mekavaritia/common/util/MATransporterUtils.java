@@ -6,14 +6,14 @@ import mekanism.api.text.EnumColor;
 import mekanism.api.tier.BaseTier;
 import mekanism.common.content.network.transmitter.LogisticalTransporterBase;
 import mekanism.common.content.transporter.TransporterStack;
+import mekanism.common.util.TransporterUtils;
 import net.minecraft.core.Direction;
 
 import java.util.List;
 
 public class MATransporterUtils {
 
-    public static final List<EnumColor> colors = List.of(EnumColor.DARK_BLUE, EnumColor.DARK_GREEN, EnumColor.DARK_AQUA, EnumColor.DARK_RED, EnumColor.PURPLE,
-            EnumColor.INDIGO, EnumColor.BRIGHT_GREEN, EnumColor.AQUA, EnumColor.RED, EnumColor.PINK, EnumColor.YELLOW, EnumColor.BLACK);
+    public static final List<EnumColor> colors = TransporterUtils.colors;
 
     public static void incrementColor(MALogisticalTransporter tile) {
         EnumColor color = tile.getColor();

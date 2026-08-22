@@ -9,6 +9,7 @@ import io.github.masyumero.mekavaritia.common.registry.MABlockTypes;
 import io.github.masyumero.mekavaritia.common.registry.MATileEntityTypes;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
+import io.github.masyumero.mekavaritia.common.util.MAUpgradeUtil;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import it.unimi.dsi.fastutil.ints.IntArraySet;
 import it.unimi.dsi.fastutil.ints.IntSet;
@@ -388,7 +389,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
 
     @ComputerMethod(methodDescription = "Total number of ticks it takes currently for the recipe to complete")
     public int getTicksRequired() {
-        return tier == MAFactoryTier.ETERNAL || (MAAddons.MEKANISM_EXTRAS.isLoaded() && upgradeComponent.isUpgradeInstalled(ExtraUpgrade.CREATIVE)) ? 0 : ticksRequired;
+        return tier == MAFactoryTier.ETERNAL || MAUpgradeUtil.isCreative(upgradeComponent) ? 0 : ticksRequired;
     }
 
     @Override

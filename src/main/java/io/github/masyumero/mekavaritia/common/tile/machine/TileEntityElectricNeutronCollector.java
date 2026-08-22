@@ -2,6 +2,7 @@ package io.github.masyumero.mekavaritia.common.tile.machine;
 
 import com.jerry.mekanism_extras.api.ExtraUpgrade;
 import com.jerry.mekanism_extras.api.IMixinMachineEnergyContainer;
+
 import io.github.masyumero.mekavaritia.api.recipes.ElectricNeutronCollectorRecipe;
 import io.github.masyumero.mekavaritia.api.recipes.cache.ElectricNeutronCollectorCachedRecipe;
 import io.github.masyumero.mekavaritia.common.capabilities.energy.ENCMEnergyContainer;
@@ -12,6 +13,8 @@ import io.github.masyumero.mekavaritia.common.recipe.lookup.IMASingleRecipeLooku
 import io.github.masyumero.mekavaritia.common.recipe.lookup.cache.MAInputRecipeCache;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.tile.prefab.MATileEntityProgressMachine;
+
+import io.github.masyumero.mekavaritia.common.util.MAUpgradeUtil;
 import lombok.Getter;
 import mekanism.api.IContentsListener;
 import mekanism.api.Upgrade;
@@ -122,7 +125,7 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
             recipeEnergyRequired = recipe.getEnergyRequired();
         }
         boolean update = baseTicksRequired != recipeDuration;
-        baseTicksRequired = upgradeComponent.isUpgradeInstalled(ExtraUpgrade.CREATIVE)? 0 : recipeDuration;
+        baseTicksRequired = MAUpgradeUtil.isCreative(upgradeComponent) ? 0 : recipeDuration;
         if (update) {
             recalculateUpgrades(Upgrade.SPEED);
         }

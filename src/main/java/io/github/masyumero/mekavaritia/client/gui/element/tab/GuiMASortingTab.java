@@ -3,6 +3,7 @@ package io.github.masyumero.mekavaritia.client.gui.element.tab;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.network.to_server.MAPacketGuiInteract;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
+
 import mekanism.client.SpecialColors;
 import mekanism.client.gui.IGuiWrapper;
 import mekanism.client.gui.element.GuiInsetElement;

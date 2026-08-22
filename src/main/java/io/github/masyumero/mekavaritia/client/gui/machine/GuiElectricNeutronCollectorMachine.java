@@ -1,6 +1,7 @@
 package io.github.masyumero.mekavaritia.client.gui.machine;
 
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
+
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.bar.GuiVerticalPowerBar;

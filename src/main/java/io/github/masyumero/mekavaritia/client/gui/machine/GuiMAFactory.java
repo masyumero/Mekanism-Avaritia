@@ -2,11 +2,14 @@ package io.github.masyumero.mekavaritia.client.gui.machine;
 
 import fr.iglee42.evolvedmekanism.jei.EMJEI;
 import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
+import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.client.gui.element.tab.GuiMASortingTab;
+import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityItemStackGasToItemStackMAFactory;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMetallurgicInfuserMAFactory;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntitySawingMAFactory;
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.api.recipes.cache.CachedRecipe;
 import mekanism.client.gui.GuiConfigurableTile;
 import mekanism.client.gui.element.GuiDumpButton;
@@ -76,7 +79,7 @@ public class GuiMAFactory extends GuiConfigurableTile<TileEntityMAFactory<?>, Me
     }
 
     private GuiProgress addProgress(GuiProgress progressBar) {
-        MekanismJEIRecipeType<?> jeiType = tile.getFactoryType() == EMFactoryType.ALLOYING ? EMJEI.ALLOYING : switch (tile.getFactoryType()) {
+        MekanismJEIRecipeType<?> jeiType = MAUtils.isAlloying(tile.getFactoryType()) ? EMJEI.ALLOYING : switch (tile.getFactoryType()) {
             case SMELTING -> MekanismJEIRecipeType.SMELTING;
             case ENRICHING -> MekanismJEIRecipeType.ENRICHING;
             case CRUSHING -> MekanismJEIRecipeType.CRUSHING;
@@ -87,6 +90,7 @@ public class GuiMAFactory extends GuiConfigurableTile<TileEntityMAFactory<?>, Me
             case PURIFYING -> MekanismJEIRecipeType.PURIFYING;
             case COMPRESSING -> MekanismJEIRecipeType.COMPRESSING;
         };
+
         return addRenderableWidget(progressBar.jeiCategories(jeiType));
     }
 
