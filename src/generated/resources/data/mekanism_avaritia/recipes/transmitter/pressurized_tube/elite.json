@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "forge:alloys/neural"
+    },
+    "P": {
+      "item": "mekanism_avaritia:flare_pressurized_tube"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "PAP",
+    "PPP"
+  ],
+  "result": {
+    "count": 8,
+    "item": "mekanism_avaritia:neural_pressurized_tube"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "tag": "forge:alloys/eternal"
+    },
+    "P": {
+      "item": "mekanism_avaritia:neural_thermodynamic_conductor"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "PAP",
+    "PPP"
+  ],
+  "result": {
+    "count": 8,
+    "item": "mekanism_avaritia:eternal_thermodynamic_conductor"
+  }
+}
