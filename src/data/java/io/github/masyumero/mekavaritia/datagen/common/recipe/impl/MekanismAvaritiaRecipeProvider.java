@@ -21,10 +21,6 @@ import java.util.function.Consumer;
 @NothingNullByDefault
 public class MekanismAvaritiaRecipeProvider extends BaseRecipeProvider {
 
-    public static final char GLASS_CHAR = 'G';
-    public static final char OTHER_PREVIOUS_CHAR = 'O';
-
-
     public MekanismAvaritiaRecipeProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, existingFileHelper);
     }
@@ -45,7 +41,8 @@ public class MekanismAvaritiaRecipeProvider extends BaseRecipeProvider {
                 new MetallurgicInfuserRecipeProvider(),
                 new ElectricNeutronCollectorRecipeProvider(),
                 new SmeltingRecipeProvider(),
-                new ExtremeCraftingRecipeProvider()
+                new ExtremeCraftingRecipeProvider(),
+                new TransmitterRecipeProvider()
         );
     }
 
