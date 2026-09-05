@@ -40,6 +40,11 @@ public class MekanismAvaritiaBlockModelProvider extends BaseBlockModelsProvider 
 //                simpleMoreMachineFactoryMachineBlock(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, type));
 //            }
         }
+
+        inductionCellAndProvider(MABlocks.PRISMATIC_INDUCTION_CELL, MABlocks.PRISMATIC_INDUCTION_PROVIDER);
+        inductionCellAndProvider(MABlocks.FLARE_INDUCTION_CELL, MABlocks.FLARE_INDUCTION_PROVIDER);
+        inductionCellAndProvider(MABlocks.NEURAL_INDUCTION_CELL, MABlocks.NEURAL_INDUCTION_PROVIDER);
+        inductionCellAndProvider(MABlocks.ETERNAL_INDUCTION_CELL, MABlocks.ETERNAL_INDUCTION_PROVIDER);
         
         transporter(MABlocks.PRISMATIC_LOGISTICAL_TRANSPORTER);
         transporter(MABlocks.FLARE_LOGISTICAL_TRANSPORTER);

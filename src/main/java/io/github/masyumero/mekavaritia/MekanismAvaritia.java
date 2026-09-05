@@ -29,7 +29,7 @@ import org.slf4j.Logger;
 public class MekanismAvaritia implements IModModule {
 
     public static final String MODID = "mekanism_avaritia";
-    public static final String MODNAME = "Mekanism:Avaritia";
+    public static final String MODNAME = "MekanismAvaritia";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public final Version versionNumber;

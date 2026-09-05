@@ -8,20 +8,27 @@ import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
 import fr.iglee42.evolvedmekanism.registries.EMTileEntityTypes;
 import fr.iglee42.evolvedmekanism.tiles.machine.TileEntityAlloyer;
 import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;
+import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeTier;
 import io.github.masyumero.mekavaritia.common.config.LoadConfig;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MABlockShapes;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAMachine;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
+import io.github.masyumero.mekavaritia.common.tier.MAICTier;
+import io.github.masyumero.mekavaritia.common.tier.MAIPTier;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
+import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionCell;
+import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionProvider;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
 import mekanism.api.Upgrade;
 import mekanism.common.MekanismLang;
 import mekanism.common.block.attribute.Attributes;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.content.blocktype.BlockShapes;
+import mekanism.common.content.blocktype.BlockTypeTile;
 import mekanism.common.content.blocktype.FactoryType;
+import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.registries.MekanismContainerTypes;
 import mekanism.common.registries.MekanismSounds;
 import mekanism.common.registries.MekanismTileEntityTypes;
@@ -30,6 +37,7 @@ import mekanism.common.util.EnumUtils;
 
 import java.util.EnumSet;
 import java.util.Set;
+import java.util.function.Supplier;
 
 public class MABlockTypes {
 
@@ -134,6 +142,17 @@ public class MABlockTypes {
             .replace(Attributes.ACTIVE_LIGHT)
             .build();
 
+    // Induction Cells
+    public static final BlockTypeTile<TileEntityMAInductionCell> PRISMATIC_INDUCTION_CELL = createInductionCell(MAICTier.PRISMATIC, () -> MATileEntityTypes.PRISMATIC_INDUCTION_CELL);
+    public static final BlockTypeTile<TileEntityMAInductionCell> FLARE_INDUCTION_CELL = createInductionCell(MAICTier.FLARE, () -> MATileEntityTypes.FLARE_INDUCTION_CELL);
+    public static final BlockTypeTile<TileEntityMAInductionCell> NEURAL_INDUCTION_CELL = createInductionCell(MAICTier.NEURAL, () -> MATileEntityTypes.NEURAL_INDUCTION_CELL);
+    public static final BlockTypeTile<TileEntityMAInductionCell> ETERNAL_INDUCTION_CELL = createInductionCell(MAICTier.ETERNAL, () -> MATileEntityTypes.ETERNAL_INDUCTION_CELL);
+    // Induction Provide
+    public static final BlockTypeTile<TileEntityMAInductionProvider> PRISMATIC_INDUCTION_PROVIDER = createInductionProvider(MAIPTier.PRISMATIC, () -> MATileEntityTypes.PRISMATIC_INDUCTION_PROVIDER);
+    public static final BlockTypeTile<TileEntityMAInductionProvider> FLARE_INDUCTION_PROVIDER = createInductionProvider(MAIPTier.FLARE, () -> MATileEntityTypes.FLARE_INDUCTION_PROVIDER);
+    public static final BlockTypeTile<TileEntityMAInductionProvider> NEURAL_INDUCTION_PROVIDER = createInductionProvider(MAIPTier.NEURAL, () -> MATileEntityTypes.NEURAL_INDUCTION_PROVIDER);
+    public static final BlockTypeTile<TileEntityMAInductionProvider> ETERNAL_INDUCTION_PROVIDER = createInductionProvider(MAIPTier.ETERNAL, () -> MATileEntityTypes.ETERNAL_INDUCTION_PROVIDER);
+
 
     static {
         for (MAFactoryTier tier : MAEnumUtils.MA_FACTORY_TIERS) {
@@ -145,5 +164,20 @@ public class MABlockTypes {
 
     public static MAFactory<?> getMAFactory(MAFactoryTier tier, FactoryType type) {
         return FACTORIES.get(tier, type);
+    }
+    
+    private static <TILE extends TileEntityMAInductionCell> BlockTypeTile<TILE> createInductionCell(MAICTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile) {
+        return BlockTypeTile.BlockTileBuilder.createBlock(tile, MekanismLang.DESCRIPTION_INDUCTION_CELL)
+                .withEnergyConfig(tier::getMaxEnergy)
+                .with(new MAAttributeTier<>(tier))
+                .internalMultiblock()
+                .build();
+    }
+
+    private static <TILE extends TileEntityMAInductionProvider> BlockTypeTile<TILE> createInductionProvider(MAIPTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile) {
+        return BlockTypeTile.BlockTileBuilder.createBlock(tile, MekanismLang.DESCRIPTION_INDUCTION_PROVIDER)
+                .with(new MAAttributeTier<>(tier))
+                .internalMultiblock()
+                .build();
     }
 }

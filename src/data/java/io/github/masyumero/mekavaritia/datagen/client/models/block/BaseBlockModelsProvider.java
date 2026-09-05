@@ -6,7 +6,11 @@ import com.jerry.mekanism_extras.common.tier.ExtraFactoryTier;
 import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
 import io.github.masyumero.mekavaritia.api.tier.MATier;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
+import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionCell;
+import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionProvider;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
+import io.github.masyumero.mekavaritia.common.tier.MAICTier;
+import io.github.masyumero.mekavaritia.common.tier.MAIPTier;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.api.tier.ITier;
 import mekanism.common.Mekanism;
@@ -53,36 +57,36 @@ public abstract class BaseBlockModelsProvider extends BlockStateProvider {
                 .forAllStatesExcept(state -> builder.modelFile(models().getExistingFile(path)).build());
     }
 
-//    protected void inductionCellAndProvider(BlockRegistryObject<?, ?> cellBlockRO, BlockRegistryObject<?, ?> providerBlockRO) {
-//        ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-//        MATier cellTier = MAAttribute.getTier(cellBlockRO.getBlock(), MAICTier.class).getMATier();
-//        MATier providerTier = MAAttribute.getTier(providerBlockRO.getBlock(), MAIPTier.class).getMATier();
-//        ResourceLocation cellPath = MAUtils.rl("block/induction/cell/" + cellTier.getLowerName());
-//        ResourceLocation providerPath = MAUtils.rl("block/induction/provider/" + providerTier.getLowerName());
-//
-//        ResourceLocation cellTexture = MAUtils.rl("block/" + cellBlockRO.getName());
-//        ResourceLocation providerTexture = MAUtils.rl("block/" + providerBlockRO.getName());
-//
-//        simpleBlockItem(cellBlockRO.getBlock(),
-//                models().withExistingParent(cellPath.getPath() , Mekanism.rl("block/induction/cell/basic"))
-//                .renderType(mcLoc("cutout"))
-//                .texture("particle", cellTexture)
-//                .texture("all", cellTexture));
-//
-//        getVariantBuilder(cellBlockRO.getBlock())
-//                .forAllStatesExcept(state -> builder.modelFile(models().getExistingFile(cellPath)).build());
-//
-//        simpleBlockItem(providerBlockRO.getBlock(),
-//                models().withExistingParent(providerPath.getPath() , Mekanism.rl("block/induction/provider/base"))
-//                .renderType(mcLoc("cutout"))
-//                .texture("particle", providerTexture)
-//                .texture("all", providerTexture)
-//                .texture("glow", Mekanism.rl("block/induction_provider_glow"))
-//                .texture("led", providerTexture + "_led"));
-//
-//        getVariantBuilder(providerBlockRO.getBlock())
-//                .forAllStatesExcept(state -> builder.modelFile(models().getExistingFile(providerPath)).build());
-//    }
+    protected void inductionCellAndProvider(BlockRegistryObject<?, MAItemBlockInductionCell> cellBlockRO, BlockRegistryObject<?, MAItemBlockInductionProvider> providerBlockRO) {
+        ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+        MATier cellTier = MAAttribute.getTier(cellBlockRO.getBlock(), MAICTier.class).getMATier();
+        MATier providerTier = MAAttribute.getTier(providerBlockRO.getBlock(), MAIPTier.class).getMATier();
+        ResourceLocation cellPath = MAUtils.rl("block/induction/cell/" + cellTier.getLowerName());
+        ResourceLocation providerPath = MAUtils.rl("block/induction/provider/" + providerTier.getLowerName());
+
+        ResourceLocation cellTexture = MAUtils.rl("block/" + cellBlockRO.getName());
+        ResourceLocation providerTexture = MAUtils.rl("block/" + providerBlockRO.getName());
+
+        simpleBlockItem(cellBlockRO.getBlock(),
+                models().withExistingParent(cellPath.getPath() , Mekanism.rl("block/induction/cell/basic"))
+                .renderType(mcLoc("cutout"))
+                .texture("particle", cellTexture)
+                .texture("all", cellTexture));
+
+        getVariantBuilder(cellBlockRO.getBlock())
+                .forAllStatesExcept(state -> builder.modelFile(models().getExistingFile(cellPath)).build());
+
+        simpleBlockItem(providerBlockRO.getBlock(),
+                models().withExistingParent(providerPath.getPath() , Mekanism.rl("block/induction/provider/base"))
+                .renderType(mcLoc("cutout"))
+                .texture("particle", providerTexture)
+                .texture("all", providerTexture)
+                .texture("glow", Mekanism.rl("block/induction_provider_glow"))
+                .texture("led", providerTexture + "_led"));
+
+        getVariantBuilder(providerBlockRO.getBlock())
+                .forAllStatesExcept(state -> builder.modelFile(models().getExistingFile(providerPath)).build());
+    }
 
     protected void simpleFactoryMachineBlock(BlockRegistryObject<?, ?> blockRO) {
         FactoryType type = Attribute.get(blockRO, AttributeFactoryType.class).getFactoryType();

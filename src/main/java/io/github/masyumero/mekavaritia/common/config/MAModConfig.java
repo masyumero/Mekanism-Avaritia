@@ -18,7 +18,7 @@ public class MAModConfig extends ModConfig {
     private final IMekanismConfig MAConfig;
 
     public MAModConfig(ModContainer container, IMekanismConfig config) {
-        super(config.getConfigType(), config.getConfigSpec(), container, MekanismAvaritia.MODID + "/" + config.getFileName() + ".toml");
+        super(config.getConfigType(), config.getConfigSpec(), container, MekanismAvaritia.MODNAME + "/" + config.getFileName() + ".toml");
         this.MAConfig = config;
     }
 

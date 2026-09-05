@@ -9,7 +9,7 @@ import java.nio.file.Path;
 
 public class MAConfigHelper {
 
-    public static final Path CONFIG_DIR = FMLPaths.getOrCreateGameRelativePath(FMLPaths.CONFIGDIR.get().resolve(MekanismAvaritia.MODID));
+    public static final Path CONFIG_DIR = FMLPaths.getOrCreateGameRelativePath(FMLPaths.CONFIGDIR.get().resolve(MekanismAvaritia.MODNAME));
 
     public static void registerConfig(ModContainer modContainer, IMekanismConfig config) {
         MAModConfig modConfig = new MAModConfig(modContainer, config);

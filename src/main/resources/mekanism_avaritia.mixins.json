@@ -14,6 +14,13 @@
     "mekanism.MixinItemMekaTana",
     "mekanism.MixinItemMekaTool",
     "mekanism.MixinMekaWeaponsUtils",
+    "mekanism.matrix.MixinTargetMatrixEnergyContainer$MixinExtraMatrixEnergyContainer",
+    "mekanism.matrix.MixinTargetMatrixEnergyContainer$MixinMatrixEnergyContainer",
+    "mekanism.matrix.MixinTargetMatrixMultiblockData$MixinExtraMatrixMultiblockData",
+    "mekanism.matrix.MixinTargetMatrixMultiblockData$MixinMatrixMultiblockData",
+    "mekanism.matrix.MixinTargetMatrixValidator$MixinExtraMatrixValidatorPostcheck",
+    "mekanism.matrix.MixinTargetMatrixValidator$MixinMatrixValidator",
+    "mekanism.matrix.MixinTargetMatrixValidator$MixinMatrixValidatorPostcheck",
     "minecraft.MixinRecipeManager",
     "ticex.MixinModifiableMekaSuitArmor",
     "ticex.MixinModifiableMekaTool"

@@ -9,6 +9,8 @@ import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.tile.factory.*;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
+import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionCell;
+import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionProvider;
 import io.github.masyumero.mekavaritia.common.tile.transmitter.*;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
 import mekanism.common.content.blocktype.FactoryType;
@@ -49,6 +51,16 @@ public class MATileEntityTypes {
     }
 
     public static final TileEntityTypeRegistryObject<TileEntityElectricNeutronCollector> ELECTRIC_NEUTRON_COLLECTOR = TILE_ENTITY_TYPES.register(MABlocks.ELECTRIC_NEUTRON_COLLECTOR, TileEntityElectricNeutronCollector::new, TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    // Induction Cells
+    public static final TileEntityTypeRegistryObject<TileEntityMAInductionCell> PRISMATIC_INDUCTION_CELL = TILE_ENTITY_TYPES.register(MABlocks.PRISMATIC_INDUCTION_CELL, (pos, state) -> new TileEntityMAInductionCell(MABlocks.PRISMATIC_INDUCTION_CELL, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<TileEntityMAInductionCell> FLARE_INDUCTION_CELL = TILE_ENTITY_TYPES.register(MABlocks.FLARE_INDUCTION_CELL, (pos, state) -> new TileEntityMAInductionCell(MABlocks.FLARE_INDUCTION_CELL, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<TileEntityMAInductionCell> NEURAL_INDUCTION_CELL = TILE_ENTITY_TYPES.register(MABlocks.NEURAL_INDUCTION_CELL, (pos, state) -> new TileEntityMAInductionCell(MABlocks.NEURAL_INDUCTION_CELL, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<TileEntityMAInductionCell> ETERNAL_INDUCTION_CELL = TILE_ENTITY_TYPES.register(MABlocks.ETERNAL_INDUCTION_CELL, (pos, state) -> new TileEntityMAInductionCell(MABlocks.ETERNAL_INDUCTION_CELL, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    // Induction Providers
+    public static final TileEntityTypeRegistryObject<TileEntityMAInductionProvider> PRISMATIC_INDUCTION_PROVIDER = TILE_ENTITY_TYPES.register(MABlocks.PRISMATIC_INDUCTION_PROVIDER, (pos, state) -> new TileEntityMAInductionProvider(MABlocks.PRISMATIC_INDUCTION_PROVIDER, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<TileEntityMAInductionProvider> FLARE_INDUCTION_PROVIDER = TILE_ENTITY_TYPES.register(MABlocks.FLARE_INDUCTION_PROVIDER, (pos, state) -> new TileEntityMAInductionProvider(MABlocks.FLARE_INDUCTION_PROVIDER, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<TileEntityMAInductionProvider> NEURAL_INDUCTION_PROVIDER = TILE_ENTITY_TYPES.register(MABlocks.NEURAL_INDUCTION_PROVIDER, (pos, state) -> new TileEntityMAInductionProvider(MABlocks.NEURAL_INDUCTION_PROVIDER, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<TileEntityMAInductionProvider> ETERNAL_INDUCTION_PROVIDER = TILE_ENTITY_TYPES.register(MABlocks.ETERNAL_INDUCTION_PROVIDER, (pos, state) -> new TileEntityMAInductionProvider(MABlocks.ETERNAL_INDUCTION_PROVIDER, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
     // universal cables
     public static final TileEntityTypeRegistryObject<TileEntityMAUniversalCable> PRISMATIC_UNIVERSAL_CABLE = registerTransmitter(MABlocks.PRISMATIC_UNIVERSAL_CABLE, (pos, state) -> new TileEntityMAUniversalCable(MABlocks.PRISMATIC_UNIVERSAL_CABLE, pos, state));
     public static final TileEntityTypeRegistryObject<TileEntityMAUniversalCable> FLARE_UNIVERSAL_CABLE = registerTransmitter(MABlocks.FLARE_UNIVERSAL_CABLE, (pos, state) -> new TileEntityMAUniversalCable(MABlocks.FLARE_UNIVERSAL_CABLE, pos, state));
