@@ -159,6 +159,8 @@ dependencies {
     modImplementation(forge.mekanismExtras)
     modImplementation(forge.mekmm)
     modImplementation(forge.mekanismWeapons)
+    modImplementation(forge.mekEmp)
+    modImplementation(forge.mekEmpCore)
 
     modImplementation(forge.avaritia)
     modCompileOnly(forge.tconstract)
@@ -168,6 +170,7 @@ dependencies {
     modRuntimeOnly(forge.igreeLib)
     modRuntimeOnly(forge.moffsAddonApi)
     modRuntimeOnly(forge.mantle)
+    modRuntimeOnly(forge.kotlinForForge)
 
     // JEI, EMI, Jade
     modImplementation(forge.bundles.jei)

@@ -1,5 +1,6 @@
 package io.github.masyumero.mekavaritia.common.tile.prefab;
 
+import io.github.masyumero.mekavaritia.common.util.MAUpgradeUtil;
 import mekanism.api.NBTConstants;
 import mekanism.api.Upgrade;
 import mekanism.api.providers.IBlockProvider;
@@ -69,7 +70,7 @@ public abstract class MATileEntityProgressMachine<RECIPE extends MekanismRecipe>
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
         super.recalculateUpgrades(upgrade);
-        if (upgrade == Upgrade.SPEED) {
+        if (upgrade == Upgrade.SPEED || MAUpgradeUtil.isEmpSpeedInstalled(upgradeComponent)) {
             ticksRequired = MekanismUtils.getTicks(this, baseTicksRequired);
         }
     }

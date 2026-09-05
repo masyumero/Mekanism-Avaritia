@@ -125,7 +125,7 @@ public class TileEntityElectricNeutronCollector extends MATileEntityProgressMach
             recipeEnergyRequired = recipe.getEnergyRequired();
         }
         boolean update = baseTicksRequired != recipeDuration;
-        baseTicksRequired = MAUpgradeUtil.isCreative(upgradeComponent) ? 0 : recipeDuration;
+        baseTicksRequired = MAUpgradeUtil.isCreativeInstalled(upgradeComponent) ? 0 : recipeDuration;
         if (update) {
             recalculateUpgrades(Upgrade.SPEED);
         }

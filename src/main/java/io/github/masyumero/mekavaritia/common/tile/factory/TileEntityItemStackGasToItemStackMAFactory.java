@@ -1,5 +1,6 @@
 package io.github.masyumero.mekavaritia.common.tile.factory;
 
+import io.github.masyumero.mekavaritia.common.util.MAUpgradeUtil;
 import lombok.Getter;
 import mekanism.api.IContentsListener;
 import mekanism.api.NBTConstants;
@@ -261,7 +262,7 @@ public class TileEntityItemStackGasToItemStackMAFactory extends TileEntityItemTo
     @Override
     public void recalculateUpgrades(Upgrade upgrade) {
         super.recalculateUpgrades(upgrade);
-        if (upgrade == Upgrade.SPEED || upgrade == Upgrade.GAS && supportsUpgrade(Upgrade.GAS)) {
+        if (upgrade == Upgrade.SPEED || MAUpgradeUtil.isEmpSpeedInstalled(upgradeComponent) || upgrade == Upgrade.GAS && supportsUpgrade(Upgrade.GAS)) {
             if (useStatisticalMechanics()) {
                 gasPerTickMeanMultiplier = MekanismUtils.getGasPerTickMeanMultiplier(this);
             } else {

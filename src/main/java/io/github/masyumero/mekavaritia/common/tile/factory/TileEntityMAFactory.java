@@ -389,7 +389,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
 
     @ComputerMethod(methodDescription = "Total number of ticks it takes currently for the recipe to complete")
     public int getTicksRequired() {
-        return tier == MAFactoryTier.ETERNAL || MAUpgradeUtil.isCreative(upgradeComponent) ? 0 : ticksRequired;
+        return tier == MAFactoryTier.ETERNAL || MAUpgradeUtil.isCreativeInstalled(upgradeComponent) ? 0 : ticksRequired;
     }
 
     @Override
@@ -438,7 +438,7 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
                 mixMach.mekanism_Extras$extraUpdateMaxEnergy();
             }
         }
-        if (upgrade == Upgrade.SPEED) {
+        if (upgrade == Upgrade.SPEED || MAUpgradeUtil.isEmpSpeedInstalled(upgradeComponent)) {
             int ticks = switch (tier) {
                 case PRISMATIC -> BASE_TICKS_REQUIRED / 2;
                 case FLARE -> BASE_TICKS_REQUIRED / 4;
@@ -446,16 +446,14 @@ public abstract class TileEntityMAFactory<RECIPE extends MekanismRecipe> extends
                 case ETERNAL -> 0;
             };
             ticksRequired = MekanismUtils.getTicks(this, ticks);
-        } else if (MAAddons.MEKANISM_EXTRAS.isLoaded()) {
-            if (upgrade == ExtraUpgrade.STACK) {
-                int stacks = switch (tier) {
-                    case PRISMATIC -> 2;
-                    case FLARE -> 4;
-                    case NEURAL -> 8;
-                    case ETERNAL -> 16;
-                };
-                baselineMaxOperations = (int) Math.pow(stacks, upgradeComponent.getUpgrades(ExtraUpgrade.STACK));
-            }
+        } else if (MAUpgradeUtil.isStackInstalled(upgradeComponent)) {
+            int stacks = switch (tier) {
+                case PRISMATIC -> 2;
+                case FLARE -> 4;
+                case NEURAL -> 8;
+                case ETERNAL -> 16;
+            };
+            baselineMaxOperations = (int) Math.pow(stacks, upgradeComponent.getUpgrades(ExtraUpgrade.STACK));
         }
     }
 

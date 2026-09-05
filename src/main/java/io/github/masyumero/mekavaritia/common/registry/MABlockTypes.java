@@ -21,6 +21,7 @@ import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeu
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionCell;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionProvider;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
+import io.github.masyumero.mekavaritia.common.util.MAUpgradeUtil;
 import mekanism.api.Upgrade;
 import mekanism.common.MekanismLang;
 import mekanism.common.block.attribute.Attributes;
@@ -36,13 +37,11 @@ import mekanism.common.tile.machine.*;
 import mekanism.common.util.EnumUtils;
 
 import java.util.EnumSet;
-import java.util.Set;
 import java.util.function.Supplier;
 
 public class MABlockTypes {
 
     private static final Table<MAFactoryTier, FactoryType, MAFactory<?>> FACTORIES = HashBasedTable.create();
-    private static final Set<Upgrade> UPGRADES = MAAddons.MEKANISM_EXTRAS.isLoaded() ? EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS, ExtraUpgrade.STACK, ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS);
 
     public static final MAMachine.MAFactoryMachine<TileEntityAlloyer> ALLOYER = MAAddons.EVOLVEDMEKANISM.isLoaded() ? MAMachine.MAMachineBuilder
             .createMAFactoryMachine(() -> EMTileEntityTypes.ALLOYER, MekanismAvaritiaLang.getAlloyer(), EMFactoryType.ALLOYING)
@@ -81,8 +80,7 @@ public class MABlockTypes {
             .withGui(() -> MekanismContainerTypes.OSMIUM_COMPRESSOR)
             .withSound(MekanismSounds.OSMIUM_COMPRESSOR)
             .withEnergyConfig(MekanismConfig.usage.osmiumCompressor, MekanismConfig.storage.osmiumCompressor)
-            //.withSupportedUpgrades(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS))
-            .withSupportedUpgrades(UPGRADES)
+            .withSupportedUpgrades(MAUpgradeUtil.getDefaultGasUpgrades())
             .withComputerSupport("osmiumCompressor")
             .build();
 
@@ -99,8 +97,7 @@ public class MABlockTypes {
             .withGui(() -> MekanismContainerTypes.PURIFICATION_CHAMBER)
             .withSound(MekanismSounds.PURIFICATION_CHAMBER)
             .withEnergyConfig(MekanismConfig.usage.purificationChamber, MekanismConfig.storage.purificationChamber)
-            //.withSupportedUpgrades(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS))
-            .withSupportedUpgrades(UPGRADES)
+            .withSupportedUpgrades(MAUpgradeUtil.getDefaultGasUpgrades())
             .withComputerSupport("purificationChamber")
             .build();
 
@@ -109,8 +106,7 @@ public class MABlockTypes {
             .withGui(() -> MekanismContainerTypes.CHEMICAL_INJECTION_CHAMBER)
             .withSound(MekanismSounds.CHEMICAL_INJECTION_CHAMBER)
             .withEnergyConfig(MekanismConfig.usage.chemicalInjectionChamber, MekanismConfig.storage.chemicalInjectionChamber)
-            //.withSupportedUpgrades(EnumSet.of(Upgrade.SPEED, Upgrade.ENERGY, Upgrade.MUFFLING, Upgrade.GAS))
-            .withSupportedUpgrades(UPGRADES)
+            .withSupportedUpgrades(MAUpgradeUtil.getDefaultGasUpgrades())
             .withComputerSupport("chemicalInjectionChamber")
             .build();
 
