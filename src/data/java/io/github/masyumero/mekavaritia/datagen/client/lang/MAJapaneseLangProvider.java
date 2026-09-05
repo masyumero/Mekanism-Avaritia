@@ -8,11 +8,11 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class JapaneseLangProvider extends BaseLanguageProvider implements IEnglishToAnyLanguageProvider {
+public class MAJapaneseLangProvider extends BaseLanguageProvider implements IEnglishToAnyLanguageProvider {
 
     private static final Map<String, String> EN_JP_WORDS = new HashMap<>();
 
-    public JapaneseLangProvider(PackOutput output) {
+    public MAJapaneseLangProvider(PackOutput output) {
         super(output, "ja_jp");
     }
 

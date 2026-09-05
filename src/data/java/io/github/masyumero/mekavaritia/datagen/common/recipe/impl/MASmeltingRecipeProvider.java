@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Consumer;
 
-public class SmeltingRecipeProvider implements ISubRecipeProvider {
+public class MASmeltingRecipeProvider implements ISubRecipeProvider {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> consumer) {

@@ -8,9 +8,9 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.concurrent.CompletableFuture;
 
-public class MekanismAvaritiaSingularityProvider extends SingularityProvider {
+public class MASingularityProvider extends SingularityProvider {
 
-    public MekanismAvaritiaSingularityProvider(DataGenerator generator, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper fileHelper) {
+    public MASingularityProvider(DataGenerator generator, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper fileHelper) {
         super(generator, registries, fileHelper);
     }
 

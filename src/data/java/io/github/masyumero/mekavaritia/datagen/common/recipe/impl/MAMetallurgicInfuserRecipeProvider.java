@@ -18,7 +18,7 @@ import net.minecraftforge.common.crafting.conditions.NotCondition;
 
 import java.util.function.Consumer;
 
-public class MetallurgicInfuserRecipeProvider implements ISubRecipeProvider {
+public class MAMetallurgicInfuserRecipeProvider implements ISubRecipeProvider {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> consumer) {

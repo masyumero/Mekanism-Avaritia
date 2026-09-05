@@ -10,7 +10,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-public class EnrichingRecipeProvider implements ISubRecipeProvider {
+public class MAEnrichingRecipeProvider implements ISubRecipeProvider {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> consumer) {

@@ -21,7 +21,7 @@ import net.minecraft.world.item.Item;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class FactoryRecipeProvider implements ISubRecipeProvider {
+public class MAFactoryRecipeProvider implements ISubRecipeProvider {
 
     private static final RecipePattern FACTORY_PATTERN = RecipePattern.createPattern(
             RecipePattern.TripleLine.of(Pattern.ALLOY, Pattern.CIRCUIT, Pattern.ALLOY),

@@ -11,9 +11,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-public class MekanismAvaritiaTagProvider extends BaseTagProvider {
+public class MATagProvider extends BaseTagProvider {
 
-    public MekanismAvaritiaTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
+    public MATagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, MekanismAvaritia.MODID, existingFileHelper);
     }
 

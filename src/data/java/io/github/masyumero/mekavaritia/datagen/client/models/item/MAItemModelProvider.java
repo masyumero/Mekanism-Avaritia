@@ -17,7 +17,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import java.util.List;
 import java.util.Map;
 
-public class MekanismAvaritiaItemModelProvider extends BaseItemModelProvider {
+public class MAItemModelProvider extends MABaseItemModelProvider {
 
     private static final List<IItemProvider> MASKED_ITEMS = List.of(
             MAItems.ETERNAL_CONTROL_CIRCUIT,
@@ -36,7 +36,7 @@ public class MekanismAvaritiaItemModelProvider extends BaseItemModelProvider {
             MAItems.INFINITY_ALLOY, new Halo(MAUtils.avaritia("misc/halo"), new HaloSetting(null, "#halo", -16777216, 10, true))
     );
 
-    public MekanismAvaritiaItemModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+    public MAItemModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, MekanismAvaritia.MODID, exFileHelper);
     }
 

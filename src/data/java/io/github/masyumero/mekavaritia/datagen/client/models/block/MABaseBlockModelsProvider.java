@@ -29,9 +29,9 @@ import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.client.model.generators.loaders.CompositeModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public abstract class BaseBlockModelsProvider extends BlockStateProvider {
+public abstract class MABaseBlockModelsProvider extends BlockStateProvider {
 
-    public BaseBlockModelsProvider(PackOutput output, String modid, ExistingFileHelper exFileHelper) {
+    public MABaseBlockModelsProvider(PackOutput output, String modid, ExistingFileHelper exFileHelper) {
         super(output, modid, exFileHelper);
     }
 

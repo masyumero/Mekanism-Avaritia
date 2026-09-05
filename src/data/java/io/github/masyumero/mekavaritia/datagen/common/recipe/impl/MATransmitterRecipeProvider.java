@@ -18,7 +18,7 @@ import net.minecraft.world.item.Item;
 
 import java.util.function.Consumer;
 
-public class TransmitterRecipeProvider implements ISubRecipeProvider {
+public class MATransmitterRecipeProvider implements ISubRecipeProvider {
 
     private static final RecipePattern TRANSMITTER_UPGRADE_PATTERN = RecipePattern.createPattern(
             TripleLine.of(Pattern.PREVIOUS, Pattern.PREVIOUS, Pattern.PREVIOUS),

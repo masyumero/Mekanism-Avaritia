@@ -15,9 +15,9 @@ import mekanism.common.util.EnumUtils;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class MekanismAvaritiaBlockModelProvider extends BaseBlockModelsProvider {
+public class MABlockModelProvider extends MABaseBlockModelsProvider {
 
-    public MekanismAvaritiaBlockModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+    public MABlockModelProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, MekanismAvaritia.MODID, exFileHelper);
     }
 

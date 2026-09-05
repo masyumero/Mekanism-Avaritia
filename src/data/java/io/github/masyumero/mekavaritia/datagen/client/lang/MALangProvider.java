@@ -14,7 +14,7 @@ import net.minecraft.world.item.Item;
 
 import java.util.List;
 
-public class MekanismAvaritiaLangProvider extends BaseLanguageProvider {
+public class MALangProvider extends BaseLanguageProvider {
 
     private static final List<Item> SWAP_WORD_ITEMS = List.of(
             MAItems.CRYSTALLINE_ALLOY.asItem(),
@@ -27,7 +27,7 @@ public class MekanismAvaritiaLangProvider extends BaseLanguageProvider {
             MAItems.INFINITY_DUST.asItem()
     );
 
-    public MekanismAvaritiaLangProvider(PackOutput output) {
+    public MALangProvider(PackOutput output) {
         super(output);
     }
 

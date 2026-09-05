@@ -31,9 +31,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
-public abstract class BaseItemModelProvider extends ItemModelProvider {
+public abstract class MABaseItemModelProvider extends ItemModelProvider {
 
-    public BaseItemModelProvider(PackOutput output, String modid, ExistingFileHelper existingFileHelper) {
+    public MABaseItemModelProvider(PackOutput output, String modid, ExistingFileHelper existingFileHelper) {
         super(output, modid, existingFileHelper);
     }
 

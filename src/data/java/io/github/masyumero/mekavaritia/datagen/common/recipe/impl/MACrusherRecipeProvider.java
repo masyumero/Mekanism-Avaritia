@@ -10,7 +10,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 
 import java.util.function.Consumer;
 
-public class CrusherRecipeProvider implements ISubRecipeProvider {
+public class MACrusherRecipeProvider implements ISubRecipeProvider {
 
     @Override
     public void addRecipes(Consumer<FinishedRecipe> consumer) {

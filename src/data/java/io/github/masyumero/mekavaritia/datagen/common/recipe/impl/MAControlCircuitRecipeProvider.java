@@ -17,7 +17,7 @@ import net.minecraft.world.item.Item;
 
 import java.util.function.Consumer;
 
-public class ControlCircuitRecipeProvider implements ISubRecipeProvider {
+public class MAControlCircuitRecipeProvider implements ISubRecipeProvider {
 
     private static final RecipePattern CIRCUIT_PATTERN = RecipePattern.createPattern(TripleLine.of(Pattern.ALLOY, Pattern.CIRCUIT, Pattern.ALLOY));
 

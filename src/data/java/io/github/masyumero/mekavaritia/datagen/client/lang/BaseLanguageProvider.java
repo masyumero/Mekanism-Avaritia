@@ -31,8 +31,8 @@ public abstract class BaseLanguageProvider extends LanguageProvider {
     protected BaseLanguageProvider(PackOutput output) {
         this(output, "en_us");
         ANY_LANGUAGE_PROVIDERS.addAll(List.of(
-                new JapaneseLangProvider(output),
-                new SimplifiedChineseLangProvider(output)
+                new MAJapaneseLangProvider(output),
+                new MASimplifiedChineseLangProvider(output)
         ));
     }
 

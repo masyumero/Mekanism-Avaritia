@@ -19,9 +19,9 @@ import java.util.List;
 import java.util.function.Consumer;
 
 @NothingNullByDefault
-public class MekanismAvaritiaRecipeProvider extends BaseRecipeProvider {
+public class MARecipeProvider extends BaseRecipeProvider {
 
-    public MekanismAvaritiaRecipeProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+    public MARecipeProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, existingFileHelper);
     }
 
@@ -33,16 +33,16 @@ public class MekanismAvaritiaRecipeProvider extends BaseRecipeProvider {
     @Override
     protected List<ISubRecipeProvider> getSubRecipeProviders() {
         return List.of(
-                new FactoryRecipeProvider(),
-                new ControlCircuitRecipeProvider(),
-                new CrusherRecipeProvider(),
-                new EnrichingRecipeProvider(),
-                new InfusionConversionRecipeProvider(),
-                new MetallurgicInfuserRecipeProvider(),
-                new ElectricNeutronCollectorRecipeProvider(),
-                new SmeltingRecipeProvider(),
-                new ExtremeCraftingRecipeProvider(),
-                new TransmitterRecipeProvider()
+                new MAFactoryRecipeProvider(),
+                new MAControlCircuitRecipeProvider(),
+                new MACrusherRecipeProvider(),
+                new MAEnrichingRecipeProvider(),
+                new MAInfusionConversionRecipeProvider(),
+                new MAMetallurgicInfuserRecipeProvider(),
+                new MAElectricNeutronCollectorRecipeProvider(),
+                new MASmeltingRecipeProvider(),
+                new MAExtremeCraftingRecipeProvider(),
+                new MATransmitterRecipeProvider()
         );
     }
 

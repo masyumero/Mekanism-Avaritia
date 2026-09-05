@@ -18,11 +18,11 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-public abstract class BaseSpriteSourceProvider extends SpriteSourceProvider {
+public abstract class MABaseSpriteSourceProvider extends SpriteSourceProvider {
 
     private final Set<ResourceLocation> trackedSingles = new HashSet<>();
 
-    protected BaseSpriteSourceProvider(PackOutput output, String modid, ExistingFileHelper fileHelper) {
+    protected MABaseSpriteSourceProvider(PackOutput output, String modid, ExistingFileHelper fileHelper) {
         super(output, fileHelper, modid);
     }
 

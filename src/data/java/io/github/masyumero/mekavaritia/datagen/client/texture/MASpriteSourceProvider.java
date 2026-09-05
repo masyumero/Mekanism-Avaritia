@@ -5,9 +5,9 @@ import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class MekanismAvaritiaSpriteSourceProvider extends BaseSpriteSourceProvider {
+public class MASpriteSourceProvider extends MABaseSpriteSourceProvider {
 
-    public MekanismAvaritiaSpriteSourceProvider(PackOutput output, ExistingFileHelper fileHelper) {
+    public MASpriteSourceProvider(PackOutput output, ExistingFileHelper fileHelper) {
         super(output, MekanismAvaritia.MODID, fileHelper);
     }
 

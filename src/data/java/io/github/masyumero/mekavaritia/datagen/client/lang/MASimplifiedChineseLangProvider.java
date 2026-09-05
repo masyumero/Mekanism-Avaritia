@@ -6,11 +6,11 @@ import net.minecraft.data.PackOutput;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SimplifiedChineseLangProvider extends BaseLanguageProvider implements IEnglishToAnyLanguageProvider{
+public class MASimplifiedChineseLangProvider extends BaseLanguageProvider implements IEnglishToAnyLanguageProvider{
 
     private static final Map<String, String> EN_CN_WORDS = new HashMap<>();
 
-    public SimplifiedChineseLangProvider(PackOutput output) {
+    public MASimplifiedChineseLangProvider(PackOutput output) {
         super(output, "zh_cn");
     }
 

@@ -5,16 +5,16 @@ import com.google.common.hash.Hashing;
 import com.google.common.hash.HashingOutputStream;
 import com.google.gson.JsonElement;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
-import io.github.masyumero.mekavaritia.datagen.client.lang.JapaneseLangProvider;
-import io.github.masyumero.mekavaritia.datagen.client.lang.MekanismAvaritiaLangProvider;
-import io.github.masyumero.mekavaritia.datagen.client.models.block.MekanismAvaritiaBlockModelProvider;
-import io.github.masyumero.mekavaritia.datagen.client.models.item.MekanismAvaritiaItemModelProvider;
-import io.github.masyumero.mekavaritia.datagen.client.texture.MekanismAvaritiaSpriteSourceProvider;
-import io.github.masyumero.mekavaritia.datagen.common.loot.MekanismAvaritiaLootProvider;
-import io.github.masyumero.mekavaritia.datagen.common.recipe.impl.MekanismAvaritiaRecipeProvider;
+import io.github.masyumero.mekavaritia.datagen.client.lang.MAJapaneseLangProvider;
+import io.github.masyumero.mekavaritia.datagen.client.lang.MALangProvider;
+import io.github.masyumero.mekavaritia.datagen.client.models.block.MABlockModelProvider;
+import io.github.masyumero.mekavaritia.datagen.client.models.item.MAItemModelProvider;
+import io.github.masyumero.mekavaritia.datagen.client.texture.MASpriteSourceProvider;
+import io.github.masyumero.mekavaritia.datagen.common.loot.MALootProvider;
+import io.github.masyumero.mekavaritia.datagen.common.recipe.impl.MARecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.registries.MekanismAvaritiaDatapackRegistryProvider;
-import io.github.masyumero.mekavaritia.datagen.common.singularity.MekanismAvaritiaSingularityProvider;
-import io.github.masyumero.mekavaritia.datagen.common.tag.MekanismAvaritiaTagProvider;
+import io.github.masyumero.mekavaritia.datagen.common.singularity.MASingularityProvider;
+import io.github.masyumero.mekavaritia.datagen.common.tag.MATagProvider;
 import net.minecraft.Util;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.CachedOutput;
@@ -49,18 +49,17 @@ public class MekanismAvaritiaDataGenerator {
         MekanismAvaritiaDatapackRegistryProvider drProvider = new MekanismAvaritiaDatapackRegistryProvider(output, event.getLookupProvider());
         CompletableFuture<HolderLookup.Provider> lookupProvider = drProvider.getRegistryProvider();
         //Client side data generators
-        addProvider(gen, event.includeClient(), MekanismAvaritiaLangProvider::new);
-        addProvider(gen, event.includeClient(), JapaneseLangProvider::new);
-        //addProvider(gen, event.includeClient(), SimplifiedChineseLangProvider::new);
-        gen.addProvider(event.includeClient(), new MekanismAvaritiaBlockModelProvider(output, existingFileHelper));
-        gen.addProvider(event.includeClient(), new MekanismAvaritiaItemModelProvider(output, existingFileHelper));
-        gen.addProvider(event.includeClient(), new MekanismAvaritiaSpriteSourceProvider(output, existingFileHelper));
+        addProvider(gen, event.includeClient(), MALangProvider::new);
+        addProvider(gen, event.includeClient(), MAJapaneseLangProvider::new);
+        //addProvider(gen, event.includeClient(), MASimplifiedChineseLangProvider::new);
+        gen.addProvider(event.includeClient(), new MABlockModelProvider(output, existingFileHelper));
+        gen.addProvider(event.includeClient(), new MAItemModelProvider(output, existingFileHelper));
+        gen.addProvider(event.includeClient(), new MASpriteSourceProvider(output, existingFileHelper));
         //Server side data generators
-        MekanismAvaritiaRecipeProvider recipeProvider = new MekanismAvaritiaRecipeProvider(output, existingFileHelper);
-        gen.addProvider(event.includeServer(), recipeProvider);
-        gen.addProvider(event.includeServer(), new MekanismAvaritiaTagProvider(output, lookupProvider, existingFileHelper));
-        gen.addProvider(event.includeServer(), new MekanismAvaritiaSingularityProvider(gen, lookupProvider, existingFileHelper));
-        addProvider(gen, event.includeServer(), MekanismAvaritiaLootProvider::new);
+        gen.addProvider(event.includeServer(), new MARecipeProvider(output, existingFileHelper));
+        gen.addProvider(event.includeServer(), new MATagProvider(output, lookupProvider, existingFileHelper));
+        gen.addProvider(event.includeServer(), new MASingularityProvider(gen, lookupProvider, existingFileHelper));
+        addProvider(gen, event.includeServer(), MALootProvider::new);
     }
 
     public static <PROVIDER extends DataProvider> void addProvider(DataGenerator gen, boolean run, DataProvider.Factory<PROVIDER> factory) {

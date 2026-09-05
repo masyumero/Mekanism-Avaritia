@@ -12,7 +12,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.function.Consumer;
 
-public class ElectricNeutronCollectorRecipeProvider implements ISubRecipeProvider {
+public class MAElectricNeutronCollectorRecipeProvider implements ISubRecipeProvider {
     @Override
     public void addRecipes(Consumer<FinishedRecipe> consumer) {
         var basePath = "electric_neutron_collector/";
