@@ -40,6 +40,7 @@ public class MABlockModelProvider extends MABaseBlockModelsProvider {
                     machineState(MAAdvancedFactoryBlocks.getMAAdvancedFactory(tier, AdvancedFactoryType.CENTRIFUGING),
                             new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/centrifuging/" + tierName)),
                             new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/centrifuging/active/" + tierName)));
+                    continue;
                 }
                 simpleAdvancedFactoryMachineBlock(MAAdvancedFactoryBlocks.getMAAdvancedFactory(tier, type));
             }
@@ -48,6 +49,7 @@ public class MABlockModelProvider extends MABaseBlockModelsProvider {
                     machineState(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, MoreMachineFactoryType.PLANTING),
                             new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/planting/" + tierName)),
                             new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/planting/active/" + tierName)));
+                    continue;
                 }
                 simpleMoreMachineFactoryMachineBlock(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, type));
             }
