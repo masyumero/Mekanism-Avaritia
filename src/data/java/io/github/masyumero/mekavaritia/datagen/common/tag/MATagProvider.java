@@ -2,10 +2,12 @@ package io.github.masyumero.mekavaritia.datagen.common.tag;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.MATags;
+import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.registry.MAItems;
 import mekanism.common.tags.MekanismTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -38,5 +40,7 @@ public class MATagProvider extends BaseTagProvider {
         addToTag(MAItems.BLAZING_ALLOY, MATags.Items.ALLOYS, MATags.Items.ALLOYS_BLAZING, MATags.Items.ALLOYS_FLARE);
         addToTag(MAItems.NEUTRON_ALLOY, MATags.Items.ALLOYS, MATags.Items.ALLOYS_NEUTRON, MATags.Items.ALLOYS_NEURAL);
         addToTag(MAItems.INFINITY_ALLOY, MATags.Items.ALLOYS, MATags.Items.ALLOYS_INFINITY, MATags.Items.ALLOYS_ETERNAL);
+
+        addToHarvestTag(BlockTags.MINEABLE_WITH_PICKAXE, MABlocks.getMAFactoryBlocks());
     }
 }

@@ -136,6 +136,11 @@ public class MABlocks {
         return registerTieredBlock(tileName, "_thermodynamic_conductor", () -> new MABlockThermodynamicConductor(tier), MAItemBlockThermodynamicConductor::new);
     }
 
+    @SuppressWarnings("unchecked")
+    public static BlockRegistryObject<BlockMAFactoryMachine.BlockMAFactory<?>, ItemBlockMAFactory>[] getMAFactoryBlocks() {
+        return FACTORIES.values().toArray(new BlockRegistryObject[0]);
+    }
+
     public static void register(IEventBus eventBus) {
         BLOCK.register(eventBus);
     }
