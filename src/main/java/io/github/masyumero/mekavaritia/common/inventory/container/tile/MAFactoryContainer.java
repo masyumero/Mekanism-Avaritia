@@ -24,8 +24,6 @@ public class MAFactoryContainer extends MekanismTileContainer<TileEntityMAFactor
 
     @Override
     protected int getInventoryXOffset() {
-        return tile.tier.inventoryLabelX;
-        //int index = tile.tier.ordinal();
-        //return (22 * (index + 2)) - (3 * index);
+        return tile.tier.getInventoryLabelX();
     }
 }

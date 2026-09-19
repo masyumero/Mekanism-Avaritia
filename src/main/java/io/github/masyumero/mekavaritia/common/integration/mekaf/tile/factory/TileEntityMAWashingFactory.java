@@ -131,7 +131,7 @@ public class TileEntityMAWashingFactory extends TileEntityMASlurryToSlurryFactor
     }
 
     private int getFluidSlotX() {
-        return 180 + tier.imageWidth;
+        return 180 + tier.getImageWidth();
     }
 
     public BasicFluidTank getFluidTankBar() {

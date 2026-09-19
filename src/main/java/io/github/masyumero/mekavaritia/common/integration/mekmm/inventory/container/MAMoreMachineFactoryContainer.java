@@ -25,7 +25,6 @@ public class MAMoreMachineFactoryContainer extends MekanismTileContainer<TileEnt
 
     @Override
     protected int getInventoryXOffset() {
-        int index = tile.tier.ordinal();
-        return (22 * (index + 2)) - (3 * index);
+        return this.tile.tier.getInventoryXOffset();
     }
 }

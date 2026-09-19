@@ -1,10 +1,7 @@
 package io.github.masyumero.mekavaritia.client.gui.machine;
 
 import fr.iglee42.evolvedmekanism.jei.EMJEI;
-import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
-import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.client.gui.element.tab.GuiMASortingTab;
-import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityItemStackGasToItemStackMAFactory;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMetallurgicInfuserMAFactory;
@@ -40,8 +37,8 @@ public class GuiMAFactory extends GuiConfigurableTile<TileEntityMAFactory<?>, Me
         } else {
             inventoryLabelY = 75;
         }
-        imageWidth += tile.tier.imageWidth;
-        inventoryLabelX = tile.tier.inventoryLabelX;
+        imageWidth += tile.tier.getImageWidth();
+        inventoryLabelX = tile.tier.getInventoryLabelX();
         titleLabelY = 4;
         dynamicSlots = true;
     }
@@ -57,12 +54,12 @@ public class GuiMAFactory extends GuiConfigurableTile<TileEntityMAFactory<?>, Me
             ISupportsWarning<?> secondaryBar = null;
             if (tile instanceof TileEntityMetallurgicInfuserMAFactory factory) {
                 secondaryBar = addRenderableWidget(new GuiChemicalBar<>(this, GuiChemicalBar.getProvider(factory.getInfusionTank(), tile.getInfusionTanks(null)),
-                        7, 76, imageWidth - 38, 4, true));
-                addRenderableWidget(new GuiDumpButton<>(this, factory, imageWidth - 28, 76));
+                        7, 76, getBarWidth(), 4, true));
+                addRenderableWidget(new GuiDumpButton<>(this, factory, getButtonX(), 76));
             } else if (tile instanceof TileEntityItemStackGasToItemStackMAFactory factory) {
                 secondaryBar = addRenderableWidget(new GuiChemicalBar<>(this, GuiChemicalBar.getProvider(factory.getGasTank(), tile.getGasTanks(null)),
-                        7, 76, imageWidth - 38, 4, true));
-                addRenderableWidget(new GuiDumpButton<>(this, factory, imageWidth - 28, 76));
+                        7, 76, getBarWidth(), 4, true));
+                addRenderableWidget(new GuiDumpButton<>(this, factory, getButtonX(), 76));
             }
             if (secondaryBar != null) {
                 secondaryBar.warning(WarningTracker.WarningType.NO_MATCHING_RECIPE, tile.getWarningCheck(CachedRecipe.OperationTracker.RecipeError.NOT_ENOUGH_SECONDARY_INPUT, 0));
@@ -92,6 +89,14 @@ public class GuiMAFactory extends GuiConfigurableTile<TileEntityMAFactory<?>, Me
         };
 
         return addRenderableWidget(progressBar.jeiCategories(jeiType));
+    }
+
+    private int getBarWidth() {
+        return imageWidth - 38;
+    }
+
+    private int getButtonX() {
+        return imageWidth - 28;
     }
 
     @Override

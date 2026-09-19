@@ -37,7 +37,6 @@ public class MAAdvancedFactoryContainer extends MekanismTileContainer<TileEntity
     }
 
     protected int getInventoryXOffset() {
-        int index = this.tile.tier.ordinal();
-        return 22 * (index + 2) - 3 * index;
+        return this.tile.tier.getInventoryXOffset();
     }
 }

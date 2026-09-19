@@ -37,8 +37,8 @@ public class GuiMAMoreMachineFactory extends GuiConfigurableTile<TileEntityMAMor
             inventoryLabelY = 75;
         }
 
-        imageWidth += tile.tier.imageWidth;
-        inventoryLabelX = tile.tier.inventoryLabelX;
+        imageWidth += tile.tier.getImageWidth();
+        inventoryLabelX = tile.tier.getInventoryLabelX();
         titleLabelY = 4;
         dynamicSlots = true;
     }
@@ -87,11 +87,11 @@ public class GuiMAMoreMachineFactory extends GuiConfigurableTile<TileEntityMAMor
     }
 
     private int getBarWidth() {
-        return 210 + 38 * tile.tier.ordinal();
+        return imageWidth - 38;
     }
 
     private int getButtonX() {
-        return 220 + 38 * tile.tier.ordinal();
+        return imageWidth - 28;
     }
 
     @Override
