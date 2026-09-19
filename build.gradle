@@ -161,6 +161,7 @@ dependencies {
     modImplementation(forge.mekanismWeapons)
     modImplementation(forge.mekEmp)
     modImplementation(forge.mekEmpCore)
+    modImplementation(forge.mekTieredOutline)
 
     modImplementation(forge.avaritia)
     modCompileOnly(forge.tconstract)

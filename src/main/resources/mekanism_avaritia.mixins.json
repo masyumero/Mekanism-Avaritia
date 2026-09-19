@@ -22,6 +22,7 @@
     "mekanism.matrix.MixinTargetMatrixValidator$MixinMatrixValidator",
     "mekanism.matrix.MixinTargetMatrixValidator$MixinMatrixValidatorPostcheck",
     "minecraft.MixinRecipeManager",
+    "mto.MixinMTOModClient",
     "ticex.MixinModifiableMekaSuitArmor",
     "ticex.MixinModifiableMekaTool"
   ],

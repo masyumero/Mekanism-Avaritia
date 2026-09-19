@@ -1,5 +1,10 @@
 package io.github.masyumero.mekavaritia.common.util;
 
+import mekanism.api.tier.BaseTier;
+import net.minecraft.util.Mth;
+
+import java.util.function.IntSupplier;
+
 public class MAColorUtils {
     public static int red(int color) {
         return color >> 16 & 255;
@@ -58,5 +63,9 @@ public class MAColorUtils {
         int blue = (int) (c1[2] + localRatio * (c2[2] - c1[2]));
 
         return (red << 16) | (green << 8) | blue;
+    }
+
+    public static IntSupplier getColorFromBaseTier(BaseTier tier) {
+        return MAEnumUtils.MA_TIERS[Mth.clamp(tier.ordinal(), 0, 3)].getRgbSupplier();
     }
 }
