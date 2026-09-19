@@ -1,5 +1,6 @@
 package io.github.masyumero.mekavaritia.common.tile.factory;
 
+import io.github.masyumero.mekavaritia.common.config.LoadConfig;
 import lombok.Getter;
 import mekanism.api.IContentsListener;
 import mekanism.api.RelativeSide;
@@ -89,13 +90,16 @@ public class TileEntityMetallurgicInfuserMAFactory extends TileEntityItemToItemM
     }
 
     private long getInfusionTankCapacity() {
-        return TileEntityMetallurgicInfuser.MAX_INFUSE * tier.processes * tier.processes;
-        //return switch (tier) {
-        //    case PRISMATIC:
-        //    case FLARE:
-        //    case NEURAL:
-        //    case ETERNAL:
-        //};
+        if (LoadConfig.MA_MORE_CAPACITY_CONFIG.moreCapacityMode.get()) {
+            return switch (tier) {
+                case PRISMATIC -> LoadConfig.MA_MORE_CAPACITY_CONFIG.prismaticInfusingFactory.get();
+                case FLARE -> LoadConfig.MA_MORE_CAPACITY_CONFIG.flareInfusingFactory.get();
+                case NEURAL -> LoadConfig.MA_MORE_CAPACITY_CONFIG.neuralInfusingFactory.get();
+                case ETERNAL -> LoadConfig.MA_MORE_CAPACITY_CONFIG.eternalInfusingFactory.get();
+            };
+        } else {
+            return TileEntityMetallurgicInfuser.MAX_INFUSE * tier.processes * tier.processes;
+        }
     }
 
 

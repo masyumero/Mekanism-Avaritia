@@ -130,10 +130,10 @@ public class MAMoreCapacityConfig extends BaseMekanismConfig {
         neuralPurifying            = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB). Default: 18900000, Vanilla: 189000").defineInRange("neuralChemicalTankCapacity",18900000,1,Long.MAX_VALUE));
         eternalPurifying    = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB). Default: 18900000, Vanilla: 189000").defineInRange("eternalChemicalTankCapacity",18900000,1,Long.MAX_VALUE));
         builder.pop().push("InfusingFactory");
-        prismaticInfusingFactory = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB).").defineInRange("prismaticInfusingFactory",144000,1,Long.MAX_VALUE));
-        flareInfusingFactory = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB).").defineInRange("flareInfusingFactory",196000,1,Long.MAX_VALUE));
-        neuralInfusingFactory = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB).").defineInRange("neuralInfusingFactory",256000,1,Long.MAX_VALUE));
-        eternalInfusingFactory = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB).").defineInRange("eternalInfusingFactory",324000,1,Long.MAX_VALUE));
+        prismaticInfusingFactory = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB). Default: 10000000, Vanilla: 100000").defineInRange("prismaticInfusingFactory",10000000,1,Long.MAX_VALUE));
+        flareInfusingFactory = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB). Default: 40000000, Vanilla: 400000").defineInRange("flareInfusingFactory",40000000,1,Long.MAX_VALUE));
+        neuralInfusingFactory = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB). Default: 90000000, Vanilla: 900000").defineInRange("neuralInfusingFactory",90000000,1,Long.MAX_VALUE));
+        eternalInfusingFactory = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB). Default: 90000000, Vanilla: 900000").defineInRange("eternalInfusingFactory",90000000,1,Long.MAX_VALUE));
         builder.pop().push("CentrifugingFactory");
         prismaticCentrifugingInput    = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB). Default: 10000000, Vanilla: 100000").defineInRange("absoluteInputChemicalTankCapacity", 10000000, 1, Long.MAX_VALUE));
         flareCentrifugingInput         = CachedLongValue.wrap(this, builder.comment("Chemical tank capacity (mB). Default: 20000000, Vanilla: 200000").defineInRange("supremeInputChemicalTankCapacity", 20000000, 1, Long.MAX_VALUE));
