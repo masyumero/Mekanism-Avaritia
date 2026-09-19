@@ -58,6 +58,11 @@ public class MAJEI implements IModPlugin {
         if (MAAddons.EVOLVEDMEKANISM.isLoaded()) {
             MACatalystRegistryHelper.register(registry, EMBlocks.ALLOYER);
         }
+
+        if (MAAddons.MEKMM.isLoaded()) {
+            MAAFCatalystRegistryHelper.register(registry);
+            MAMMCatalystRegistryHelper.register(registry);
+        }
     }
 
     @Override

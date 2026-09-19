@@ -2,6 +2,9 @@ package io.github.masyumero.mekavaritia.common.registry;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;
+import io.github.masyumero.mekavaritia.common.integration.MAAddons;
+import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryBlocks;
+import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineBlocks;
 import mekanism.common.registration.impl.CreativeTabDeferredRegister;
 import mekanism.common.registration.impl.CreativeTabRegistryObject;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -17,6 +20,10 @@ public class MATab {
             builder.displayItems((displayParameters, output) -> {
                 CreativeTabDeferredRegister.addToDisplay(MABlocks.BLOCK, output);
                 CreativeTabDeferredRegister.addToDisplay(MAItems.ITEM, output);
+                if (MAAddons.MEKMM.isLoaded()) {
+                    CreativeTabDeferredRegister.addToDisplay(MAMoreMachineBlocks.BLOCKS, output);
+                    CreativeTabDeferredRegister.addToDisplay(MAAdvancedFactoryBlocks.BLOCKS, output);
+                }
             })
     );
 

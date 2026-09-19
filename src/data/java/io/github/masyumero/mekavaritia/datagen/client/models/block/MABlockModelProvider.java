@@ -1,10 +1,16 @@
 package io.github.masyumero.mekavaritia.datagen.client.models.block;
 
+import com.jerry.mekaf.common.content.blocktype.AdvancedFactoryType;
+import com.jerry.mekmm.common.content.blocktype.MoreMachineFactoryType;
+import com.jerry.mekmm.common.util.MoreMachineEnumUtils;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
+import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryBlocks;
+import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineBlocks;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
 
+import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.api.tier.ITier;
 import mekanism.common.Mekanism;
 import mekanism.common.block.attribute.Attribute;
@@ -13,6 +19,7 @@ import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.tier.*;
 import mekanism.common.util.EnumUtils;
 import net.minecraft.data.PackOutput;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class MABlockModelProvider extends MABaseBlockModelsProvider {
@@ -24,21 +31,26 @@ public class MABlockModelProvider extends MABaseBlockModelsProvider {
     @Override
     protected void registerStatesAndModels() {
         for (MAFactoryTier tier : MAEnumUtils.MA_FACTORY_TIERS) {
+            var tierName = tier.getMATier().getLowerName();
             for (FactoryType type : EnumUtils.FACTORY_TYPES) {
                 simpleFactoryMachineBlock(MABlocks.getMAFactory(tier, type));
             }
-//            for (AdvancedFactoryType type : MoreMachineEnumUtils.ADVANCED_FACTORY_TYPES) {
-//                if (type == AdvancedFactoryType.CENTRIFUGING) {
-//                    continue;
-//                }
-//                simpleAdvancedFactoryMachineBlock(MAAdvancedFactoryBlocks.getMAAdvancedFactory(tier, type));
-//            }
-//            for (MoreMachineFactoryType type : MoreMachineEnumUtils.MM_FACTORY_TYPES) {
-//                if (type == MoreMachineFactoryType.PLANTING) {
-//                    continue;
-//                }
-//                simpleMoreMachineFactoryMachineBlock(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, type));
-//            }
+            for (AdvancedFactoryType type : MoreMachineEnumUtils.ADVANCED_FACTORY_TYPES) {
+                if (type == AdvancedFactoryType.CENTRIFUGING) {
+                    machineState(MAAdvancedFactoryBlocks.getMAAdvancedFactory(tier, AdvancedFactoryType.CENTRIFUGING),
+                            new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/centrifuging/" + tierName)),
+                            new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/centrifuging/active/" + tierName)));
+                }
+                simpleAdvancedFactoryMachineBlock(MAAdvancedFactoryBlocks.getMAAdvancedFactory(tier, type));
+            }
+            for (MoreMachineFactoryType type : MoreMachineEnumUtils.MM_FACTORY_TYPES) {
+                if (type == MoreMachineFactoryType.PLANTING) {
+                    machineState(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, MoreMachineFactoryType.PLANTING),
+                            new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/planting/" + tierName)),
+                            new ModelFile.UncheckedModelFile(MAUtils.rl("block/factory/planting/active/" + tierName)));
+                }
+                simpleMoreMachineFactoryMachineBlock(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, type));
+            }
         }
 
         inductionCellAndProvider(MABlocks.PRISMATIC_INDUCTION_CELL, MABlocks.PRISMATIC_INDUCTION_PROVIDER);

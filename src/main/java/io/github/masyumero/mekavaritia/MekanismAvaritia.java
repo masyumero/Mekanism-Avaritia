@@ -4,6 +4,12 @@ import com.mojang.logging.LogUtils;
 import io.github.masyumero.mekavaritia.common.MATags;
 import io.github.masyumero.mekavaritia.common.config.LoadConfig;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
+import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryBlocks;
+import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryContainerTypes;
+import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryTileEntityTypes;
+import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineBlocks;
+import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineContainerTypes;
+import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineTileEntityTypes;
 import io.github.masyumero.mekavaritia.common.network.MAPacketHandler;
 import io.github.masyumero.mekavaritia.common.recipe.MARecipeType;
 import io.github.masyumero.mekavaritia.common.recipe.condition.ConfigEnabledCondition.Serializer;
@@ -59,6 +65,7 @@ public class MekanismAvaritia implements IModModule {
         MAContainerTypes.register(modEventBus);
         MATab.register(modEventBus);
         MAModules.register(modEventBus);
+        conditionalRegistry(modEventBus);
 
         packetHandler = new MAPacketHandler();
     }
@@ -88,6 +95,17 @@ public class MekanismAvaritia implements IModModule {
             MATags.init();
             MASingularities.init();
         });
+    }
+
+    private static void conditionalRegistry(IEventBus modEventBus) {
+        if (MAAddons.MEKMM.isLoaded()) {
+            MAMoreMachineBlocks.register(modEventBus);
+            MAMoreMachineContainerTypes.register(modEventBus);
+            MAMoreMachineTileEntityTypes.register(modEventBus);
+            MAAdvancedFactoryBlocks.register(modEventBus);
+            MAAdvancedFactoryContainerTypes.register(modEventBus);
+            MAAdvancedFactoryTileEntityTypes.register(modEventBus);
+        }
     }
 
     private void registerEventListener(RegisterEvent event) {

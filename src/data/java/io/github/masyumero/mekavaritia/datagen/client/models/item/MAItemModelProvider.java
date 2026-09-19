@@ -1,7 +1,12 @@
 package io.github.masyumero.mekavaritia.datagen.client.models.item;
 
+import com.jerry.mekaf.common.content.blocktype.AdvancedFactoryType;
+import com.jerry.mekmm.common.content.blocktype.MoreMachineFactoryType;
+import com.jerry.mekmm.common.util.MoreMachineEnumUtils;
 import committee.nova.mods.avaritia.client.model.loader.base.HaloSetting;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
+import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryBlocks;
+import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineBlocks;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.registry.MAItems;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
@@ -58,18 +63,18 @@ public class MAItemModelProvider extends MABaseItemModelProvider {
             for (FactoryType type : EnumUtils.FACTORY_TYPES) {
                 factoryBlock(MABlocks.getMAFactory(tier, type));
             }
-//            for (AdvancedFactoryType type : MoreMachineEnumUtils.ADVANCED_FACTORY_TYPES) {
-//                if (type == AdvancedFactoryType.CENTRIFUGING) {
-//                    doubleLayeredBlock(advancedFactoryBlock(MAAdvancedFactoryBlocks.getMAAdvancedFactory(tier, type)));
-//                }
-//                advancedFactoryBlock(MAAdvancedFactoryBlocks.getMAAdvancedFactory(tier, type));
-//            }
-//            for (MoreMachineFactoryType type : MoreMachineEnumUtils.MM_FACTORY_TYPES) {
-//                if (type == MoreMachineFactoryType.PLANTING) {
-//                    doubleLayeredBlock(moreMachineFactoryBlock(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, type)));
-//                }
-//                moreMachineFactoryBlock(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, type));
-//            }
+            for (AdvancedFactoryType type : MoreMachineEnumUtils.ADVANCED_FACTORY_TYPES) {
+                if (type == AdvancedFactoryType.CENTRIFUGING) {
+                    doubleLayeredBlock(advancedFactoryBlock(MAAdvancedFactoryBlocks.getMAAdvancedFactory(tier, type)));
+                }
+                advancedFactoryBlock(MAAdvancedFactoryBlocks.getMAAdvancedFactory(tier, type));
+            }
+            for (MoreMachineFactoryType type : MoreMachineEnumUtils.MM_FACTORY_TYPES) {
+                if (type == MoreMachineFactoryType.PLANTING) {
+                    doubleLayeredBlock(moreMachineFactoryBlock(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, type)));
+                }
+                moreMachineFactoryBlock(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, type));
+            }
         }
     }
 

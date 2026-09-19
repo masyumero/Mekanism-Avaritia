@@ -13,6 +13,7 @@ public class LoadConfig {
     public static final MAConfig MA_CONFIG = new MAConfig();
     public static final MAUsageConfig USAGE_CONFIG = new MAUsageConfig();
     public static final MAStorageConfig STORAGE_CONFIG = new MAStorageConfig();
+    public static final MAMoreCapacityConfig MA_MORE_CAPACITY_CONFIG = new MAMoreCapacityConfig();
 
     @SuppressWarnings("removal")
     public static void registerConfigs(ModLoadingContext modLoadingContext) {
@@ -22,5 +23,6 @@ public class LoadConfig {
         MAConfigHelper.registerConfig(modContainer, MA_CONFIG);
         MAConfigHelper.registerConfig(modContainer, USAGE_CONFIG);
         MAConfigHelper.registerConfig(modContainer, STORAGE_CONFIG);
+        MAConfigHelper.registerConfig(modContainer, MA_MORE_CAPACITY_CONFIG);
     }
 }

@@ -1,6 +1,8 @@
 package io.github.masyumero.mekavaritia.datagen.common.loot.table;
 
 
+import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryBlocks;
+import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineBlocks;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 
 public class MABlockLootProvider extends BaseBlockLootTables {
@@ -8,7 +10,7 @@ public class MABlockLootProvider extends BaseBlockLootTables {
     @Override
     protected void generate() {
         dropSelfWithContents(MABlocks.BLOCK.getAllBlocks());
-        //dropSelfWithContents(MAAdvancedFactoryBlocks.BLOCKS.getAllBlocks());
-        //dropSelfWithContents(MAMoreMachineBlocks.BLOCKS.getAllBlocks());
+        dropSelfWithContents(MAAdvancedFactoryBlocks.BLOCKS.getAllBlocks());
+        dropSelfWithContents(MAMoreMachineBlocks.BLOCKS.getAllBlocks());
     }
 }

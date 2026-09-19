@@ -1,5 +1,8 @@
 package io.github.masyumero.mekavaritia.common.network.to_server;
 
+import io.github.masyumero.mekavaritia.common.integration.MAAddons;
+import io.github.masyumero.mekavaritia.common.integration.mekaf.tile.factory.base.TileEntityMAAdvancedFactoryBase;
+import io.github.masyumero.mekavaritia.common.integration.mekmm.tile.TileEntityMAMoreMachineFactory;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import mekanism.api.functions.TriConsumer;
 import mekanism.common.network.IMekanismPacket;
@@ -140,7 +143,10 @@ public class MAPacketGuiInteract implements IMekanismPacket {
         AUTO_SORT_BUTTON((tile, player, extra) -> {
             if (tile instanceof TileEntityMAFactory<?> factory) {
                 factory.toggleSorting();
-            }
+            } else if (MAAddons.MEKMM.isLoaded()) {
+            if (tile instanceof TileEntityMAAdvancedFactoryBase<?> factory) factory.toggleSorting();
+            if (tile instanceof TileEntityMAMoreMachineFactory<?> factory) factory.toggleSorting();
+        }
         });
 
         private final TriConsumer<TileEntityMekanism, Player, Integer> consumerForTile;
