@@ -1,5 +1,8 @@
 package io.github.masyumero.mekavaritia.common.tile.factory;
 
+import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
+import io.github.masyumero.mekavaritia.common.config.LoadConfig;
+import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAUpgradeUtil;
 import lombok.Getter;
 import mekanism.api.IContentsListener;
@@ -132,13 +135,33 @@ public class TileEntityItemStackGasToItemStackMAFactory extends TileEntityItemTo
     }
 
     private long getGasTankCapacity() {
-        return TileEntityAdvancedElectricMachine.MAX_GAS * tier.processes * tier.processes;
-        //return switch (tier) {
-        //    case
-        //    case
-        //    case
-        //    case
-        //};
+        if (LoadConfig.MA_MORE_CAPACITY_CONFIG.moreCapacityMode.get()) {
+            FactoryType type = Attribute.get(getBlockType(), AttributeFactoryType.class).getFactoryType();
+            MAFactoryTier tier = MAAttribute.getTier(getBlockType(), MAFactoryTier.class);
+            return switch (type) {
+                case COMPRESSING -> switch (tier) {
+                    case PRISMATIC -> LoadConfig.MA_MORE_CAPACITY_CONFIG.prismaticCompressing.get();
+                    case FLARE -> LoadConfig.MA_MORE_CAPACITY_CONFIG.flareCompressing.get();
+                    case NEURAL -> LoadConfig.MA_MORE_CAPACITY_CONFIG.neuralCompressing.get();
+                    case ETERNAL -> LoadConfig.MA_MORE_CAPACITY_CONFIG.eternalCompressing.get();
+                };
+                case INJECTING -> switch (tier) {
+                    case PRISMATIC -> LoadConfig.MA_MORE_CAPACITY_CONFIG.prismaticInjecting.get();
+                    case FLARE -> LoadConfig.MA_MORE_CAPACITY_CONFIG.flareInjecting.get();
+                    case NEURAL -> LoadConfig.MA_MORE_CAPACITY_CONFIG.neuralInjecting.get();
+                    case ETERNAL -> LoadConfig.MA_MORE_CAPACITY_CONFIG.eternalInjecting.get();
+                };
+                case PURIFYING -> switch (tier) {
+                    case PRISMATIC -> LoadConfig.MA_MORE_CAPACITY_CONFIG.prismaticPurifying.get();
+                    case FLARE -> LoadConfig.MA_MORE_CAPACITY_CONFIG.flarePurifying.get();
+                    case NEURAL -> LoadConfig.MA_MORE_CAPACITY_CONFIG.neuralPurifying.get();
+                    case ETERNAL -> LoadConfig.MA_MORE_CAPACITY_CONFIG.eternalPurifying.get();
+                };
+                default -> throw new IllegalStateException("Unexpected value: " + type);
+            };
+        } else {
+            return TileEntityAdvancedElectricMachine.MAX_GAS * tier.processes * tier.processes;
+        }
     }
 
     @Override
