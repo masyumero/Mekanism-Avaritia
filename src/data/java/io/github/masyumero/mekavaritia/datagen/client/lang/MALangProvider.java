@@ -2,6 +2,8 @@ package io.github.masyumero.mekavaritia.datagen.client.lang;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;
+import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryBlocks;
+import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineBlocks;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.registry.MAItems;
 import io.github.masyumero.mekavaritia.common.registry.MAModules;
@@ -43,8 +45,8 @@ public class MALangProvider extends BaseLanguageProvider {
 
     private void addBlocks() {
         MABlocks.BLOCK.getAllBlocks().forEach(this::addENAny);
-        //MAAdvancedFactoryBlocks.BLOCKS.getAllBlocks().forEach(this::addENAny);
-        //MAMoreMachineBlocks.BLOCKS.getAllBlocks().forEach(this::addENAny);
+        MAAdvancedFactoryBlocks.BLOCKS.getAllBlocks().forEach(this::addENAny);
+        MAMoreMachineBlocks.BLOCKS.getAllBlocks().forEach(this::addENAny);
     }
 
     private void addItem() {
