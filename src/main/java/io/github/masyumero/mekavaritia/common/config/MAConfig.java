@@ -66,6 +66,9 @@ public class MAConfig extends BaseMekanismConfig {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
         builder.comment("Config").push(MekanismAvaritia.MODID);
 
+        builder.comment("Integrations").push("integrations");
+        builder.pop();
+
         final String noteUC = "Internal buffer in Joules of each 'TIER' universal cable.(long)";
         builder.comment("Universal Cables").push("universal cables");
         prismaticUniversalCableCapacity = CachedFloatingLongValue.define(this, builder, noteUC,"prismaticUniversalCable", FloatingLong.createConst(131_072_000L));
