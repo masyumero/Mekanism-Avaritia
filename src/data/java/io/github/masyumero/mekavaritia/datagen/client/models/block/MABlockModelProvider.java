@@ -3,14 +3,15 @@ package io.github.masyumero.mekavaritia.datagen.client.models.block;
 import com.jerry.mekaf.common.content.blocktype.AdvancedFactoryType;
 import com.jerry.mekmm.common.content.blocktype.MoreMachineFactoryType;
 import com.jerry.mekmm.common.util.MoreMachineEnumUtils;
+
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryBlocks;
 import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineBlocks;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
-
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
+
 import mekanism.api.tier.ITier;
 import mekanism.common.Mekanism;
 import mekanism.common.block.attribute.Attribute;
@@ -84,6 +85,11 @@ public class MABlockModelProvider extends MABaseBlockModelsProvider {
         cable(MABlocks.FLARE_UNIVERSAL_CABLE);
         cable(MABlocks.NEURAL_UNIVERSAL_CABLE);
         cable(MABlocks.ETERNAL_UNIVERSAL_CABLE);
+
+        chemicalTank(MABlocks.PRISMATIC_CHEMICAL_TANK);
+        chemicalTank(MABlocks.FLARE_CHEMICAL_TANK);
+        chemicalTank(MABlocks.NEURAL_CHEMICAL_TANK);
+        chemicalTank(MABlocks.ETERNAL_CHEMICAL_TANK);
     }
 
     private void transporter(BlockRegistryObject<?, ?> transmitter) {

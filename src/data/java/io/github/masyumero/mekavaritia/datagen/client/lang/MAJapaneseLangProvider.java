@@ -84,6 +84,9 @@ public class MAJapaneseLangProvider extends BaseLanguageProvider implements IEng
         addWord("tube", "チューブ");
         addWord("conductor", "コンダクター");
         addWord("cable", "ケーブル");
+        // Tank
+        addWord("chemical","化学");
+        addWord("tank", "タンク");
         // Induction
         addWord("induction", "インダクション");
         addWord("cell", "セル");

@@ -13,6 +13,7 @@ import io.github.masyumero.mekavaritia.api.tier.MATier;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionCell;
 import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionProvider;
+import io.github.masyumero.mekavaritia.common.tier.MACTTier;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.tier.MAICTier;
 import io.github.masyumero.mekavaritia.common.tier.MAIPTier;
@@ -91,6 +92,18 @@ public abstract class MABaseBlockModelsProvider extends BlockStateProvider {
 
         getVariantBuilder(providerBlockRO.getBlock())
                 .forAllStatesExcept(state -> builder.modelFile(models().getExistingFile(providerPath)).build());
+    }
+
+    protected void chemicalTank(BlockRegistryObject<?, ?> blockRO) {
+        ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+        MATier tier = MAAttribute.getTier(blockRO.getBlock(), MACTTier.class).getMATier();
+        ResourceLocation path = MAUtils.rl("block/chemical_tank" + tier.getLowerName());
+
+        simpleBlockItem(blockRO.getBlock(),
+                models().withExistingParent(path.getPath(), Mekanism.rl("block/chemical_tank/base"))
+                        .texture("valve", MAUtils.rl("block/models/chemical_tank_" + tier.getLowerName() +"_valve")));
+
+        machineState(blockRO, null, new ModelFile.UncheckedModelFile(path));
     }
 
     protected void simpleFactoryMachineBlock(BlockRegistryObject<?, ?> blockRO) {

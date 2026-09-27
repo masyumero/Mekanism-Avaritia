@@ -1,6 +1,7 @@
 package io.github.masyumero.mekavaritia.client.events;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
+import io.github.masyumero.mekavaritia.client.gui.GuiMAChemicalTank;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiElectricNeutronCollectorMachine;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAAdvancedFactory;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAFactory;
@@ -72,6 +73,7 @@ public class ClientRegistration {
     public static void registerContainers(RegisterEvent event) {
         event.register(Registries.MENU, helper -> {
             ClientRegistrationUtil.registerScreen(MAContainerTypes.ELECTRIC_NEUTRON_COLLECTOR, GuiElectricNeutronCollectorMachine::new);
+            ClientRegistrationUtil.registerScreen(MAContainerTypes.CHEMICAL_TANK, GuiMAChemicalTank::new);
             ClientRegistrationUtil.registerScreen(MAContainerTypes.FACTORY, GuiMAFactory::new);
             if (MAAddons.MEKMM.isLoaded()) {
                 ClientRegistrationUtil.registerScreen(MAAdvancedFactoryContainerTypes.ADVANCED_FACTORY, GuiMAAdvancedFactory::new);

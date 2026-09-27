@@ -9,11 +9,13 @@ import io.github.masyumero.mekavaritia.common.block.prefab.BlockMAFactoryMachine
 import io.github.masyumero.mekavaritia.common.block.transmitter.*;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAMachine;
+import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockChemicalTank;
 import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionCell;
 import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionProvider;
 import io.github.masyumero.mekavaritia.common.item.block.machine.ItemBlockMAFactory;
 import io.github.masyumero.mekavaritia.common.item.block.transmitter.*;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionCell;
@@ -47,6 +49,11 @@ public class MABlocks {
     }
 
     private static <BLOCK extends Block, ITEM extends BlockItem> BlockRegistryObject<BLOCK, ITEM> registerTieredBlock(BlockType type, String registerName, Function<MapColor, ? extends BLOCK> blockSupplier, Function<BLOCK, ITEM> itemCreator) {
+        IMATier tier = Objects.requireNonNull(type.get(MAAttributeTier.class)).tier();
+        return BLOCK.register(registerName, () -> blockSupplier.apply(tier.getMATier().getMapColor()), itemCreator);
+    }
+
+    private static <BLOCK extends Block, ITEM extends BlockItem> BlockRegistryObject<BLOCK, ITEM> registerTieredBlock_1(BlockType type, String registerName, Function<MapColor, ? extends BLOCK> blockSupplier, Function<BLOCK, ITEM> itemCreator) {
         IMATier tier = Objects.requireNonNull(type.get(MAAttributeTier.class)).tier();
         return BLOCK.register(registerName, () -> blockSupplier.apply(tier.getMATier().getMapColor()), itemCreator);
     }
@@ -98,6 +105,11 @@ public class MABlocks {
     public static final BlockRegistryObject<MABlockThermodynamicConductor, MAItemBlockThermodynamicConductor> FLARE_THERMODYNAMIC_CONDUCTOR = registerThermodynamicConductor("flare", ConductorTier.ADVANCED);
     public static final BlockRegistryObject<MABlockThermodynamicConductor, MAItemBlockThermodynamicConductor> NEURAL_THERMODYNAMIC_CONDUCTOR = registerThermodynamicConductor("neural", ConductorTier.ELITE);
     public static final BlockRegistryObject<MABlockThermodynamicConductor, MAItemBlockThermodynamicConductor> ETERNAL_THERMODYNAMIC_CONDUCTOR = registerThermodynamicConductor("eternal", ConductorTier.ULTIMATE);
+    // Chemical Tanks
+    public static final BlockRegistryObject<BlockTile.BlockTileModel<MATileEntityChemicalTank, MAMachine<MATileEntityChemicalTank>>, MAItemBlockChemicalTank> PRISMATIC_CHEMICAL_TANK = registerChemicalTank("prismatic", MABlockTypes.PRISMATIC_CHEMICAL_TANK);
+    public static final BlockRegistryObject<BlockTile.BlockTileModel<MATileEntityChemicalTank, MAMachine<MATileEntityChemicalTank>>, MAItemBlockChemicalTank> FLARE_CHEMICAL_TANK = registerChemicalTank("flare", MABlockTypes.FLARE_CHEMICAL_TANK);
+    public static final BlockRegistryObject<BlockTile.BlockTileModel<MATileEntityChemicalTank, MAMachine<MATileEntityChemicalTank>>, MAItemBlockChemicalTank> NEURAL_CHEMICAL_TANK = registerChemicalTank("neural", MABlockTypes.NEURAL_CHEMICAL_TANK);
+    public static final BlockRegistryObject<BlockTile.BlockTileModel<MATileEntityChemicalTank, MAMachine<MATileEntityChemicalTank>>, MAItemBlockChemicalTank> ETERNAL_CHEMICAL_TANK = registerChemicalTank("eternal", MABlockTypes.ETERNAL_CHEMICAL_TANK);
     
     private static <TILE extends TileEntityMAFactory<?>> BlockRegistryObject<BlockMAFactoryMachine.BlockMAFactory<?>, ItemBlockMAFactory> registerFactory(MAFactory<TILE> type) {
         IMATier tier = Objects.requireNonNull(type.get(MAAttributeTier.class)).tier();
@@ -134,6 +146,10 @@ public class MABlocks {
 
     private static BlockRegistryObject<MABlockThermodynamicConductor, MAItemBlockThermodynamicConductor> registerThermodynamicConductor(String tileName, ConductorTier tier) {
         return registerTieredBlock(tileName, "_thermodynamic_conductor", () -> new MABlockThermodynamicConductor(tier), MAItemBlockThermodynamicConductor::new);
+    }
+
+    private static BlockRegistryObject<BlockTile.BlockTileModel<MATileEntityChemicalTank, MAMachine<MATileEntityChemicalTank>>, MAItemBlockChemicalTank> registerChemicalTank(String tileName, MAMachine<MATileEntityChemicalTank> type) {
+        return registerTieredBlock_1(type, tileName + "_chemical_tank", color -> new BlockTile.BlockTileModel<>(type, properties -> properties.mapColor(color)), MAItemBlockChemicalTank::new);
     }
 
     @SuppressWarnings("unchecked")

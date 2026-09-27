@@ -9,14 +9,17 @@ import fr.iglee42.evolvedmekanism.registries.EMTileEntityTypes;
 import fr.iglee42.evolvedmekanism.tiles.machine.TileEntityAlloyer;
 import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeTier;
+import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeUpgradeable;
 import io.github.masyumero.mekavaritia.common.config.LoadConfig;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MABlockShapes;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAMachine;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
+import io.github.masyumero.mekavaritia.common.tier.MACTTier;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.tier.MAICTier;
 import io.github.masyumero.mekavaritia.common.tier.MAIPTier;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionCell;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionProvider;
@@ -24,11 +27,15 @@ import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
 import io.github.masyumero.mekavaritia.common.util.MAUpgradeUtil;
 import mekanism.api.Upgrade;
 import mekanism.common.MekanismLang;
+import mekanism.common.block.attribute.AttributeParticleFX;
+import mekanism.common.block.attribute.AttributeStateActive;
+import mekanism.common.block.attribute.AttributeUpgradeSupport;
 import mekanism.common.block.attribute.Attributes;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.content.blocktype.BlockShapes;
 import mekanism.common.content.blocktype.BlockTypeTile;
 import mekanism.common.content.blocktype.FactoryType;
+import mekanism.common.registration.impl.BlockRegistryObject;
 import mekanism.common.registration.impl.TileEntityTypeRegistryObject;
 import mekanism.common.registries.MekanismContainerTypes;
 import mekanism.common.registries.MekanismSounds;
@@ -133,7 +140,7 @@ public class MABlockTypes {
             .withSound(MekanismSounds.RESISTIVE_HEATER)
             .withGui(() -> MAContainerTypes.ELECTRIC_NEUTRON_COLLECTOR)
             .withEnergyConfig(LoadConfig.USAGE_CONFIG.electricNeutronCollector, LoadConfig.STORAGE_CONFIG.electricNeutronCollector)
-            .withSupportedUpgrades(MAAddons.MEKANISM_EXTRAS.isLoaded() ? EnumSet.of(Upgrade.MUFFLING,ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.MUFFLING))
+            .withSupportedUpgrades(MAAddons.MEKANISM_EXTRAS.isLoaded() ? EnumSet.of(Upgrade.MUFFLING, ExtraUpgrade.CREATIVE) : EnumSet.of(Upgrade.MUFFLING))
             .withComputerSupport("ElectricNeutronCollector")
             .replace(Attributes.ACTIVE_LIGHT)
             .build();
@@ -148,7 +155,11 @@ public class MABlockTypes {
     public static final BlockTypeTile<TileEntityMAInductionProvider> FLARE_INDUCTION_PROVIDER = createInductionProvider(MAIPTier.FLARE, () -> MATileEntityTypes.FLARE_INDUCTION_PROVIDER);
     public static final BlockTypeTile<TileEntityMAInductionProvider> NEURAL_INDUCTION_PROVIDER = createInductionProvider(MAIPTier.NEURAL, () -> MATileEntityTypes.NEURAL_INDUCTION_PROVIDER);
     public static final BlockTypeTile<TileEntityMAInductionProvider> ETERNAL_INDUCTION_PROVIDER = createInductionProvider(MAIPTier.ETERNAL, () -> MATileEntityTypes.ETERNAL_INDUCTION_PROVIDER);
-
+    // Chemical Tank
+    public static final MAMachine<MATileEntityChemicalTank> PRISMATIC_CHEMICAL_TANK = createChemicalTank(MACTTier.PRISMATIC, () -> MATileEntityTypes.PRISMATIC_CHEMICAL_TANK, () -> MABlocks.FLARE_CHEMICAL_TANK);
+    public static final MAMachine<MATileEntityChemicalTank> FLARE_CHEMICAL_TANK = createChemicalTank(MACTTier.FLARE, () -> MATileEntityTypes.FLARE_CHEMICAL_TANK, () -> MABlocks.NEURAL_CHEMICAL_TANK);
+    public static final MAMachine<MATileEntityChemicalTank> NEURAL_CHEMICAL_TANK = createChemicalTank(MACTTier.NEURAL, () -> MATileEntityTypes.NEURAL_CHEMICAL_TANK, () -> MABlocks.ETERNAL_CHEMICAL_TANK);
+    public static final MAMachine<MATileEntityChemicalTank> ETERNAL_CHEMICAL_TANK = createChemicalTank(MACTTier.ETERNAL, () -> MATileEntityTypes.ETERNAL_CHEMICAL_TANK, null);
 
     static {
         for (MAFactoryTier tier : MAEnumUtils.MA_FACTORY_TIERS) {
@@ -174,6 +185,16 @@ public class MABlockTypes {
         return BlockTypeTile.BlockTileBuilder.createBlock(tile, MekanismLang.DESCRIPTION_INDUCTION_PROVIDER)
                 .with(new MAAttributeTier<>(tier))
                 .internalMultiblock()
+                .build();
+    }
+
+    private static <TILE extends MATileEntityChemicalTank> MAMachine<TILE> createChemicalTank(MACTTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile, Supplier<BlockRegistryObject<?, ?>> upgradeBlock) {
+        return MAMachine.MAMachineBuilder.createMAMachine(tile, MekanismLang.DESCRIPTION_CHEMICAL_TANK)
+                .withGui(() -> MAContainerTypes.CHEMICAL_TANK)
+                .withCustomShape(BlockShapes.CHEMICAL_TANK)
+                .with(new MAAttributeTier<>(tier), new MAAttributeUpgradeable(upgradeBlock))
+                .without(AttributeParticleFX.class, AttributeStateActive.class, AttributeUpgradeSupport.class)
+                .withComputerSupport(tier.getMATier().getLowerName() + "ChemicalTank")
                 .build();
     }
 }

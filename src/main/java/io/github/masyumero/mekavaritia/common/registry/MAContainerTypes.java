@@ -2,6 +2,7 @@ package io.github.masyumero.mekavaritia.common.registry;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.inventory.container.tile.MAFactoryContainer;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;
@@ -13,7 +14,7 @@ public class MAContainerTypes {
     public static final ContainerTypeDeferredRegister CONTAINER_TYPES = new ContainerTypeDeferredRegister(MekanismAvaritia.MODID);
 
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityElectricNeutronCollector>> ELECTRIC_NEUTRON_COLLECTOR = CONTAINER_TYPES.register(MABlocks.ELECTRIC_NEUTRON_COLLECTOR, TileEntityElectricNeutronCollector.class);
-
+    public static final ContainerTypeRegistryObject<MekanismTileContainer<MATileEntityChemicalTank>> CHEMICAL_TANK = CONTAINER_TYPES.custom("ma_chemical_tank", MATileEntityChemicalTank.class).armorSideBar().build();
 
     public static final ContainerTypeRegistryObject<MekanismTileContainer<TileEntityMAFactory<?>>> FACTORY = CONTAINER_TYPES.register("factory", factoryClass(), MAFactoryContainer::new);
 
