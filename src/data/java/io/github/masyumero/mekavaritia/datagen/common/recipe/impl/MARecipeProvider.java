@@ -42,7 +42,8 @@ public class MARecipeProvider extends BaseRecipeProvider {
                 new MAElectricNeutronCollectorRecipeProvider(),
                 new MASmeltingRecipeProvider(),
                 new MAExtremeCraftingRecipeProvider(),
-                new MATransmitterRecipeProvider()
+                new MATransmitterRecipeProvider(),
+                new ChemicalTankRecipeProvider()
         );
     }
 
