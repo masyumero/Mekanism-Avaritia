@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "mekanism_avaritia:block/chemical_tankprismatic",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "mekanism_avaritia:block/chemical_tankprismatic"
+    },
+    "facing=south": {
+      "model": "mekanism_avaritia:block/chemical_tankprismatic",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "mekanism_avaritia:block/chemical_tankprismatic",
+      "y": -90
+    }
+  }
+}

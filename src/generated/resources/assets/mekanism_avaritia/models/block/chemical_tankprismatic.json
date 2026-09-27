@@ -1,0 +1,6 @@
+{
+  "parent": "mekanism:block/chemical_tank/base",
+  "textures": {
+    "valve": "mekanism_avaritia:block/models/chemical_tank_prismatic_valve"
+  }
+}
