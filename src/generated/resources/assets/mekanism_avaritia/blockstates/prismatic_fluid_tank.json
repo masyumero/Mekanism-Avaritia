@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "active=false,fluid_logged=empty": {
+      "model": "mekanism:block/fluid_tank"
+    },
+    "active=false,fluid_logged=lava": {
+      "model": "mekanism:block/fluid_tank"
+    },
+    "active=false,fluid_logged=water": {
+      "model": "mekanism:block/fluid_tank"
+    },
+    "active=true,fluid_logged=empty": {
+      "model": "mekanism:block/fluid_tank_active"
+    },
+    "active=true,fluid_logged=lava": {
+      "model": "mekanism:block/fluid_tank_active"
+    },
+    "active=true,fluid_logged=water": {
+      "model": "mekanism:block/fluid_tank_active"
+    }
+  }
+}
