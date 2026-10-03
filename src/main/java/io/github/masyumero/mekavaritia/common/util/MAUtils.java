@@ -20,6 +20,10 @@ public class MAUtils {
         return ResourceLocation.fromNamespaceAndPath("evolvedmekanism", path);
     }
 
+    public static ResourceLocation mekanism(String path) {
+        return ResourceLocation.fromNamespaceAndPath("mekanism", path);
+    }
+
     public static boolean isAlloying(FactoryType type) {
         if (MAAddons.EVOLVEDMEKANISM.isLoaded()) {
             return type == EMFactoryType.ALLOYING;

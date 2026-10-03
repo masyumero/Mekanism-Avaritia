@@ -1,11 +1,13 @@
 package io.github.masyumero.mekavaritia.client.events;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
+import io.github.masyumero.mekavaritia.api.tier.MATierColorMap;
 import io.github.masyumero.mekavaritia.client.gui.GuiMAChemicalTank;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiElectricNeutronCollectorMachine;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAAdvancedFactory;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAFactory;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAMoreMachineFactory;
+import io.github.masyumero.mekavaritia.client.render.tileentity.RenderMAFluidTank;
 import io.github.masyumero.mekavaritia.client.render.transmitter.*;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
@@ -63,6 +65,8 @@ public class ClientRegistration {
         // thermodynamic conductor
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderMAThermodynamicConductor::new, MATileEntityTypes.PRISMATIC_THERMODYNAMIC_CONDUCTOR,
                 MATileEntityTypes.FLARE_THERMODYNAMIC_CONDUCTOR, MATileEntityTypes.NEURAL_THERMODYNAMIC_CONDUCTOR, MATileEntityTypes.ETERNAL_THERMODYNAMIC_CONDUCTOR);
+        ClientRegistrationUtil.bindTileEntityRenderer(event, RenderMAFluidTank::new, MATileEntityTypes.PRISMATIC_FLUID_TANK, MATileEntityTypes.FLARE_FLUID_TANK,
+                MATileEntityTypes.NEURAL_FLUID_TANK, MATileEntityTypes.ETERNAL_FLUID_TANK);
     }
 
     @SubscribeEvent
@@ -98,8 +102,7 @@ public class ClientRegistration {
             if (tintIndex == 1) {
                 MAFTTier tier = MAAttribute.getTier(state.getBlock(), MAFTTier.class);
                 if (tier != null) {
-                    int color = tier.getMATier().getRgbSupplier().getAsInt();
-                    return MekanismRenderer.getColorARGB(MAColorUtils.red(color), MAColorUtils.green(color), MAColorUtils.blue(color), 1);
+                    return tier.getMATier().getRgbSupplier().getAsInt();
                 }
             }
             return -1;

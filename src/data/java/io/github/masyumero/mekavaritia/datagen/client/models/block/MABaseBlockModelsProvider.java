@@ -106,6 +106,10 @@ public abstract class MABaseBlockModelsProvider extends BlockStateProvider {
         machineState(blockRO, null, new ModelFile.UncheckedModelFile(path));
     }
 
+    protected void fluidTank(BlockRegistryObject<?, ?> blockRO) {
+        activeState(blockRO, new ModelFile.UncheckedModelFile(MAUtils.mekanism("block/fluid_tank_active")), new ModelFile.UncheckedModelFile(MAUtils.mekanism("block/fluid_tank")));
+    }
+
     protected void simpleFactoryMachineBlock(BlockRegistryObject<?, ?> blockRO) {
         FactoryType type = Attribute.get(blockRO, AttributeFactoryType.class).getFactoryType();
         MAFactoryTier tier = MAAttribute.getTier(blockRO.getBlock(), MAFactoryTier.class);
@@ -228,5 +232,20 @@ public abstract class MABaseBlockModelsProvider extends BlockStateProvider {
                         .rotationY(yRot).build();
             }
         }, BlockStateHelper.FLUID_LOGGED);
+    }
+
+    public void activeState(BlockRegistryObject<?, ?> blockRO, ModelFile activeBlockModel, ModelFile blockModel) {
+        ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+        VariantBlockStateBuilder variantBuilder = getVariantBuilder(blockRO.getBlock());
+
+        variantBuilder.forAllStatesExcept(state -> {
+            if (Attribute.isActive(state)) {
+                return builder
+                        .modelFile(activeBlockModel).build();
+            } else {
+                return builder
+                        .modelFile(blockModel).build();
+            }
+        });
     }
 }
