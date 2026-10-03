@@ -7,6 +7,7 @@ import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAAdvancedFactory;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAFactory;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAMoreMachineFactory;
 import io.github.masyumero.mekavaritia.client.render.transmitter.*;
+import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryContainerTypes;
 import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineContainerTypes;
@@ -14,7 +15,9 @@ import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.registry.MAContainerTypes;
 import io.github.masyumero.mekavaritia.common.registry.MAModules;
 import io.github.masyumero.mekavaritia.common.registry.MATileEntityTypes;
+import io.github.masyumero.mekavaritia.common.tier.MAFTTier;
 import io.github.masyumero.mekavaritia.common.tile.transmitter.TileEntityMALogisticalTransporter;
+import io.github.masyumero.mekavaritia.common.util.MAColorUtils;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 
 import mekanism.api.gear.IModuleHelper;
@@ -91,6 +94,16 @@ public class ClientRegistration {
 
     @SubscribeEvent
     public static void registerBlockColorHandlers(RegisterColorHandlersEvent.Block event) {
+        ClientRegistrationUtil.registerBlockColorHandler(event, (state, world, pos, tintIndex) -> {
+            if (tintIndex == 1) {
+                MAFTTier tier = MAAttribute.getTier(state.getBlock(), MAFTTier.class);
+                if (tier != null) {
+                    int color = tier.getMATier().getRgbSupplier().getAsInt();
+                    return MekanismRenderer.getColorARGB(MAColorUtils.red(color), MAColorUtils.green(color), MAColorUtils.blue(color), 1);
+                }
+            }
+            return -1;
+        }, MABlocks.PRISMATIC_FLUID_TANK, MABlocks.FLARE_FLUID_TANK, MABlocks.NEURAL_FLUID_TANK, MABlocks.ETERNAL_FLUID_TANK);
         ClientRegistrationUtil.registerBlockColorHandler(event, (state, world, pos, tintIndex) -> {
                     if (tintIndex == 1 && pos != null) {
                         TileEntityMALogisticalTransporter transporter = WorldUtils.getTileEntity(TileEntityMALogisticalTransporter.class, world, pos);

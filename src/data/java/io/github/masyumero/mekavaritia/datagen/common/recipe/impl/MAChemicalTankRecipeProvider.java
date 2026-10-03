@@ -22,7 +22,7 @@ import net.minecraft.world.item.Item;
 
 import java.util.function.Consumer;
 
-public class ChemicalTankRecipeProvider implements ISubRecipeProvider {
+public class MAChemicalTankRecipeProvider implements ISubRecipeProvider {
 
     private static final RecipePattern CHEMICAL_TANK_PATTERN = RecipePattern.createPattern(
             TripleLine.of(Pattern.ALLOY, Pattern.OSMIUM, Pattern.ALLOY),

@@ -5,6 +5,7 @@ import com.google.common.collect.Table;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.api.tier.IMATier;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeTier;
+import io.github.masyumero.mekavaritia.common.block.basic.MABlockFluidTank;
 import io.github.masyumero.mekavaritia.common.block.prefab.BlockMAFactoryMachine;
 import io.github.masyumero.mekavaritia.common.block.transmitter.*;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAFactory;
@@ -13,9 +14,11 @@ import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockChemicalTank
 import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionCell;
 import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionProvider;
 import io.github.masyumero.mekavaritia.common.item.block.machine.ItemBlockMAFactory;
+import io.github.masyumero.mekavaritia.common.item.block.machine.MAItemBlockFluidTank;
 import io.github.masyumero.mekavaritia.common.item.block.transmitter.*;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityFluidTank;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionCell;
@@ -80,6 +83,11 @@ public class MABlocks {
     public static final BlockRegistryObject<BlockTile<TileEntityMAInductionProvider, BlockTypeTile<TileEntityMAInductionProvider>>, MAItemBlockInductionProvider> FLARE_INDUCTION_PROVIDER = registerInductionProvider("flare", MABlockTypes.FLARE_INDUCTION_PROVIDER);
     public static final BlockRegistryObject<BlockTile<TileEntityMAInductionProvider, BlockTypeTile<TileEntityMAInductionProvider>>, MAItemBlockInductionProvider> NEURAL_INDUCTION_PROVIDER = registerInductionProvider("neural", MABlockTypes.NEURAL_INDUCTION_PROVIDER);
     public static final BlockRegistryObject<BlockTile<TileEntityMAInductionProvider, BlockTypeTile<TileEntityMAInductionProvider>>, MAItemBlockInductionProvider> ETERNAL_INDUCTION_PROVIDER = registerInductionProvider("eternal", MABlockTypes.ETERNAL_INDUCTION_PROVIDER);
+    // Fluid Tanks
+    public static final BlockRegistryObject<MABlockFluidTank, MAItemBlockFluidTank> PRISMATIC_FLUID_TANK = registerFluidTank("prismatic", MABlockTypes.PRISMATIC_FLUID_TANK);
+    public static final BlockRegistryObject<MABlockFluidTank, MAItemBlockFluidTank> FLARE_FLUID_TANK = registerFluidTank("flare", MABlockTypes.FLARE_FLUID_TANK);
+    public static final BlockRegistryObject<MABlockFluidTank, MAItemBlockFluidTank> NEURAL_FLUID_TANK = registerFluidTank("neural", MABlockTypes.NEURAL_FLUID_TANK);
+    public static final BlockRegistryObject<MABlockFluidTank, MAItemBlockFluidTank> ETERNAL_FLUID_TANK = registerFluidTank("eternal", MABlockTypes.ETERNAL_FLUID_TANK);
     // Universal Cables
     public static final BlockRegistryObject<MABlockUniversalCable, MAItemBlockUniversalCable> PRISMATIC_UNIVERSAL_CABLE = registerUniversalCable("prismatic", CableTier.BASIC);
     public static final BlockRegistryObject<MABlockUniversalCable, MAItemBlockUniversalCable> FLARE_UNIVERSAL_CABLE = registerUniversalCable("flare", CableTier.ADVANCED);
@@ -126,6 +134,10 @@ public class MABlocks {
 
     private static BlockRegistryObject<BlockTile<TileEntityMAInductionProvider, BlockTypeTile<TileEntityMAInductionProvider>>, MAItemBlockInductionProvider> registerInductionProvider(String tileName, BlockTypeTile<TileEntityMAInductionProvider> type) {
         return registerTieredBlock(type, tileName + "_induction_provider", color -> new BlockTile<>(type, properties -> properties.mapColor(color)), MAItemBlockInductionProvider::new);
+    }
+
+    private static BlockRegistryObject<MABlockFluidTank, MAItemBlockFluidTank> registerFluidTank(String tileName, MAMachine<MATileEntityFluidTank> type) {
+        return registerTieredBlock(tileName, "_fluid_tank", () -> new MABlockFluidTank(type), MAItemBlockFluidTank::new);
     }
     
     private static BlockRegistryObject<MABlockUniversalCable, MAItemBlockUniversalCable> registerUniversalCable(String tileName, CableTier tier) {

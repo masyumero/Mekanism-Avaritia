@@ -15,11 +15,9 @@ import io.github.masyumero.mekavaritia.common.content.blocktype.MABlockShapes;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAMachine;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
-import io.github.masyumero.mekavaritia.common.tier.MACTTier;
-import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
-import io.github.masyumero.mekavaritia.common.tier.MAICTier;
-import io.github.masyumero.mekavaritia.common.tier.MAIPTier;
+import io.github.masyumero.mekavaritia.common.tier.*;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityFluidTank;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionCell;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionProvider;
@@ -27,10 +25,7 @@ import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
 import io.github.masyumero.mekavaritia.common.util.MAUpgradeUtil;
 import mekanism.api.Upgrade;
 import mekanism.common.MekanismLang;
-import mekanism.common.block.attribute.AttributeParticleFX;
-import mekanism.common.block.attribute.AttributeStateActive;
-import mekanism.common.block.attribute.AttributeUpgradeSupport;
-import mekanism.common.block.attribute.Attributes;
+import mekanism.common.block.attribute.*;
 import mekanism.common.config.MekanismConfig;
 import mekanism.common.content.blocktype.BlockShapes;
 import mekanism.common.content.blocktype.BlockTypeTile;
@@ -155,6 +150,11 @@ public class MABlockTypes {
     public static final BlockTypeTile<TileEntityMAInductionProvider> FLARE_INDUCTION_PROVIDER = createInductionProvider(MAIPTier.FLARE, () -> MATileEntityTypes.FLARE_INDUCTION_PROVIDER);
     public static final BlockTypeTile<TileEntityMAInductionProvider> NEURAL_INDUCTION_PROVIDER = createInductionProvider(MAIPTier.NEURAL, () -> MATileEntityTypes.NEURAL_INDUCTION_PROVIDER);
     public static final BlockTypeTile<TileEntityMAInductionProvider> ETERNAL_INDUCTION_PROVIDER = createInductionProvider(MAIPTier.ETERNAL, () -> MATileEntityTypes.ETERNAL_INDUCTION_PROVIDER);
+    // Fluid Tank
+    public static final MAMachine<MATileEntityFluidTank> PRISMATIC_FLUID_TANK = createFluidTank(MAFTTier.PRISMATIC, () -> MATileEntityTypes.PRISMATIC_FLUID_TANK, () -> MABlocks.FLARE_FLUID_TANK);
+    public static final MAMachine<MATileEntityFluidTank> FLARE_FLUID_TANK = createFluidTank(MAFTTier.FLARE, () -> MATileEntityTypes.FLARE_FLUID_TANK, () -> MABlocks.NEURAL_FLUID_TANK);
+    public static final MAMachine<MATileEntityFluidTank> NEURAL_FLUID_TANK = createFluidTank(MAFTTier.NEURAL, () -> MATileEntityTypes.NEURAL_FLUID_TANK, () -> MABlocks.ETERNAL_FLUID_TANK);
+    public static final MAMachine<MATileEntityFluidTank> ETERNAL_FLUID_TANK = createFluidTank(MAFTTier.ETERNAL, () -> MATileEntityTypes.ETERNAL_FLUID_TANK, null);
     // Chemical Tank
     public static final MAMachine<MATileEntityChemicalTank> PRISMATIC_CHEMICAL_TANK = createChemicalTank(MACTTier.PRISMATIC, () -> MATileEntityTypes.PRISMATIC_CHEMICAL_TANK, () -> MABlocks.FLARE_CHEMICAL_TANK);
     public static final MAMachine<MATileEntityChemicalTank> FLARE_CHEMICAL_TANK = createChemicalTank(MACTTier.FLARE, () -> MATileEntityTypes.FLARE_CHEMICAL_TANK, () -> MABlocks.NEURAL_CHEMICAL_TANK);
@@ -185,6 +185,16 @@ public class MABlockTypes {
         return BlockTypeTile.BlockTileBuilder.createBlock(tile, MekanismLang.DESCRIPTION_INDUCTION_PROVIDER)
                 .with(new MAAttributeTier<>(tier))
                 .internalMultiblock()
+                .build();
+    }
+
+    private static <TILE extends MATileEntityFluidTank> MAMachine<TILE> createFluidTank(MAFTTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile, Supplier<BlockRegistryObject<?, ?>> upgradeBlock) {
+        return MAMachine.MAMachineBuilder.createMAMachine(tile, MekanismLang.DESCRIPTION_FLUID_TANK)
+                .withGui(() -> MAContainerTypes.FLUID_TANK)
+                .withCustomShape(BlockShapes.FLUID_TANK)
+                .with(new MAAttributeTier<>(tier), new MAAttributeUpgradeable(upgradeBlock))
+                .without(AttributeParticleFX.class, AttributeStateFacing.class, Attributes.AttributeRedstone.class, AttributeUpgradeSupport.class)
+                .withComputerSupport(tier.getMATier().getLowerName() + "FluidTank")
                 .build();
     }
 

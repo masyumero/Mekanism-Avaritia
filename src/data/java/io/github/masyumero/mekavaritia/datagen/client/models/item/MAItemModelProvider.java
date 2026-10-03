@@ -76,6 +76,11 @@ public class MAItemModelProvider extends MABaseItemModelProvider {
                 moreMachineFactoryBlock(MAMoreMachineBlocks.getMAMoreMachineFactory(tier, type));
             }
         }
+
+        fluidTank(MABlocks.PRISMATIC_FLUID_TANK);
+        fluidTank(MABlocks.FLARE_FLUID_TANK);
+        fluidTank(MABlocks.NEURAL_FLUID_TANK);
+        fluidTank(MABlocks.ETERNAL_FLUID_TANK);
     }
 
     private record Halo(ResourceLocation haloLoc, HaloSetting setting) {}

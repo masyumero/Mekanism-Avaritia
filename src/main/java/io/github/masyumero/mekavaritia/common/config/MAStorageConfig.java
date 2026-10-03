@@ -12,12 +12,14 @@ public class MAStorageConfig extends BaseMekanismConfig {
     private final ForgeConfigSpec configSpec;
     public final CachedFloatingLongValue electricNeutronCollector;
     public final CachedBooleanValue eternalChemicalTankLikeCreativeChemicalTank;
+    public final CachedBooleanValue eternalFluidTankLikeCreativeFluidTank;
 
     public MAStorageConfig() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
         builder.comment("Storage Config");
         electricNeutronCollector = CachedFloatingLongValue.define(this, builder, "Base energy storage (Joules).", "electricNeutronCollector", FloatingLong.create(160000L));
         eternalChemicalTankLikeCreativeChemicalTank = CachedBooleanValue.wrap(this, builder.comment("Make the behavior of the eternal chemicalTank the same as that of the creative chemicalTank.").define("eternalChemicalTankLikeCreativeChemicalTank", false));
+        eternalFluidTankLikeCreativeFluidTank = CachedBooleanValue.wrap(this, builder.comment("Make the behavior of the eternal fluidTank the same as that of the creative fluidTank.").define("eternalFluidTankLikeCreativeFluidTank", false));
         configSpec = builder.build();
     }
 

@@ -43,7 +43,8 @@ public class MARecipeProvider extends BaseRecipeProvider {
                 new MASmeltingRecipeProvider(),
                 new MAExtremeCraftingRecipeProvider(),
                 new MATransmitterRecipeProvider(),
-                new ChemicalTankRecipeProvider()
+                new MAChemicalTankRecipeProvider(),
+                new MAFluidTankRecipeProvider()
         );
     }
 
