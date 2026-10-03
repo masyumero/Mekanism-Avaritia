@@ -77,12 +77,6 @@ legacyForge {
             systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
 
-        register("dataClient") {
-            client()
-            gameDirectory = project.file('run-client')
-            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
-        }
-
         server {
             server()
             gameDirectory = project.file('run-server')
@@ -226,10 +220,6 @@ publishing {
             url "file://${project.projectDir}/repo"
         }
     }
-}
-
-tasks.named("runDataClient").configure {
-    dependsOn(tasks.named("runData"))
 }
 
 tasks.withType(JavaCompile).configureEach {
