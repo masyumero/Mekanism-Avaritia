@@ -1,7 +1,6 @@
 package io.github.masyumero.mekavaritia.client.events;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
-import io.github.masyumero.mekavaritia.api.tier.MATierColorMap;
 import io.github.masyumero.mekavaritia.client.gui.GuiMAChemicalTank;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiElectricNeutronCollectorMachine;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAAdvancedFactory;
@@ -13,13 +12,13 @@ import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryContainerTypes;
 import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineContainerTypes;
+import io.github.masyumero.mekavaritia.common.item.block.machine.MAItemBlockFluidTank;
 import io.github.masyumero.mekavaritia.common.registry.MABlocks;
 import io.github.masyumero.mekavaritia.common.registry.MAContainerTypes;
 import io.github.masyumero.mekavaritia.common.registry.MAModules;
 import io.github.masyumero.mekavaritia.common.registry.MATileEntityTypes;
 import io.github.masyumero.mekavaritia.common.tier.MAFTTier;
 import io.github.masyumero.mekavaritia.common.tile.transmitter.TileEntityMALogisticalTransporter;
-import io.github.masyumero.mekavaritia.common.util.MAColorUtils;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 
 import mekanism.api.gear.IModuleHelper;
@@ -32,6 +31,7 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -73,6 +73,7 @@ public class ClientRegistration {
     public static void onStitch(TextureStitchEvent.Post event) {
         TextureAtlas map = event.getAtlas();
         RenderMALogisticalTransporter.onStitch(map);
+        RenderMAFluidTank.resetCachedModels();
         RenderMAMechanicalPipe.onStitch();
     }
 
@@ -120,6 +121,17 @@ public class ClientRegistration {
                     return -1;
                 }, MABlocks.PRISMATIC_LOGISTICAL_TRANSPORTER, MABlocks.FLARE_LOGISTICAL_TRANSPORTER, MABlocks.NEURAL_LOGISTICAL_TRANSPORTER,
                 MABlocks.ETERNAL_LOGISTICAL_TRANSPORTER);
+    }
+
+    @SubscribeEvent
+    public static void registerItemColorHandlers(RegisterColorHandlersEvent.Item event) {
+        ClientRegistrationUtil.registerItemColorHandler(event, (stack, tintIndex) -> {
+            Item item = stack.getItem();
+            if (tintIndex == 1 && item instanceof MAItemBlockFluidTank tank) {
+                return tank.getMATier().getMATier().getRgbSupplier().getAsInt();
+            }
+            return -1;
+        }, MABlocks.PRISMATIC_FLUID_TANK, MABlocks.FLARE_FLUID_TANK, MABlocks.NEURAL_FLUID_TANK, MABlocks.ETERNAL_FLUID_TANK);
     }
 
     @SubscribeEvent
