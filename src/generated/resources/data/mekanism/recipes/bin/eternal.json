@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "A": {
+      "tag": "mekanism_avaritia:alloys/infinity"
+    },
+    "C": {
+      "tag": "forge:circuits/eternal"
+    },
+    "P": {
+      "item": "mekanism_avaritia:neural_bin"
+    },
+    "_": {
+      "tag": "forge:cobblestone/normal"
+    }
+  },
+  "pattern": [
+    "_C_",
+    "APA",
+    "___"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:eternal_bin"
+  }
+}

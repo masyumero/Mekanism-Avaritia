@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "A": {
+      "tag": "mekanism_avaritia:alloys/crystalline"
+    },
+    "C": {
+      "tag": "forge:circuits/prismatic"
+    },
+    "P": {
+      "item": "mekanism:ultimate_bin"
+    },
+    "_": {
+      "tag": "forge:cobblestone/normal"
+    }
+  },
+  "pattern": [
+    "_C_",
+    "APA",
+    "___"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:prismatic_bin"
+  }
+}

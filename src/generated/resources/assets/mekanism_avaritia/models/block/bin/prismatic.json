@@ -1,0 +1,11 @@
+{
+  "parent": "mekanism:block/bin/base",
+  "textures": {
+    "back": "mekanism_avaritia:block/bin/prismatic_back",
+    "bottom": "mekanism:block/bin/bottom",
+    "front": "mekanism_avaritia:block/bin/prismatic_front",
+    "led": "mekanism_avaritia:block/bin/prismatic_led",
+    "side": "mekanism_avaritia:block/bin/prismatic_side",
+    "top": "mekanism_avaritia:block/bin/prismatic_top"
+  }
+}

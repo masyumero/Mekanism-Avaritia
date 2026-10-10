@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "A": {
+      "tag": "mekanism_avaritia:alloys/blazing"
+    },
+    "C": {
+      "tag": "forge:circuits/flare"
+    },
+    "P": {
+      "item": "mekanism_avaritia:prismatic_bin"
+    },
+    "_": {
+      "tag": "forge:cobblestone/normal"
+    }
+  },
+  "pattern": [
+    "_C_",
+    "APA",
+    "___"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:flare_bin"
+  }
+}

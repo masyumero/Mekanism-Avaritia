@@ -1,0 +1,8 @@
+{
+  "parent": "mekanism:block/bin/active/basic",
+  "textures": {
+    "back": "mekanism_avaritia:block/bin/neural_back",
+    "led": "mekanism_avaritia:block/bin/neural_led",
+    "side": "mekanism_avaritia:block/bin/neural_side"
+  }
+}

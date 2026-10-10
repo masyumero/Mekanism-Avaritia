@@ -1,5 +1,18 @@
 {
   "values": [
+    "mekanism_avaritia:prismatic_bin",
+    "mekanism_avaritia:flare_bin",
+    "mekanism_avaritia:neural_bin",
+    "mekanism_avaritia:eternal_bin",
+    "mekanism_avaritia:prismatic_fluid_tank",
+    "mekanism_avaritia:flare_fluid_tank",
+    "mekanism_avaritia:neural_fluid_tank",
+    "mekanism_avaritia:eternal_fluid_tank",
+    "mekanism_avaritia:prismatic_chemical_tank",
+    "mekanism_avaritia:flare_chemical_tank",
+    "mekanism_avaritia:neural_chemical_tank",
+    "mekanism_avaritia:eternal_chemical_tank",
+    "mekanism_avaritia:electric_neutron_collector",
     "mekanism_avaritia:prismatic_smelting_factory",
     "mekanism_avaritia:prismatic_enriching_factory",
     "mekanism_avaritia:prismatic_crushing_factory",
