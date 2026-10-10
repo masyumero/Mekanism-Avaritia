@@ -95,6 +95,11 @@ public class MABlockModelProvider extends MABaseBlockModelsProvider {
         fluidTank(MABlocks.FLARE_FLUID_TANK);
         fluidTank(MABlocks.NEURAL_FLUID_TANK);
         fluidTank(MABlocks.ETERNAL_FLUID_TANK);
+
+        bin(MABlocks.PRISMATIC_BIN);
+        bin(MABlocks.FLARE_BIN);
+        bin(MABlocks.NEURAL_BIN);
+        bin(MABlocks.ETERNAL_BIN);
     }
 
     private void transporter(BlockRegistryObject<?, ?> transmitter) {

@@ -7,6 +7,7 @@ import fr.iglee42.evolvedmekanism.registries.EMTileEntityTypes;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityBin;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityFluidTank;
 import io.github.masyumero.mekavaritia.common.tile.factory.*;
@@ -53,6 +54,11 @@ public class MATileEntityTypes {
     }
 
     public static final TileEntityTypeRegistryObject<TileEntityElectricNeutronCollector> ELECTRIC_NEUTRON_COLLECTOR = TILE_ENTITY_TYPES.register(MABlocks.ELECTRIC_NEUTRON_COLLECTOR, TileEntityElectricNeutronCollector::new, TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    // bin
+    public static final TileEntityTypeRegistryObject<MATileEntityBin> PRISMATIC_BIN = TILE_ENTITY_TYPES.register(MABlocks.PRISMATIC_BIN, (pos, state) -> new MATileEntityBin(MABlocks.PRISMATIC_BIN, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<MATileEntityBin> FLARE_BIN = TILE_ENTITY_TYPES.register(MABlocks.FLARE_BIN, (pos, state) -> new MATileEntityBin(MABlocks.FLARE_BIN, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<MATileEntityBin> NEURAL_BIN = TILE_ENTITY_TYPES.register(MABlocks.NEURAL_BIN, (pos, state) -> new MATileEntityBin(MABlocks.NEURAL_BIN, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<MATileEntityBin> ETERNAL_BIN = TILE_ENTITY_TYPES.register(MABlocks.ETERNAL_BIN, (pos, state) -> new MATileEntityBin(MABlocks.ETERNAL_BIN, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
     // Induction Cells
     public static final TileEntityTypeRegistryObject<TileEntityMAInductionCell> PRISMATIC_INDUCTION_CELL = TILE_ENTITY_TYPES.register(MABlocks.PRISMATIC_INDUCTION_CELL, (pos, state) -> new TileEntityMAInductionCell(MABlocks.PRISMATIC_INDUCTION_CELL, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
     public static final TileEntityTypeRegistryObject<TileEntityMAInductionCell> FLARE_INDUCTION_CELL = TILE_ENTITY_TYPES.register(MABlocks.FLARE_INDUCTION_CELL, (pos, state) -> new TileEntityMAInductionCell(MABlocks.FLARE_INDUCTION_CELL, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);

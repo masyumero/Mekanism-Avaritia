@@ -6,15 +6,16 @@ import com.jerry.mekanism_extras.common.block.attribute.ExtraAttribute;
 import com.jerry.mekanism_extras.common.tier.ExtraFactoryTier;
 import com.jerry.mekmm.common.block.attribute.AttributeMoreMachineFactoryType;
 import com.jerry.mekmm.common.content.blocktype.MoreMachineFactoryType;
+
 import committee.nova.mods.avaritia.client.model.loader.base.HaloSetting;
-import io.github.masyumero.mekavaritia.api.tier.MATier;
+
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.block.basic.MABlockFluidTank;
-import io.github.masyumero.mekavaritia.common.tier.MAFTTier;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import io.github.masyumero.mekavaritia.datagen.client.models.loaders.CosmicModelBuilder;
 import io.github.masyumero.mekavaritia.datagen.client.models.loaders.HaloModelBuilder;
+
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import mekanism.api.providers.IItemProvider;
 import mekanism.common.block.attribute.Attribute;
@@ -64,8 +65,6 @@ public abstract class MABaseItemModelProvider extends ItemModelProvider {
     }
 
     protected ItemModelBuilder fluidTank(BlockRegistryObject<MABlockFluidTank, ?> blockRO) {
-        MATier tier = MAAttribute.getTier(blockRO.getBlock(), MAFTTier.class).getMATier();
-
         return this.getBuilder(blockRO.getName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"))
                 .transforms()
                 .transform(ItemDisplayContext.GUI)

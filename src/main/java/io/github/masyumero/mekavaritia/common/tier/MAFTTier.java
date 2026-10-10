@@ -12,7 +12,7 @@ import java.util.Locale;
 public enum MAFTTier implements IMATier, StringRepresentable {
     PRISMATIC(MATier.PRISMATIC, 4_096_000, 2_048_000),
     FLARE(MATier.FLARE, 8_192_000, 4_096_000),
-    NEURAL(MATier.NEURAL, 2_097_152_000, 1_048_576_000),
+    NEURAL(MATier.NEURAL, 1_048_576_000, 524_288_000),
     ETERNAL(MATier.ETERNAL, Integer.MAX_VALUE, Integer.MAX_VALUE);
 
     private final int maStorage;

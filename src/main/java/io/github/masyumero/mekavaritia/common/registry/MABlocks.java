@@ -5,11 +5,13 @@ import com.google.common.collect.Table;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.api.tier.IMATier;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeTier;
+import io.github.masyumero.mekavaritia.common.block.basic.MABlockBin;
 import io.github.masyumero.mekavaritia.common.block.basic.MABlockFluidTank;
 import io.github.masyumero.mekavaritia.common.block.prefab.BlockMAFactoryMachine;
 import io.github.masyumero.mekavaritia.common.block.transmitter.*;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAMachine;
+import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockBin;
 import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockChemicalTank;
 import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionCell;
 import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionProvider;
@@ -17,6 +19,7 @@ import io.github.masyumero.mekavaritia.common.item.block.machine.ItemBlockMAFact
 import io.github.masyumero.mekavaritia.common.item.block.machine.MAItemBlockFluidTank;
 import io.github.masyumero.mekavaritia.common.item.block.transmitter.*;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityBin;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityFluidTank;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
@@ -73,6 +76,11 @@ public class MABlocks {
     }
 
     public static final BlockRegistryObject<BlockTile.BlockTileModel<TileEntityElectricNeutronCollector, MAMachine<TileEntityElectricNeutronCollector>>, ItemBlockMachine> ELECTRIC_NEUTRON_COLLECTOR = BLOCK.register("electric_neutron_collector", () -> new BlockTile.BlockTileModel<>(MABlockTypes.ELECTRIC_NEUTRON_COLLECTOR, properties -> properties.mapColor(MapColor.METAL)), ItemBlockMachine::new);
+    // Bins
+    public static final BlockRegistryObject<MABlockBin, MAItemBlockBin> PRISMATIC_BIN = registerBin("prismatic", MABlockTypes.PRISMATIC_BIN);
+    public static final BlockRegistryObject<MABlockBin, MAItemBlockBin> FLARE_BIN = registerBin("flare", MABlockTypes.FLARE_BIN);
+    public static final BlockRegistryObject<MABlockBin, MAItemBlockBin> NEURAL_BIN = registerBin("neural", MABlockTypes.NEURAL_BIN);
+    public static final BlockRegistryObject<MABlockBin, MAItemBlockBin> ETERNAL_BIN = registerBin("eternal", MABlockTypes.ETERNAL_BIN);
     // Induction Cells
     public static final BlockRegistryObject<BlockTile<TileEntityMAInductionCell, BlockTypeTile<TileEntityMAInductionCell>>, MAItemBlockInductionCell> PRISMATIC_INDUCTION_CELL = registerInductionCell("prismatic", MABlockTypes.PRISMATIC_INDUCTION_CELL);
     public static final BlockRegistryObject<BlockTile<TileEntityMAInductionCell, BlockTypeTile<TileEntityMAInductionCell>>, MAItemBlockInductionCell> FLARE_INDUCTION_CELL = registerInductionCell("flare", MABlockTypes.FLARE_INDUCTION_CELL);
@@ -126,6 +134,10 @@ public class MABlocks {
 
     public static BlockRegistryObject<BlockMAFactoryMachine.BlockMAFactory<?>, ItemBlockMAFactory>  getMAFactory(@NotNull MAFactoryTier tier, @NotNull FactoryType type) {
         return FACTORIES.get(tier, type);
+    }
+
+    private static BlockRegistryObject<MABlockBin, MAItemBlockBin> registerBin(String tileName, BlockTypeTile<MATileEntityBin> type) {
+        return registerTieredBlock_1(type, tileName + "_bin", color -> new MABlockBin(type, properties -> properties.mapColor(color)), MAItemBlockBin::new);
     }
 
     private static BlockRegistryObject<BlockTile<TileEntityMAInductionCell, BlockTypeTile<TileEntityMAInductionCell>>, MAItemBlockInductionCell> registerInductionCell(String tileName, BlockTypeTile<TileEntityMAInductionCell> type) {

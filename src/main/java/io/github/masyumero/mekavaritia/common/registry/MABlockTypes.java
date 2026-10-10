@@ -16,6 +16,7 @@ import io.github.masyumero.mekavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAMachine;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.tier.*;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityBin;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityFluidTank;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
@@ -139,7 +140,11 @@ public class MABlockTypes {
             .withComputerSupport("ElectricNeutronCollector")
             .replace(Attributes.ACTIVE_LIGHT)
             .build();
-
+    // Bins
+    public static final MAMachine<MATileEntityBin> PRISMATIC_BIN = createBin(MABTier.PRISMATIC, () -> MATileEntityTypes.PRISMATIC_BIN, () -> MABlocks.FLARE_BIN);
+    public static final MAMachine<MATileEntityBin> FLARE_BIN = createBin(MABTier.FLARE, () -> MATileEntityTypes.FLARE_BIN, () -> MABlocks.NEURAL_BIN);
+    public static final MAMachine<MATileEntityBin> NEURAL_BIN = createBin(MABTier.NEURAL, () -> MATileEntityTypes.NEURAL_BIN, () -> MABlocks.ETERNAL_BIN);
+    public static final MAMachine<MATileEntityBin> ETERNAL_BIN = createBin(MABTier.ETERNAL, () -> MATileEntityTypes.ETERNAL_BIN, null);
     // Induction Cells
     public static final BlockTypeTile<TileEntityMAInductionCell> PRISMATIC_INDUCTION_CELL = createInductionCell(MAICTier.PRISMATIC, () -> MATileEntityTypes.PRISMATIC_INDUCTION_CELL);
     public static final BlockTypeTile<TileEntityMAInductionCell> FLARE_INDUCTION_CELL = createInductionCell(MAICTier.FLARE, () -> MATileEntityTypes.FLARE_INDUCTION_CELL);
@@ -185,6 +190,14 @@ public class MABlockTypes {
         return BlockTypeTile.BlockTileBuilder.createBlock(tile, MekanismLang.DESCRIPTION_INDUCTION_PROVIDER)
                 .with(new MAAttributeTier<>(tier))
                 .internalMultiblock()
+                .build();
+    }
+
+    private static <TILE extends MATileEntityBin> MAMachine<TILE> createBin(MABTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile, Supplier<BlockRegistryObject<?, ?>> upgradeBlock) {
+        return MAMachine.MAMachineBuilder.createMAMachine(tile, MekanismLang.DESCRIPTION_BIN)
+                .with(new MAAttributeTier<>(tier), new MAAttributeUpgradeable(upgradeBlock))
+                .without(AttributeParticleFX.class, Attributes.AttributeSecurity.class, AttributeUpgradeSupport.class, Attributes.AttributeRedstone.class)
+                .withComputerSupport(tier.getMATier().getLowerName() + "Bin")
                 .build();
     }
 

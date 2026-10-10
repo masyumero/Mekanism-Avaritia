@@ -7,6 +7,7 @@ import io.github.masyumero.mekavaritia.client.gui.machine.GuiElectricNeutronColl
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAAdvancedFactory;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAFactory;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAMoreMachineFactory;
+import io.github.masyumero.mekavaritia.client.render.tileentity.RenderMABin;
 import io.github.masyumero.mekavaritia.client.render.tileentity.RenderMAFluidTank;
 import io.github.masyumero.mekavaritia.client.render.transmitter.*;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
@@ -68,6 +69,8 @@ public class ClientRegistration {
                 MATileEntityTypes.FLARE_THERMODYNAMIC_CONDUCTOR, MATileEntityTypes.NEURAL_THERMODYNAMIC_CONDUCTOR, MATileEntityTypes.ETERNAL_THERMODYNAMIC_CONDUCTOR);
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderMAFluidTank::new, MATileEntityTypes.PRISMATIC_FLUID_TANK, MATileEntityTypes.FLARE_FLUID_TANK,
                 MATileEntityTypes.NEURAL_FLUID_TANK, MATileEntityTypes.ETERNAL_FLUID_TANK);
+        ClientRegistrationUtil.bindTileEntityRenderer(event, RenderMABin::new, MATileEntityTypes.PRISMATIC_BIN, MATileEntityTypes.FLARE_BIN,
+                MATileEntityTypes.NEURAL_BIN, MATileEntityTypes.ETERNAL_BIN);
     }
 
     @SubscribeEvent
