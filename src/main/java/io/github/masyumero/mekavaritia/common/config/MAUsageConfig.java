@@ -13,7 +13,7 @@ public class MAUsageConfig extends BaseMekanismConfig {
 
     public MAUsageConfig() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-        builder.comment("Usage Config");
+        builder.comment("Mekanism Avaritia Usage Config");
         builder.push("usage");
         electricNeutronCollector = CachedFloatingLongValue.define(this, builder, "Energy per operation tick (Joules).", "electricNeutronCollector", FloatingLong.create(500L));
         configSpec = builder.build();
@@ -21,7 +21,7 @@ public class MAUsageConfig extends BaseMekanismConfig {
 
     @Override
     public String getFileName() {
-        return "usage";
+        return "MekanismAvaritia-Usage";
     }
 
     @Override

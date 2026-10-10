@@ -13,7 +13,7 @@ public class MARecipeConfig extends BaseMekanismConfig {
 
     public MARecipeConfig() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-        builder.comment("Recipe Config");
+        builder.comment("Mekanism Avaritia Recipe Config");
         builder.push("Creative Recipe");
         hardCreativeAlloyRecipe = CachedBooleanValue.wrap(this, builder.comment("This works if EvolvedMekanism is installed.").define("HardCreativeAlloyRecipe", false));
         removeAvaritiaCreativeRecipe = CachedBooleanValue.wrap(this, builder.comment("I will delete Avaritia's creative recipe.").define("RemoveAvaritiaCreativeRecipe", false));
@@ -23,7 +23,7 @@ public class MARecipeConfig extends BaseMekanismConfig {
 
     @Override
     public String getFileName() {
-        return "recipe";
+        return "MekanismAvaritia-Recipe";
     }
 
     @Override

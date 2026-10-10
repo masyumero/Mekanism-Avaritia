@@ -228,6 +228,6 @@ public class MAMoreCapacityConfig extends BaseMekanismConfig {
 
     @Override
     public ModConfig.Type getConfigType() {
-        return ModConfig.Type.SERVER;
+        return ModConfig.Type.COMMON;
     }
 }

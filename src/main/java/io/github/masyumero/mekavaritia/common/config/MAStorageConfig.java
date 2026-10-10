@@ -17,7 +17,7 @@ public class MAStorageConfig extends BaseMekanismConfig {
 
     public MAStorageConfig() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-        builder.comment("Storage Config");
+        builder.comment("Mekanism Avaritia Storage Config");
         electricNeutronCollector = CachedFloatingLongValue.define(this, builder, "Base energy storage (Joules).", "electricNeutronCollector", FloatingLong.create(160000L));
         eternalChemicalTankLikeCreativeChemicalTank = CachedBooleanValue.wrap(this, builder.comment("Make the behavior of the eternal chemicalTank the same as that of the creative chemicalTank.").define("eternalChemicalTankLikeCreativeChemicalTank", false));
         eternalFluidTankLikeCreativeFluidTank = CachedBooleanValue.wrap(this, builder.comment("Make the behavior of the eternal fluidTank the same as that of the creative fluidTank.").define("eternalFluidTankLikeCreativeFluidTank", false));
@@ -27,7 +27,7 @@ public class MAStorageConfig extends BaseMekanismConfig {
 
     @Override
     public String getFileName() {
-        return "storage";
+        return "MekanismAvaritia-Storage";
     }
 
     @Override

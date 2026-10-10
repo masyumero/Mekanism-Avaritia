@@ -12,14 +12,14 @@ public class MAGearConfig extends BaseMekanismConfig {
 
     public MAGearConfig() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-        builder.comment("Gear Config").push("Unit Energy Use");
+        builder.comment("Mekanism Avaritia Gear Config").push("Unit Energy Use");
         CosmicUnitUseageEnergy = CachedLongValue.wrap(this, builder.defineInRange("CosmicUnitsUseageEnergy", Integer.MAX_VALUE, 1, Long.MAX_VALUE));
         configSpec = builder.build();
     }
 
     @Override
     public String getFileName() {
-        return "gear";
+        return "MekanismAvaritia-Gear";
     }
 
     @Override
@@ -29,6 +29,6 @@ public class MAGearConfig extends BaseMekanismConfig {
 
     @Override
     public ModConfig.Type getConfigType() {
-        return ModConfig.Type.SERVER;
+        return ModConfig.Type.COMMON;
     }
 }

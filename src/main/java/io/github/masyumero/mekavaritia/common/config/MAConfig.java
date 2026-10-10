@@ -64,7 +64,7 @@ public class MAConfig extends BaseMekanismConfig {
 
     public MAConfig() {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
-        builder.comment("Config").push(MekanismAvaritia.MODID);
+        builder.comment("Mekanism Avaritia Config").push(MekanismAvaritia.MODID);
 
         builder.comment("Integrations").push("integrations");
         builder.pop();
@@ -122,7 +122,7 @@ public class MAConfig extends BaseMekanismConfig {
         prismaticLogisticalTransporterPullAmount = CachedFloatingLongValue.define(this, builder, noteLT2, "prismaticLogisticalTransporterPullAmount", FloatingLong.createConst(256));
         flareLogisticalTransporterPullAmount = CachedFloatingLongValue.define(this, builder, noteLT2, "flareLogisticalTransporterPullAmount", FloatingLong.createConst(512));
         neuralLogisticalTransporterPullAmount = CachedFloatingLongValue.define(this, builder, noteLT2, "neuralLogisticalTransporterPullAmount", FloatingLong.createConst(1024));
-        eternalLogisticalTransporterPullAmount = CachedFloatingLongValue.define(this, builder, noteLT2, "eternalLogisticalTransporterPullAmount", FloatingLong.createConst(Integer.MAX_VALUE));
+        eternalLogisticalTransporterPullAmount = CachedFloatingLongValue.define(this, builder, noteLT2, "eternalLogisticalTransporterPullAmount", FloatingLong.createConst(Integer.MAX_VALUE / 2));
         builder.pop();
 
         final String notePT = "Capacity of 'TIER' pressurized tubes in mB.(long)";
@@ -153,6 +153,6 @@ public class MAConfig extends BaseMekanismConfig {
 
     @Override
     public ModConfig.Type getConfigType() {
-        return ModConfig.Type.SERVER;
+        return ModConfig.Type.COMMON;
     }
 }
