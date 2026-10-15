@@ -1,6 +1,6 @@
 package io.github.masyumero.mekavaritia.common.block.transmitter;
 
-import io.github.masyumero.mekavaritia.common.registry.MATileEntityTypes;
+import io.github.masyumero.mekavaritia.common.registries.MATileEntityTypes;
 import io.github.masyumero.mekavaritia.common.tile.transmitter.TileEntityMAPressurizedTube;
 
 import lombok.Getter;

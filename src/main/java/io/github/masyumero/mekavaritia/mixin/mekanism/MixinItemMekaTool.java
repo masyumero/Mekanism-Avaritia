@@ -3,7 +3,7 @@ package io.github.masyumero.mekavaritia.mixin.mekanism;
 import io.github.masyumero.mekavaritia.common.config.LoadConfig;
 import io.github.masyumero.mekavaritia.common.content.gear.mekatool.ModuleInfinityAttackAmplificationUnit;
 import io.github.masyumero.mekavaritia.common.content.gear.mekatool.ModuleInfinityExcavationEscalationUnit;
-import io.github.masyumero.mekavaritia.common.registry.MAModules;
+import io.github.masyumero.mekavaritia.common.registries.MAModules;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
 import mekanism.api.energy.IEnergyContainer;

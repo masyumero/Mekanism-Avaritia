@@ -1,7 +1,7 @@
 package io.github.masyumero.mekavaritia.mixin.mekanism;
 
 import io.github.masyumero.mekavaritia.common.content.gear.mekasuit.ModuleInfiniteElytraUnit;
-import io.github.masyumero.mekavaritia.common.registry.MAModules;
+import io.github.masyumero.mekavaritia.common.registries.MAModules;
 import mekanism.api.gear.IModule;
 import mekanism.common.content.gear.IModuleContainerItem;
 import mekanism.common.item.gear.ItemMekaSuitArmor;

@@ -2,8 +2,8 @@ package io.github.masyumero.mekavaritia.datagen.common.tag;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.MATags;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
-import io.github.masyumero.mekavaritia.common.registry.MAItems;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MAItems;
 
 import mekanism.common.tags.MekanismTags;
 import net.minecraft.core.HolderLookup;

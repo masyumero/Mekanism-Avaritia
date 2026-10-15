@@ -1,4 +1,4 @@
-package io.github.masyumero.mekavaritia.common.registry;
+package io.github.masyumero.mekavaritia.common.registries;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;

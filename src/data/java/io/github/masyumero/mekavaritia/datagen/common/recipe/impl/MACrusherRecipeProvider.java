@@ -1,7 +1,7 @@
 package io.github.masyumero.mekavaritia.datagen.common.recipe.impl;
 
 import committee.nova.mods.avaritia.init.registry.ModItems;
-import io.github.masyumero.mekavaritia.common.registry.MAItems;
+import io.github.masyumero.mekavaritia.common.registries.MAItems;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.ISubRecipeProvider;
 import mekanism.api.datagen.recipe.builder.ItemStackToItemStackRecipeBuilder;

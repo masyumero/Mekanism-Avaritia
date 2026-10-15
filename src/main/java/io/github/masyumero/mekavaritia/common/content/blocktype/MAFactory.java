@@ -2,9 +2,9 @@ package io.github.masyumero.mekavaritia.common.content.blocktype;
 
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeTier;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeUpgradeable;
-import io.github.masyumero.mekavaritia.common.registry.MABlockTypes;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
-import io.github.masyumero.mekavaritia.common.registry.MAContainerTypes;
+import io.github.masyumero.mekavaritia.common.registries.MABlockTypes;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MAContainerTypes;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;

@@ -2,7 +2,7 @@ package io.github.masyumero.mekavaritia.common.tile.transmitter;
 
 import io.github.masyumero.mekavaritia.api.tier.MATier;
 import io.github.masyumero.mekavaritia.common.content.network.transmitter.MAThermodynamicConductor;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 
 import mekanism.api.heat.IHeatCapacitor;
 import mekanism.api.heat.IMekanismHeatHandler;

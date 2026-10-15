@@ -1,6 +1,6 @@
 package io.github.masyumero.mekavaritia.api.mixin.impl;
 
-import io.github.masyumero.mekavaritia.common.registry.MABlockTypes;
+import io.github.masyumero.mekavaritia.common.registries.MABlockTypes;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionCell;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionProvider;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;

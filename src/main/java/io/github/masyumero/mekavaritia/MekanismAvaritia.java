@@ -13,7 +13,7 @@ import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreM
 import io.github.masyumero.mekavaritia.common.network.MAPacketHandler;
 import io.github.masyumero.mekavaritia.common.recipe.MARecipeType;
 import io.github.masyumero.mekavaritia.common.recipe.condition.ConfigEnabledCondition.Serializer;
-import io.github.masyumero.mekavaritia.common.registry.*;
+import io.github.masyumero.mekavaritia.common.registries.*;
 import mekanism.api.MekanismIMC;
 import mekanism.common.base.IModModule;
 import mekanism.common.lib.Version;

@@ -1,4 +1,4 @@
-package io.github.masyumero.mekavaritia.common.registry;
+package io.github.masyumero.mekavaritia.common.registries;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;

@@ -11,7 +11,7 @@ import io.github.masyumero.mekavaritia.common.recipe.IMARecipeTypeProvider;
 import io.github.masyumero.mekavaritia.common.recipe.MARecipeType;
 import io.github.masyumero.mekavaritia.common.recipe.lookup.IMASingleRecipeLookupHandler;
 import io.github.masyumero.mekavaritia.common.recipe.lookup.cache.MAInputRecipeCache;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 import io.github.masyumero.mekavaritia.common.tile.prefab.MATileEntityProgressMachine;
 
 import io.github.masyumero.mekavaritia.common.util.MAUpgradeUtil;

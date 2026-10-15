@@ -2,7 +2,7 @@ package io.github.masyumero.mekavaritia.common.item;
 
 import io.github.masyumero.mekavaritia.api.tier.MATier;
 import io.github.masyumero.mekavaritia.common.content.network.transmitter.IMAUpgradeableTransmitter;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 import mekanism.api.IAlloyInteraction;
 import mekanism.api.providers.IBlockProvider;
 import mekanism.api.text.TextComponentUtil;

@@ -2,7 +2,7 @@ package io.github.masyumero.mekavaritia.common.tile.transmitter;
 
 import io.github.masyumero.mekavaritia.api.tier.MATier;
 import io.github.masyumero.mekavaritia.common.content.network.transmitter.MALogisticalTransporter;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 
 import mekanism.api.providers.IBlockProvider;
 import mekanism.client.model.data.TransmitterModelData;

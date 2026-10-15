@@ -2,7 +2,7 @@ package io.github.masyumero.mekavaritia.datagen.common.recipe.impl;
 
 import committee.nova.mods.avaritia.init.registry.ModItems;
 import io.github.masyumero.mekavaritia.common.MATags;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.ISubRecipeProvider;

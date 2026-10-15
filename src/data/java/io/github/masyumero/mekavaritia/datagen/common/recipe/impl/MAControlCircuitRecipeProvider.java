@@ -2,7 +2,7 @@ package io.github.masyumero.mekavaritia.datagen.common.recipe.impl;
 
 import io.github.masyumero.mekavaritia.api.tier.MATier;
 import io.github.masyumero.mekavaritia.common.MATags;
-import io.github.masyumero.mekavaritia.common.registry.MAItems;
+import io.github.masyumero.mekavaritia.common.registries.MAItems;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.ISubRecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.builder.ExtendedShapedRecipeBuilder;

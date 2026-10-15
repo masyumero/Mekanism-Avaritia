@@ -3,7 +3,7 @@ package io.github.masyumero.mekavaritia.datagen.common.recipe.impl;
 import committee.nova.mods.avaritia.init.registry.ModItems;
 import fr.iglee42.evolvedmekanism.registries.EMItems;
 import io.github.masyumero.mekavaritia.common.recipe.condition.ConfigEnabledCondition;
-import io.github.masyumero.mekavaritia.common.registry.MAItems;
+import io.github.masyumero.mekavaritia.common.registries.MAItems;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.ISubRecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.builder.ExtremeCraftingRecipeBuilder;

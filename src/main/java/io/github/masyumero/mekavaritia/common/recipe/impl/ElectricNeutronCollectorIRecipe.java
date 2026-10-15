@@ -2,8 +2,8 @@ package io.github.masyumero.mekavaritia.common.recipe.impl;
 
 import io.github.masyumero.mekavaritia.api.recipes.ElectricNeutronCollectorRecipe;
 import io.github.masyumero.mekavaritia.common.recipe.MARecipeType;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
-import io.github.masyumero.mekavaritia.common.registry.MARecipeSerializers;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MARecipeSerializers;
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.api.math.FloatingLong;
 import mekanism.api.recipes.ingredients.ItemStackIngredient;

@@ -3,7 +3,7 @@ package io.github.masyumero.mekavaritia.datagen.common.loot.table;
 
 import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryBlocks;
 import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineBlocks;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 
 public class MABlockLootProvider extends BaseBlockLootTables {
 

@@ -1,7 +1,7 @@
 package io.github.masyumero.mekavaritia.datagen.common.singularity;
 
 import committee.nova.mods.avaritia.init.data.provider.base.SingularityProvider;
-import io.github.masyumero.mekavaritia.common.registry.MASingularities;
+import io.github.masyumero.mekavaritia.common.registries.MASingularities;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;

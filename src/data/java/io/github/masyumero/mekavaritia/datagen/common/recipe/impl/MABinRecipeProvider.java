@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import io.github.masyumero.mekavaritia.common.MATags;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.block.basic.MABlockBin;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.ISubRecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.builder.MekDataShapedRecipeBuilder;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.builder.SpecialRecipeBuilder;

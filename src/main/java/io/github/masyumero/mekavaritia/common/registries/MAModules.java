@@ -1,4 +1,4 @@
-package io.github.masyumero.mekavaritia.common.registry;
+package io.github.masyumero.mekavaritia.common.registries;
 
 import committee.nova.mods.avaritia.init.registry.ModRarities;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;

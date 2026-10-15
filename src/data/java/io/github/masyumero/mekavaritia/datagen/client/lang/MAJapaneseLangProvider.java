@@ -1,7 +1,7 @@
 package io.github.masyumero.mekavaritia.datagen.client.lang;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;
-import io.github.masyumero.mekavaritia.common.registry.MAModules;
+import io.github.masyumero.mekavaritia.common.registries.MAModules;
 import net.minecraft.data.PackOutput;
 
 import java.util.HashMap;

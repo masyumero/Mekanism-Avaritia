@@ -7,7 +7,7 @@ import com.jerry.mekmm.common.util.MoreMachineEnumUtils;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryBlocks;
 import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineBlocks;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;

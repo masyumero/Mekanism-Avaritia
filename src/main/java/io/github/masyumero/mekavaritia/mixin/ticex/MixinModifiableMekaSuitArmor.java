@@ -1,7 +1,7 @@
 package io.github.masyumero.mekavaritia.mixin.ticex;
 
 import io.github.masyumero.mekavaritia.common.content.gear.mekasuit.ModuleInfiniteElytraUnit;
-import io.github.masyumero.mekavaritia.common.registry.MAModules;
+import io.github.masyumero.mekavaritia.common.registries.MAModules;
 import io.github.masyumero.mekavaritia.common.util.MAModuleUtil;
 import mekanism.api.gear.IModule;
 import mekanism.common.lib.attribute.IAttributeRefresher;

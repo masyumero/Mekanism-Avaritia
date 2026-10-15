@@ -1,6 +1,6 @@
 package io.github.masyumero.mekavaritia.common.inventory.container.tile;
 
-import io.github.masyumero.mekavaritia.common.registry.MAContainerTypes;
+import io.github.masyumero.mekavaritia.common.registries.MAContainerTypes;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntitySawingMAFactory;
 import mekanism.common.inventory.container.tile.MekanismTileContainer;

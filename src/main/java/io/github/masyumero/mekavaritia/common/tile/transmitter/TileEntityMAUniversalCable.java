@@ -3,7 +3,7 @@ package io.github.masyumero.mekavaritia.common.tile.transmitter;
 import io.github.masyumero.mekavaritia.api.tier.MATier;
 import io.github.masyumero.mekavaritia.common.content.network.transmitter.MAUniversalCable;
 
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 import mekanism.api.NBTConstants;
 import mekanism.api.energy.IEnergyContainer;
 import mekanism.api.math.FloatingLong;

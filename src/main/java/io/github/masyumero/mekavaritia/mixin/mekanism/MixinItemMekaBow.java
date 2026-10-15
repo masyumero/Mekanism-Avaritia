@@ -3,7 +3,7 @@ package io.github.masyumero.mekavaritia.mixin.mekanism;
 import committee.nova.mods.avaritia.common.entity.arrow.HeavenArrowEntity;
 import io.github.masyumero.mekavaritia.common.content.gear.mekaweapons.ModuleCelestialShotUnit;
 import io.github.masyumero.mekavaritia.common.content.gear.mekaweapons.ModuleInfinityDamageUnit;
-import io.github.masyumero.mekavaritia.common.registry.MAModules;
+import io.github.masyumero.mekavaritia.common.registries.MAModules;
 import mekanism.api.gear.IModule;
 import mekanism.common.content.gear.IModuleContainerItem;
 import mekanism.common.lib.radial.IGenericRadialModeItem;

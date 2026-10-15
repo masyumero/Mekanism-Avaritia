@@ -1,6 +1,6 @@
 package io.github.masyumero.mekavaritia.client.jei;
 
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
 

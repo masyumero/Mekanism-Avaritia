@@ -1,7 +1,7 @@
 package io.github.masyumero.mekavaritia.client.jei;
 
 import io.github.masyumero.mekavaritia.api.recipes.ElectricNeutronCollectorRecipe;
-import io.github.masyumero.mekavaritia.common.registry.MABlocks;
+import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 import mekanism.client.jei.MekanismJEIRecipeType;
 
 public class MAJEIRecipeType {

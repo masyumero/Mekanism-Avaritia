@@ -8,7 +8,7 @@ import committee.nova.mods.avaritia.util.ToolUtils;
 import io.github.masyumero.mekavaritia.common.config.LoadConfig;
 import io.github.masyumero.mekavaritia.common.content.gear.mekatool.ModuleInfinityAttackAmplificationUnit;
 import io.github.masyumero.mekavaritia.common.content.gear.mekaweapons.ModuleCosmicStrikeUnit;
-import io.github.masyumero.mekavaritia.common.registry.MAModules;
+import io.github.masyumero.mekavaritia.common.registries.MAModules;
 import mekanism.api.Action;
 import mekanism.api.AutomationType;
 import mekanism.api.energy.IEnergyContainer;

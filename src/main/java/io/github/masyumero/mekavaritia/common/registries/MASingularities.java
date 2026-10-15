@@ -1,7 +1,6 @@
-package io.github.masyumero.mekavaritia.common.registry;
+package io.github.masyumero.mekavaritia.common.registries;
 
 import committee.nova.mods.avaritia.core.singularity.Singularity;
-import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
 import mekanism.common.registries.MekanismItems;
@@ -11,7 +10,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("removal")
 public class MASingularities {
 
     public static final List<Singularity> SINGULARITIES = new ArrayList<>();
