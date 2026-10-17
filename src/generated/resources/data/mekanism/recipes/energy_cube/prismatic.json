@@ -1,0 +1,25 @@
+{
+  "type": "mekanism:mek_data",
+  "key": {
+    "A": {
+      "tag": "mekanism_avaritia:alloys/crystalline"
+    },
+    "E": {
+      "item": "mekanism:energy_tablet"
+    },
+    "I": {
+      "item": "avaritia:crystal_matrix_ingot"
+    },
+    "P": {
+      "item": "mekanism:ultimate_energy_cube"
+    }
+  },
+  "pattern": [
+    "AEA",
+    "IPI",
+    "AEA"
+  ],
+  "result": {
+    "item": "mekanism_avaritia:prismatic_energy_cube"
+  }
+}

@@ -1,5 +1,9 @@
 {
   "values": [
+    "mekanism_avaritia:prismatic_energy_cube",
+    "mekanism_avaritia:flare_energy_cube",
+    "mekanism_avaritia:neural_energy_cube",
+    "mekanism_avaritia:eternal_energy_cube",
     "mekanism_avaritia:prismatic_bin",
     "mekanism_avaritia:flare_bin",
     "mekanism_avaritia:neural_bin",
