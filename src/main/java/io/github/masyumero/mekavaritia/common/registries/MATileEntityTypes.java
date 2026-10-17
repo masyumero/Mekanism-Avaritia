@@ -9,6 +9,7 @@ import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityBin;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityEnergyCube;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityFluidTank;
 import io.github.masyumero.mekavaritia.common.tile.factory.*;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
@@ -74,6 +75,11 @@ public class MATileEntityTypes {
     public static final TileEntityTypeRegistryObject<MATileEntityFluidTank> FLARE_FLUID_TANK = TILE_ENTITY_TYPES.register(MABlocks.FLARE_FLUID_TANK, (pos, state) -> new MATileEntityFluidTank(MABlocks.FLARE_FLUID_TANK, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
     public static final TileEntityTypeRegistryObject<MATileEntityFluidTank> NEURAL_FLUID_TANK = TILE_ENTITY_TYPES.register(MABlocks.NEURAL_FLUID_TANK, (pos, state) -> new MATileEntityFluidTank(MABlocks.NEURAL_FLUID_TANK, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
     public static final TileEntityTypeRegistryObject<MATileEntityFluidTank> ETERNAL_FLUID_TANK = TILE_ENTITY_TYPES.register(MABlocks.ETERNAL_FLUID_TANK, (pos, state) -> new MATileEntityFluidTank(MABlocks.ETERNAL_FLUID_TANK, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    // energy cube
+    public static final TileEntityTypeRegistryObject<MATileEntityEnergyCube> PRISMATIC_ENERGY_CUBE = TILE_ENTITY_TYPES.register(MABlocks.PRISMATIC_ENERGY_CUBE, (pos, state) -> new MATileEntityEnergyCube(MABlocks.PRISMATIC_ENERGY_CUBE, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<MATileEntityEnergyCube> FLARE_ENERGY_CUBE = TILE_ENTITY_TYPES.register(MABlocks.FLARE_ENERGY_CUBE, (pos, state) -> new MATileEntityEnergyCube(MABlocks.FLARE_ENERGY_CUBE, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<MATileEntityEnergyCube> NEURAL_ENERGY_CUBE = TILE_ENTITY_TYPES.register(MABlocks.NEURAL_ENERGY_CUBE, (pos, state) -> new MATileEntityEnergyCube(MABlocks.NEURAL_ENERGY_CUBE, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
+    public static final TileEntityTypeRegistryObject<MATileEntityEnergyCube> ETERNAL_ENERGY_CUBE = TILE_ENTITY_TYPES.register(MABlocks.ETERNAL_ENERGY_CUBE, (pos, state) -> new MATileEntityEnergyCube(MABlocks.ETERNAL_ENERGY_CUBE, pos, state), TileEntityMekanism::tickServer, TileEntityMekanism::tickClient);
     // universal cables
     public static final TileEntityTypeRegistryObject<TileEntityMAUniversalCable> PRISMATIC_UNIVERSAL_CABLE = registerTransmitter(MABlocks.PRISMATIC_UNIVERSAL_CABLE, (pos, state) -> new TileEntityMAUniversalCable(MABlocks.PRISMATIC_UNIVERSAL_CABLE, pos, state));
     public static final TileEntityTypeRegistryObject<TileEntityMAUniversalCable> FLARE_UNIVERSAL_CABLE = registerTransmitter(MABlocks.FLARE_UNIVERSAL_CABLE, (pos, state) -> new TileEntityMAUniversalCable(MABlocks.FLARE_UNIVERSAL_CABLE, pos, state));

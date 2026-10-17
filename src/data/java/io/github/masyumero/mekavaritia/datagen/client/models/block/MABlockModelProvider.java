@@ -100,6 +100,11 @@ public class MABlockModelProvider extends MABaseBlockModelsProvider {
         bin(MABlocks.FLARE_BIN);
         bin(MABlocks.NEURAL_BIN);
         bin(MABlocks.ETERNAL_BIN);
+
+        energyCube(MABlocks.PRISMATIC_ENERGY_CUBE);
+        energyCube(MABlocks.FLARE_ENERGY_CUBE);
+        energyCube(MABlocks.NEURAL_ENERGY_CUBE);
+        energyCube(MABlocks.ETERNAL_ENERGY_CUBE);
     }
 
     private void transporter(BlockRegistryObject<?, ?> transmitter) {

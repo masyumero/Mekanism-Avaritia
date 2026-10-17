@@ -54,6 +54,7 @@ public class MAJEI implements IModPlugin {
         MACatalystRegistryHelper.register(registry, MekanismBlocks.PRECISION_SAWMILL);
         MACatalystRegistryHelper.register(registry, MekanismBlocks.METALLURGIC_INFUSER, MekanismJEIRecipeType.INFUSION_CONVERSION);
         MACatalystRegistryHelper.registerRecipeItem(registry, MekanismBlocks.ENERGIZED_SMELTER, MekanismJEIRecipeType.SMELTING, RecipeTypes.SMELTING);
+        MACatalystRegistryHelper.register(registry, MekanismJEIRecipeType.ENERGY_CONVERSION, MABlocks.PRISMATIC_ENERGY_CUBE, MABlocks.FLARE_ENERGY_CUBE, MABlocks.NEURAL_ENERGY_CUBE, MABlocks.ETERNAL_ENERGY_CUBE);
 
         if (MAAddons.EVOLVEDMEKANISM.isLoaded()) {
             MACatalystRegistryHelper.register(registry, EMBlocks.ALLOYER);

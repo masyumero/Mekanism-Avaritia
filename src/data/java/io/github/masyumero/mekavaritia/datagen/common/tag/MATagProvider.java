@@ -59,7 +59,7 @@ public class MATagProvider extends BaseTagProvider {
 
     private void addHarvestRequirements() {
         addToHarvestTag(BlockTags.MINEABLE_WITH_PICKAXE,
-//                MABlocks.PRISMATIC_ENERGY_CUBE, MABlocks.FLARE_ENERGY_CUBE, MABlocks.NEURAL_ENERGY_CUBE, MABlocks.ETERNAL_ENERGY_CUBE,
+                MABlocks.PRISMATIC_ENERGY_CUBE, MABlocks.FLARE_ENERGY_CUBE, MABlocks.NEURAL_ENERGY_CUBE, MABlocks.ETERNAL_ENERGY_CUBE,
                 MABlocks.PRISMATIC_BIN, MABlocks.FLARE_BIN, MABlocks.NEURAL_BIN, MABlocks.ETERNAL_BIN,
                 MABlocks.PRISMATIC_FLUID_TANK, MABlocks.FLARE_FLUID_TANK, MABlocks.NEURAL_FLUID_TANK, MABlocks.ETERNAL_FLUID_TANK,
                 MABlocks.PRISMATIC_CHEMICAL_TANK, MABlocks.FLARE_CHEMICAL_TANK, MABlocks.NEURAL_CHEMICAL_TANK, MABlocks.ETERNAL_CHEMICAL_TANK,

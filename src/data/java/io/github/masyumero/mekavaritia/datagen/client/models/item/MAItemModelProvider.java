@@ -81,6 +81,11 @@ public class MAItemModelProvider extends MABaseItemModelProvider {
         fluidTank(MABlocks.FLARE_FLUID_TANK);
         fluidTank(MABlocks.NEURAL_FLUID_TANK);
         fluidTank(MABlocks.ETERNAL_FLUID_TANK);
+
+        energyCube(MABlocks.PRISMATIC_ENERGY_CUBE);
+        energyCube(MABlocks.FLARE_ENERGY_CUBE);
+        energyCube(MABlocks.NEURAL_ENERGY_CUBE);
+        energyCube(MABlocks.ETERNAL_ENERGY_CUBE);
     }
 
     private record Halo(ResourceLocation haloLoc, HaloSetting setting) {}

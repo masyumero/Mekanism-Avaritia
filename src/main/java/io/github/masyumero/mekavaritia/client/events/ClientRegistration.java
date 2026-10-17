@@ -2,23 +2,30 @@ package io.github.masyumero.mekavaritia.client.events;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.client.gui.GuiMAChemicalTank;
+import io.github.masyumero.mekavaritia.client.gui.GuiMAEnergyCube;
 import io.github.masyumero.mekavaritia.client.gui.GuiMAFluidTank;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiElectricNeutronCollectorMachine;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAAdvancedFactory;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAFactory;
 import io.github.masyumero.mekavaritia.client.gui.machine.GuiMAMoreMachineFactory;
+import io.github.masyumero.mekavaritia.client.model.MAModelEnergyCore;
+import io.github.masyumero.mekavaritia.client.model.energycube.MAEnergyCubeModelLoader;
+import io.github.masyumero.mekavaritia.client.render.item.block.RenderMAEnergyCubeItem;
 import io.github.masyumero.mekavaritia.client.render.tileentity.RenderMABin;
+import io.github.masyumero.mekavaritia.client.render.tileentity.RenderMAEnergyCube;
 import io.github.masyumero.mekavaritia.client.render.tileentity.RenderMAFluidTank;
 import io.github.masyumero.mekavaritia.client.render.transmitter.*;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.integration.mekaf.regisrty.MAAdvancedFactoryContainerTypes;
 import io.github.masyumero.mekavaritia.common.integration.mekmm.registry.MAMoreMachineContainerTypes;
+import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockEnergyCube;
 import io.github.masyumero.mekavaritia.common.item.block.machine.MAItemBlockFluidTank;
 import io.github.masyumero.mekavaritia.common.registries.MABlocks;
 import io.github.masyumero.mekavaritia.common.registries.MAContainerTypes;
 import io.github.masyumero.mekavaritia.common.registries.MAModules;
 import io.github.masyumero.mekavaritia.common.registries.MATileEntityTypes;
+import io.github.masyumero.mekavaritia.common.tier.MAECTier;
 import io.github.masyumero.mekavaritia.common.tier.MAFTTier;
 import io.github.masyumero.mekavaritia.common.tile.transmitter.TileEntityMALogisticalTransporter;
 import io.github.masyumero.mekavaritia.common.util.MAUtils;
@@ -35,10 +42,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.client.event.RegisterItemDecorationsEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -71,6 +75,8 @@ public class ClientRegistration {
                 MATileEntityTypes.NEURAL_FLUID_TANK, MATileEntityTypes.ETERNAL_FLUID_TANK);
         ClientRegistrationUtil.bindTileEntityRenderer(event, RenderMABin::new, MATileEntityTypes.PRISMATIC_BIN, MATileEntityTypes.FLARE_BIN,
                 MATileEntityTypes.NEURAL_BIN, MATileEntityTypes.ETERNAL_BIN);
+        ClientRegistrationUtil.bindTileEntityRenderer(event, RenderMAEnergyCube::new, MATileEntityTypes.PRISMATIC_ENERGY_CUBE, MATileEntityTypes.FLARE_ENERGY_CUBE,
+                MATileEntityTypes.NEURAL_ENERGY_CUBE, MATileEntityTypes.ETERNAL_ENERGY_CUBE);
     }
 
     @SubscribeEvent
@@ -81,18 +87,35 @@ public class ClientRegistration {
         RenderMAMechanicalPipe.onStitch();
     }
 
+    @SubscribeEvent
+    public static void registerClientReloadListeners(RegisterClientReloadListenersEvent event) {
+        ClientRegistrationUtil.registerClientReloadListeners(event, RenderMAEnergyCubeItem.RENDERER);
+    }
+
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void registerContainers(RegisterEvent event) {
         event.register(Registries.MENU, helper -> {
             ClientRegistrationUtil.registerScreen(MAContainerTypes.ELECTRIC_NEUTRON_COLLECTOR, GuiElectricNeutronCollectorMachine::new);
             ClientRegistrationUtil.registerScreen(MAContainerTypes.CHEMICAL_TANK, GuiMAChemicalTank::new);
             ClientRegistrationUtil.registerScreen(MAContainerTypes.FLUID_TANK, GuiMAFluidTank::new);
+            ClientRegistrationUtil.registerScreen(MAContainerTypes.ENERGY_CUBE, GuiMAEnergyCube::new);
             ClientRegistrationUtil.registerScreen(MAContainerTypes.FACTORY, GuiMAFactory::new);
             if (MAAddons.MEKMM.isLoaded()) {
                 ClientRegistrationUtil.registerScreen(MAAdvancedFactoryContainerTypes.ADVANCED_FACTORY, GuiMAAdvancedFactory::new);
                 ClientRegistrationUtil.registerScreen(MAMoreMachineContainerTypes.MORE_MACHINE_FACTORY, GuiMAMoreMachineFactory::new);
             }
         });
+    }
+
+    @SubscribeEvent
+    public static void registerModelLoaders(ModelEvent.RegisterGeometryLoaders event) {
+        event.register("energy_cube", MAEnergyCubeModelLoader.INSTANCE);
+    }
+
+    @SubscribeEvent
+    public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
+        // TODO:重新评估
+        event.registerLayerDefinition(MAModelEnergyCore.CORE_LAYER, MAModelEnergyCore::createLayerDefinition);
     }
 
     @SubscribeEvent
@@ -113,6 +136,16 @@ public class ClientRegistration {
             }
             return -1;
         }, MABlocks.PRISMATIC_FLUID_TANK, MABlocks.FLARE_FLUID_TANK, MABlocks.NEURAL_FLUID_TANK, MABlocks.ETERNAL_FLUID_TANK);
+        ClientRegistrationUtil.registerBlockColorHandler(event, (state, world, pos, index) -> {
+                    if (index == 1) {
+                        MAECTier tier = MAAttribute.getTier(state.getBlock(), MAECTier.class);
+                        if (tier != null) {
+                            return tier.getMATier().getRgbSupplier().getAsInt();
+                        }
+                    }
+                    return -1;
+                }, MABlocks.PRISMATIC_ENERGY_CUBE, MABlocks.FLARE_ENERGY_CUBE, MABlocks.NEURAL_ENERGY_CUBE,
+                MABlocks.ETERNAL_ENERGY_CUBE);
         ClientRegistrationUtil.registerBlockColorHandler(event, (state, world, pos, tintIndex) -> {
                     if (tintIndex == 1 && pos != null) {
                         TileEntityMALogisticalTransporter transporter = WorldUtils.getTileEntity(TileEntityMALogisticalTransporter.class, world, pos);
@@ -137,6 +170,14 @@ public class ClientRegistration {
             }
             return -1;
         }, MABlocks.PRISMATIC_FLUID_TANK, MABlocks.FLARE_FLUID_TANK, MABlocks.NEURAL_FLUID_TANK, MABlocks.ETERNAL_FLUID_TANK);
+
+        ClientRegistrationUtil.registerItemColorHandler(event, (stack, tintIndex) -> {
+            Item item = stack.getItem();
+            if (tintIndex == 1 && item instanceof MAItemBlockEnergyCube cube) {
+                return cube.getMATier().getMATier().getRgbSupplier().getAsInt();
+            }
+            return -1;
+        }, MABlocks.PRISMATIC_ENERGY_CUBE, MABlocks.FLARE_ENERGY_CUBE, MABlocks.NEURAL_ENERGY_CUBE, MABlocks.ETERNAL_ENERGY_CUBE);
     }
 
     @SubscribeEvent

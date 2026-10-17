@@ -4,6 +4,7 @@ import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
 import io.github.masyumero.mekavaritia.api.tier.IMATier;
+import io.github.masyumero.mekavaritia.common.block.MABlockEnergyCube;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeTier;
 import io.github.masyumero.mekavaritia.common.block.basic.MABlockBin;
 import io.github.masyumero.mekavaritia.common.block.basic.MABlockFluidTank;
@@ -11,16 +12,14 @@ import io.github.masyumero.mekavaritia.common.block.prefab.BlockMAFactoryMachine
 import io.github.masyumero.mekavaritia.common.block.transmitter.*;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAFactory;
 import io.github.masyumero.mekavaritia.common.content.blocktype.MAMachine;
-import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockBin;
-import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockChemicalTank;
-import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionCell;
-import io.github.masyumero.mekavaritia.common.item.block.MAItemBlockInductionProvider;
+import io.github.masyumero.mekavaritia.common.item.block.*;
 import io.github.masyumero.mekavaritia.common.item.block.machine.ItemBlockMAFactory;
 import io.github.masyumero.mekavaritia.common.item.block.machine.MAItemBlockFluidTank;
 import io.github.masyumero.mekavaritia.common.item.block.transmitter.*;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityBin;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityEnergyCube;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityFluidTank;
 import io.github.masyumero.mekavaritia.common.tile.factory.TileEntityMAFactory;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
@@ -96,6 +95,11 @@ public class MABlocks {
     public static final BlockRegistryObject<MABlockFluidTank, MAItemBlockFluidTank> FLARE_FLUID_TANK = registerFluidTank("flare", MABlockTypes.FLARE_FLUID_TANK);
     public static final BlockRegistryObject<MABlockFluidTank, MAItemBlockFluidTank> NEURAL_FLUID_TANK = registerFluidTank("neural", MABlockTypes.NEURAL_FLUID_TANK);
     public static final BlockRegistryObject<MABlockFluidTank, MAItemBlockFluidTank> ETERNAL_FLUID_TANK = registerFluidTank("eternal", MABlockTypes.ETERNAL_FLUID_TANK);
+    // Energy Cubes
+    public static final BlockRegistryObject<MABlockEnergyCube, MAItemBlockEnergyCube> PRISMATIC_ENERGY_CUBE = registerEnergyCube("prismatic", MABlockTypes.PRISMATIC_ENERGY_CUBE);
+    public static final BlockRegistryObject<MABlockEnergyCube, MAItemBlockEnergyCube> FLARE_ENERGY_CUBE = registerEnergyCube("flare", MABlockTypes.FLARE_ENERGY_CUBE);
+    public static final BlockRegistryObject<MABlockEnergyCube, MAItemBlockEnergyCube> NEURAL_ENERGY_CUBE = registerEnergyCube("neural", MABlockTypes.NEURAL_ENERGY_CUBE);
+    public static final BlockRegistryObject<MABlockEnergyCube, MAItemBlockEnergyCube> ETERNAL_ENERGY_CUBE = registerEnergyCube("eternal", MABlockTypes.ETERNAL_ENERGY_CUBE);
     // Universal Cables
     public static final BlockRegistryObject<MABlockUniversalCable, MAItemBlockUniversalCable> PRISMATIC_UNIVERSAL_CABLE = registerUniversalCable("prismatic", CableTier.BASIC);
     public static final BlockRegistryObject<MABlockUniversalCable, MAItemBlockUniversalCable> FLARE_UNIVERSAL_CABLE = registerUniversalCable("flare", CableTier.ADVANCED);
@@ -150,6 +154,10 @@ public class MABlocks {
 
     private static BlockRegistryObject<MABlockFluidTank, MAItemBlockFluidTank> registerFluidTank(String tileName, MAMachine<MATileEntityFluidTank> type) {
         return registerTieredBlock(tileName, "_fluid_tank", () -> new MABlockFluidTank(type), MAItemBlockFluidTank::new);
+    }
+
+    private static BlockRegistryObject<MABlockEnergyCube, MAItemBlockEnergyCube> registerEnergyCube(String tileName, MAMachine<MATileEntityEnergyCube> type) {
+        return registerTieredBlock(tileName, "_energy_cube", () -> new MABlockEnergyCube(type), MAItemBlockEnergyCube::new);
     }
     
     private static BlockRegistryObject<MABlockUniversalCable, MAItemBlockUniversalCable> registerUniversalCable(String tileName, CableTier tier) {

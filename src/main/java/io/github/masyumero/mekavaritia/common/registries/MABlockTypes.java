@@ -2,11 +2,14 @@ package io.github.masyumero.mekavaritia.common.registries;
 
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
+
 import com.jerry.mekanism_extras.api.ExtraUpgrade;
+
 import fr.iglee42.evolvedmekanism.registries.EMContainerTypes;
 import fr.iglee42.evolvedmekanism.registries.EMFactoryType;
 import fr.iglee42.evolvedmekanism.registries.EMTileEntityTypes;
 import fr.iglee42.evolvedmekanism.tiles.machine.TileEntityAlloyer;
+
 import io.github.masyumero.mekavaritia.MekanismAvaritiaLang;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeTier;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttributeUpgradeable;
@@ -18,12 +21,14 @@ import io.github.masyumero.mekavaritia.common.integration.MAAddons;
 import io.github.masyumero.mekavaritia.common.tier.*;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityBin;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityChemicalTank;
+import io.github.masyumero.mekavaritia.common.tile.MATileEntityEnergyCube;
 import io.github.masyumero.mekavaritia.common.tile.MATileEntityFluidTank;
 import io.github.masyumero.mekavaritia.common.tile.machine.TileEntityElectricNeutronCollector;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionCell;
 import io.github.masyumero.mekavaritia.common.tile.multiblock.TileEntityMAInductionProvider;
 import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
 import io.github.masyumero.mekavaritia.common.util.MAUpgradeUtil;
+
 import mekanism.api.Upgrade;
 import mekanism.common.MekanismLang;
 import mekanism.common.block.attribute.*;
@@ -160,6 +165,11 @@ public class MABlockTypes {
     public static final MAMachine<MATileEntityFluidTank> FLARE_FLUID_TANK = createFluidTank(MAFTTier.FLARE, () -> MATileEntityTypes.FLARE_FLUID_TANK, () -> MABlocks.NEURAL_FLUID_TANK);
     public static final MAMachine<MATileEntityFluidTank> NEURAL_FLUID_TANK = createFluidTank(MAFTTier.NEURAL, () -> MATileEntityTypes.NEURAL_FLUID_TANK, () -> MABlocks.ETERNAL_FLUID_TANK);
     public static final MAMachine<MATileEntityFluidTank> ETERNAL_FLUID_TANK = createFluidTank(MAFTTier.ETERNAL, () -> MATileEntityTypes.ETERNAL_FLUID_TANK, null);
+    // Energy Cube
+    public static final MAMachine<MATileEntityEnergyCube> PRISMATIC_ENERGY_CUBE = createEnergyCube(MAECTier.PRISMATIC, () -> MATileEntityTypes.PRISMATIC_ENERGY_CUBE, () -> MABlocks.FLARE_ENERGY_CUBE);
+    public static final MAMachine<MATileEntityEnergyCube> FLARE_ENERGY_CUBE = createEnergyCube(MAECTier.FLARE, () -> MATileEntityTypes.FLARE_ENERGY_CUBE, () -> MABlocks.NEURAL_ENERGY_CUBE);
+    public static final MAMachine<MATileEntityEnergyCube> NEURAL_ENERGY_CUBE = createEnergyCube(MAECTier.NEURAL, () -> MATileEntityTypes.NEURAL_ENERGY_CUBE, () -> MABlocks.ETERNAL_ENERGY_CUBE);
+    public static final MAMachine<MATileEntityEnergyCube> ETERNAL_ENERGY_CUBE = createEnergyCube(MAECTier.ETERNAL, () -> MATileEntityTypes.ETERNAL_ENERGY_CUBE, null);
     // Chemical Tank
     public static final MAMachine<MATileEntityChemicalTank> PRISMATIC_CHEMICAL_TANK = createChemicalTank(MACTTier.PRISMATIC, () -> MATileEntityTypes.PRISMATIC_CHEMICAL_TANK, () -> MABlocks.FLARE_CHEMICAL_TANK);
     public static final MAMachine<MATileEntityChemicalTank> FLARE_CHEMICAL_TANK = createChemicalTank(MACTTier.FLARE, () -> MATileEntityTypes.FLARE_CHEMICAL_TANK, () -> MABlocks.NEURAL_CHEMICAL_TANK);
@@ -208,6 +218,16 @@ public class MABlockTypes {
                 .with(new MAAttributeTier<>(tier), new MAAttributeUpgradeable(upgradeBlock))
                 .without(AttributeParticleFX.class, AttributeStateFacing.class, Attributes.AttributeRedstone.class, AttributeUpgradeSupport.class)
                 .withComputerSupport(tier.getMATier().getLowerName() + "FluidTank")
+                .build();
+    }
+
+    private static <TILE extends MATileEntityEnergyCube> MAMachine<TILE> createEnergyCube(MAECTier tier, Supplier<TileEntityTypeRegistryObject<TILE>> tile, Supplier<BlockRegistryObject<?, ?>> upgradeBlock) {
+        return MAMachine.MAMachineBuilder.createMAMachine(tile, MekanismLang.DESCRIPTION_ENERGY_CUBE)
+                .withGui(() -> MAContainerTypes.ENERGY_CUBE)
+                .withEnergyConfig(tier::getMaxEnergy)
+                .with(new MAAttributeTier<>(tier), new MAAttributeUpgradeable(upgradeBlock))
+                .without(AttributeParticleFX.class, AttributeStateActive.class, AttributeUpgradeSupport.class)
+                .withComputerSupport(tier.getMATier().getLowerName() + "EnergyCube")
                 .build();
     }
 

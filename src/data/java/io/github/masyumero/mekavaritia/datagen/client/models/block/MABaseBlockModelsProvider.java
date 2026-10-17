@@ -124,6 +124,10 @@ public abstract class MABaseBlockModelsProvider extends BlockStateProvider {
         machineState(blockRO, null, new ModelFile.UncheckedModelFile(path));
     }
 
+    protected void energyCube(BlockRegistryObject<?, ?> blockRO) {
+        machineState(blockRO, null, new ModelFile.UncheckedModelFile(MAUtils.rl("block/energy_cube")));
+    }
+
     protected void fluidTank(BlockRegistryObject<?, ?> blockRO) {
         activeState(blockRO, new ModelFile.UncheckedModelFile(MAUtils.mekanism("block/fluid_tank_active")), new ModelFile.UncheckedModelFile(MAUtils.mekanism("block/fluid_tank")));
     }

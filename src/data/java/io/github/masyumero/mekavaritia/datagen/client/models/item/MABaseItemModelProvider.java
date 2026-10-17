@@ -9,6 +9,7 @@ import com.jerry.mekmm.common.content.blocktype.MoreMachineFactoryType;
 
 import committee.nova.mods.avaritia.client.model.loader.base.HaloSetting;
 
+import io.github.masyumero.mekavaritia.common.block.MABlockEnergyCube;
 import io.github.masyumero.mekavaritia.common.block.attribute.MAAttribute;
 import io.github.masyumero.mekavaritia.common.block.basic.MABlockFluidTank;
 import io.github.masyumero.mekavaritia.common.tier.MAFactoryTier;
@@ -92,6 +93,38 @@ public abstract class MABaseItemModelProvider extends ItemModelProvider {
                 .end()
                 .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
                 .rotation(0, 45, 0)
+                .scale(0.4F)
+                .end().end();
+    }
+
+    protected ItemModelBuilder energyCube(BlockRegistryObject<MABlockEnergyCube, ?> blockRO) {
+        return this.getBuilder(blockRO.getName()).parent(new ModelFile.UncheckedModelFile("builtin/entity"))
+                .transforms()
+                .transform(ItemDisplayContext.GUI)
+                .rotation(30, 315, 0)
+                .scale(0.625F)
+                .end()
+                .transform(ItemDisplayContext.GROUND)
+                .rotation(0, 90, 0)
+                .translation(0, 2, 0)
+                .scale(0.25F)
+                .end()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND)
+                .rotation(75, 135, 0)
+                .translation(0, 2.5F, 0)
+                .scale(0.375F)
+                .end()
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND)
+                .rotation(0, 135, 0)
+                .scale(0.4F)
+                .end()
+                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND)
+                .rotation(75, 135, 0)
+                .translation(0 ,2.5F, 0)
+                .scale(0.375F)
+                .end()
+                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND)
+                .rotation(0, 135, 0)
                 .scale(0.4F)
                 .end().end();
     }
