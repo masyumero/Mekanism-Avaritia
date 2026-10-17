@@ -1,33 +1,61 @@
 package io.github.masyumero.mekavaritia.datagen.common.recipe.impl;
 
 import committee.nova.mods.avaritia.init.registry.ModItems;
+
 import io.github.masyumero.mekavaritia.common.registries.MAItems;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.BaseRecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.ISubRecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.builder.ExtendedShapedRecipeBuilder;
+import io.github.masyumero.mekavaritia.datagen.common.recipe.compat.MekAFRecipeProvider;
+import io.github.masyumero.mekavaritia.datagen.common.recipe.compat.MekMMRecipeProvider;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.pattern.Pattern;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.pattern.RecipePattern;
 import io.github.masyumero.mekavaritia.datagen.common.recipe.pattern.RecipePattern.TripleLine;
+
 import mekanism.api.annotations.NothingNullByDefault;
 import mekanism.common.registries.MekanismBlocks;
 import mekanism.common.registries.MekanismItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.ModList;
 
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 @NothingNullByDefault
 public class MARecipeProvider extends BaseRecipeProvider {
 
+    private final List<ISubRecipeProvider> compatProviders = new ArrayList<>();
+    private final Set<String> disabledCompats = new HashSet<>();
+
     public MARecipeProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, existingFileHelper);
+
+        checkCompat("mekmm", MekMMRecipeProvider::new, MekAFRecipeProvider::new);
     }
+
+    @SafeVarargs
+    private void checkCompat(String modid, Function<String, ISubRecipeProvider>... providerCreator) {
+        if (ModList.get().isLoaded(modid)) {
+            for (Function<String, ISubRecipeProvider> subRecipeProvider : providerCreator) {
+                compatProviders.add(subRecipeProvider.apply(modid));
+            }
+        } else {
+            disabledCompats.add(modid);
+        }
+    }
+
+    public Set<String> getDisabledCompats() {
+        return Collections.unmodifiableSet(disabledCompats);
+    }
+
 
     @Override
     protected void addRecipes(Consumer<FinishedRecipe> consumer) {
         addMiscRecipes(consumer);
+        compatProviders.forEach(compatProvider -> compatProvider.addRecipes(consumer));
     }
 
     @Override
