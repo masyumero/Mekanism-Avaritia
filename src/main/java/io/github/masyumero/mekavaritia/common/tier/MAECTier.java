@@ -11,9 +11,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Locale;
 
 public enum MAECTier implements IMATier, StringRepresentable {
-    PRISMATIC(MATier.PRISMATIC, FloatingLong.create(32_768_000L), FloatingLong.create(131_072_000L)),
-    FLARE(MATier.FLARE, FloatingLong.create(131_072_000L), FloatingLong.create(1_048_576_000L)),
-    NEURAL(MATier.NEURAL, FloatingLong.create(524_288_000L), FloatingLong.create(4_194_304_000L)),
+    PRISMATIC(MATier.PRISMATIC, FloatingLong.create(4_096_000_000L), FloatingLong.create(2_048_000_000L)),
+    FLARE(MATier.FLARE, FloatingLong.create(32_768_000_000L), FloatingLong.create(16_384_000_000L)),
+    NEURAL(MATier.NEURAL, FloatingLong.create(2_097_152_000_000L), FloatingLong.create(1_048_576_000_000L)),
     ETERNAL(MATier.ETERNAL, FloatingLong.create(Long.MAX_VALUE), FloatingLong.create(Long.MAX_VALUE));
 
     private final FloatingLong maMaxEnergy;
