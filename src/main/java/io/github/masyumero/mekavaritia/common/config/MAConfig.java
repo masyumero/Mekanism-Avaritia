@@ -1,13 +1,19 @@
 package io.github.masyumero.mekavaritia.common.config;
 
 import io.github.masyumero.mekavaritia.MekanismAvaritia;
+import io.github.masyumero.mekavaritia.common.tier.*;
+import io.github.masyumero.mekavaritia.common.util.MAEnumUtils;
 import mekanism.api.heat.HeatAPI;
 import mekanism.api.math.FloatingLong;
 import mekanism.common.config.BaseMekanismConfig;
 import mekanism.common.config.value.CachedDoubleValue;
 import mekanism.common.config.value.CachedFloatingLongValue;
+import mekanism.common.config.value.CachedIntValue;
+import mekanism.common.config.value.CachedLongValue;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
+
+import java.util.Locale;
 
 public class MAConfig extends BaseMekanismConfig {
     
@@ -138,7 +144,84 @@ public class MAConfig extends BaseMekanismConfig {
         neuralPressurizedTubeCapacity = CachedFloatingLongValue.define(this, builder, notePT, "neuralPressurizedTubeCapacity", FloatingLong.createConst(1_048_576_000L));
         eternalPressurizedTubeCapacity = CachedFloatingLongValue.define(this, builder, notePT, "eternalPressurizedTubeCapacity", FloatingLong.MAX_VALUE);
         builder.pop();
+
+        addEnergyCubeCategory(builder);
+        addFluidTankCategory(builder);
+        addGasTankCategory(builder);
+        addBinCategory(builder);
+        addInductionCategory(builder);
+        builder.pop();
+
         configSpec = builder.build();
+    }
+
+    private void addEnergyCubeCategory(ForgeConfigSpec.Builder builder) {
+        builder.comment("Energy Cubes").push("energy cube");
+        for (MAECTier tier : MAEnumUtils.ENERGY_CUBE_TIERS) {
+            String tierName = tier.getMATier().getSimpleName();
+            CachedFloatingLongValue storageReference = CachedFloatingLongValue.define(this, builder,
+                    "Maximum number of Joules " + tierName + " energy cubes can store.", tier.toString().toLowerCase() + "Storage", tier.getMaxEnergy(),
+                    CachedFloatingLongValue.POSITIVE);
+            CachedFloatingLongValue outputReference = CachedFloatingLongValue.define(this, builder,
+                    "Output rate in Joules of " + tierName + " energy cubes.", tier.toString().toLowerCase() + "Output", tier.getMAOutput(),
+                    CachedFloatingLongValue.POSITIVE);
+            tier.setConfigReference(storageReference, outputReference);
+        }
+        builder.pop();
+    }
+
+    private void addFluidTankCategory(ForgeConfigSpec.Builder builder) {
+        builder.comment("Fluid Tanks").push("fluid tanks");
+        for (MAFTTier tier : MAEnumUtils.FLUID_TANK_TIERS) {
+            String tierName = tier.getMATier().getSimpleName();
+            CachedIntValue storageReference = CachedIntValue.wrap(this, builder.comment("Storage size of " + tier.toString().toLowerCase() + " fluid tanks in mB.")
+                    .defineInRange(tierName.toLowerCase(Locale.ROOT) + "Storage", tier.getMAStorage(), 1, Integer.MAX_VALUE));
+            CachedIntValue outputReference = CachedIntValue.wrap(this, builder.comment("Output rate of " + tier.toString().toLowerCase() + " fluid tanks in mB.")
+                    .defineInRange(tierName.toLowerCase(Locale.ROOT) + "Output", tier.getMAOutput(), 1, Integer.MAX_VALUE));
+            tier.setConfigReference(storageReference, outputReference);
+        }
+        builder.pop();
+    }
+
+    private void addGasTankCategory(ForgeConfigSpec.Builder builder) {
+        builder.comment("Chemical Tanks").push("chemical tanks");
+        for (MACTTier tier : MAEnumUtils.CHEMICAL_TANK_TIERS) {
+            String tierName = tier.getMATier().getSimpleName();
+            CachedLongValue storageReference = CachedLongValue.wrap(this, builder.comment("Storage size of " + tier.toString().toLowerCase() + " chemical tanks in mB.")
+                    .defineInRange(tierName.toLowerCase(Locale.ROOT) + "Storage", tier.getMAStorage(), 1, Long.MAX_VALUE));
+            CachedLongValue outputReference = CachedLongValue.wrap(this, builder.comment("Output rate of " + tier.toString().toLowerCase() + " chemical tanks in mB.")
+                    .defineInRange(tierName.toLowerCase(Locale.ROOT) + "Output", tier.getMAOutput(), 1, Long.MAX_VALUE));
+            tier.setConfigReference(storageReference, outputReference);
+        }
+        builder.pop();
+    }
+
+    private void addBinCategory(ForgeConfigSpec.Builder builder) {
+        builder.comment("Bins").push("bins");
+        for (MABTier tier : MAEnumUtils.BIN_TIERS) {
+            String tierName = tier.getMATier().getSimpleName();
+            CachedIntValue storageReference = CachedIntValue.wrap(this, builder.comment("The number of items " + tier.toString().toLowerCase() + " bins can store.")
+                    .defineInRange(tierName.toLowerCase(Locale.ROOT) + "Storage", tier.getMAStorage(), 1, Integer.MAX_VALUE));
+            tier.setConfigReference(storageReference);
+        }
+        builder.pop();
+    }
+
+    private void addInductionCategory(ForgeConfigSpec.Builder builder) {
+        builder.comment("Induction").push("induction");
+        for (MAICTier tier : MAEnumUtils.INDUCTION_CELL_TIERS) {
+            String tierName = tier.getMATier().getSimpleName();
+            CachedFloatingLongValue storageReference = CachedFloatingLongValue.define(this, builder, "Maximum number of Joules " + tier.toString().toLowerCase() + " induction cells can store.",
+                    tierName.toLowerCase(Locale.ROOT) + "Storage", tier.getMaxEnergy(), CachedFloatingLongValue.POSITIVE);
+            tier.setConfigReference(storageReference);
+        }
+        for (MAIPTier tier : MAEnumUtils.INDUCTION_PROVIDER_TIERS) {
+            String tierName = tier.getMATier().getSimpleName();
+            CachedFloatingLongValue outputReference = CachedFloatingLongValue.define(this, builder, "Maximum number of Joules " + tier.toString().toLowerCase() + " induction providers can output or accept.",
+                    tierName.toLowerCase(Locale.ROOT) + "Output", tier.getOutput(), CachedFloatingLongValue.POSITIVE);
+            tier.setConfigReference(outputReference);
+        }
+        builder.pop();
     }
 
     @Override

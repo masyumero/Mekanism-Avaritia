@@ -29,7 +29,7 @@ public enum MABTier implements IMATier {
         return storageReference == null ? getMAStorage() : storageReference.getOrDefault();
     }
 
-    private int getMAStorage() {
+    public int getMAStorage() {
         return maStorage;
     }
 

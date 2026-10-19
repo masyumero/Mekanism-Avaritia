@@ -46,11 +46,11 @@ public enum MAFTTier implements IMATier, StringRepresentable {
         return outputReference == null ? getMAOutput() : outputReference.getOrDefault();
     }
 
-    private int getMAStorage() {
+    public int getMAStorage() {
         return maStorage;
     }
 
-    private int getMAOutput() {
+    public int getMAOutput() {
         return maOutput;
     }
 
