@@ -1,9 +1,10 @@
 package io.github.masyumero.mekavaritia.common.content.network.transmitter;
 
+import io.github.masyumero.mekavaritia.api.mixin.IMixinLogisticalTransporterBase;
 import io.github.masyumero.mekavaritia.common.tier.transmitter.MATPTier;
 import io.github.masyumero.mekavaritia.common.tile.transmitter.TileEntityMATransmitter;
 import io.github.masyumero.mekavaritia.common.util.MATransporterUtils;
-import io.github.masyumero.mekavaritia.mixin.mekanism.InvokerLogisticalTransporterBase;
+import io.github.masyumero.mekavaritia.mixin.mekanism.MixinLogisticalTransporterBase;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
@@ -179,7 +180,7 @@ public class MALogisticalTransporter extends LogisticalTransporterBase implement
                     int stackId = entry.getIntKey();
                     TransporterStack stack = entry.getValue();
                     if (!stack.initiatedPath) {
-                        if (stack.itemStack.isEmpty() || ((InvokerLogisticalTransporterBase)this).recalculate(stackId, stack, null)) {
+                        if (stack.itemStack.isEmpty() || ((IMixinLogisticalTransporterBase)this).mekavaritia$getRecalculate(stackId, stack, null)) {
                             deletes.add(stackId);
                             continue;
                         }
@@ -200,7 +201,7 @@ public class MALogisticalTransporter extends LogisticalTransporterBase implement
                                 if (!stack.isFinal(this)) {
                                     LogisticalTransporterBase transmitter = network.getTransmitter(next);
                                     if (stack.canInsertToTransporter(transmitter, stack.getSide(this), this)) {
-                                        ((InvokerLogisticalTransporterBase)this).entityEntering(stack, stack.progress % 100);
+                                        ((IMixinLogisticalTransporterBase)this).mekavaritia$getEntering(stack, stack.progress % 100);
                                         deletes.add(stackId);
                                         continue;
                                     }
@@ -232,7 +233,7 @@ public class MALogisticalTransporter extends LogisticalTransporterBase implement
                                 }
                             }
                         }
-                        if (((InvokerLogisticalTransporterBase)this).recalculate(stackId, stack, prevSet)) {
+                        if (((IMixinLogisticalTransporterBase)this).mekavaritia$getRecalculate(stackId, stack, prevSet)) {
                             deletes.add(stackId);
                         } else if (prevSet == null) {
                             stack.progress = 50;
@@ -265,7 +266,7 @@ public class MALogisticalTransporter extends LogisticalTransporterBase implement
                                 tryRecalculate = !stack.canInsertToTransporter(nextTransmitter, stack.getSide(this), this);
                             }
                         }
-                        if (tryRecalculate && ((InvokerLogisticalTransporterBase)this).recalculate(stackId, stack, null)) {
+                        if (tryRecalculate && ((IMixinLogisticalTransporterBase)this).mekavaritia$getRecalculate(stackId, stack, null)) {
                             deletes.add(stackId);
                         }
                     }

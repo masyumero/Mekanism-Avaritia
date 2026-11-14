@@ -7,7 +7,7 @@
   "mixins": [
     "avaritia.MixinInfinityElytraUtils",
     "avaritia.MixinToolUtils",
-    "mekanism.InvokerLogisticalTransporterBase",
+    "mekanism.MixinLogisticalTransporterBase",
     "mekanism.MixinItemMekaBow",
     "mekanism.MixinItemMekaGun",
     "mekanism.MixinItemMekaSuitArmor",
